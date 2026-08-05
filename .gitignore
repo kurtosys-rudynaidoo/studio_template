@@ -8,6 +8,7 @@ BuildResult/**/manifest.json
 BuildResult/**/vite.svg
 reports/*.html
 reports/*.pdf
+tools/__pycache__/
 npm-audit.json
 .DS_Store
 *.local
