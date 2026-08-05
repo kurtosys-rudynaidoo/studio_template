@@ -10,7 +10,7 @@ var fs = require('fs');
 var path = require('path');
 var envConfig = require('../config/env.config.cjs');
 
-var env = process.env.BUILD_ENV || process.env.NODE_ENV || 'development';
+var env = process.env.BUILD_ENV || process.env.NODE_ENV || 'dev';
 var config = envConfig.getConfig(env);
 var distDir = path.resolve(__dirname, '..', 'dist-build');
 

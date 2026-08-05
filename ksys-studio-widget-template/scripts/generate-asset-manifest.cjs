@@ -6,7 +6,7 @@ const distDir = path.resolve(__dirname, '..', 'dist-build');
 const manifestPath = path.join(distDir, 'manifest.json');
 const assetsDir = distDir;
 
-const env = process.env.BUILD_ENV || process.env.NODE_ENV || 'development';
+const env = process.env.BUILD_ENV || process.env.NODE_ENV || 'dev';
 const config = getConfig(env);
 const expectedAppFile = config.filename;
 const expectedStylesFile = `styles-${config.filename.replace('.js', '')}.css`;

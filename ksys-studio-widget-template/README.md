@@ -10,7 +10,7 @@ Use this for new client builds so every widget shares the same mount, build, and
 |------|---------|
 | Mount | DXM `#containerId` + App Manager `data-input-*` via `resolve-mount-inputs` |
 | Build | IIFE bundle, React externalized, CSS inlined into the JS |
-| Envs | `build:dev` / `build:staging` / `build:prod` via `BUILD_ENV` + `config/env.config.cjs` |
+| Envs | `build:dev` / `build:stg` / `build:prd` via `BUILD_ENV` + `config/env.config.cjs` |
 | Output | Flat `dist-build/<widget>.js` (ready for Fundpress / Studio upload) |
 | Dev | Local `index.html` simulates App Manager + mount node |
 
@@ -27,16 +27,16 @@ Then:
 1. Rename the feature under `src/components/Widget/`
 2. Fill `config/env.config.cjs` (guid, tokens, `filename`, `containerId`)
 3. Point DXM at the same mount id as `containerId`
-4. Build: `npm run build:staging` or `npm run build:prod`
+4. Build: `npm run build:stg` or `npm run build:prd`
 
 ## Scaffold into a client monorepo
 
 ```bash
 chmod +x scripts/scaffold-app.sh
 
-# Creates ksys-acme-pageHeader under the given product-page-apps folder
+# Creates ksys-acme-pageHeader under the given apps folder
 ./scripts/scaffold-app.sh acme pageHeader \
-  ~/Documents/GitHub/acme-pp/development_v1/product-page-apps
+  ~/Documents/GitHub/acme-pp/apps
 ```
 
 See [MONOREPO.md](./MONOREPO.md) for the recommended multi-app layout (same shape as BP).
@@ -78,9 +78,9 @@ Examples: `ksys-bp-pageHeader`, `ksys-acme-overview`, `ksys-acme-keyStatistics`.
 ## Build outputs
 
 ```bash
-npm run build:dev       # BUILD_ENV=development
-npm run build:staging   # BUILD_ENV=staging
-npm run build:prod      # BUILD_ENV=production
+npm run build:dev       # BUILD_ENV=dev
+npm run build:stg       # BUILD_ENV=stg
+npm run build:prd       # BUILD_ENV=prd
 ```
 
 Artifacts land in `dist-build/`. For deploy packages, copy only the relevant JS (and shared CSS from a shell/appManager if you have one) into `BuildResult/<env>/<widgetId>/`.
@@ -98,7 +98,7 @@ This template includes patterns that BP product pages actually use in production
 
 ## Next steps for a new client
 
-1. Copy this repo or scaffold apps into `development_v1/product-page-apps/`
+1. Copy this repo or scaffold apps into `apps/`
 2. Add shared client config (document rules, fetch cache, etc.) under a sibling `config/` folder when needed
 3. Optionally add an `appManager` shell that loads child widgets by GUID
 4. Wire `tools/bp_cli.py`-style build/package/deploy once GUIDs exist in Studio

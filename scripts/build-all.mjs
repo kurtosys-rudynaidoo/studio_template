@@ -10,7 +10,7 @@
  * Outputs (clean — JS only):
  *   BuildResult/<host>/<env>/<appId>/<appId>.js
  *
- * Env abbreviations: stg (staging), prd (production)
+ * Env abbreviations: dev (development), stg (staging), prd (production)
  */
 import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
@@ -24,8 +24,8 @@ import {
 } from './lib.mjs';
 
 const envMap = {
-	development: { npm: 'build:dev', out: 'dev', buildEnv: 'development' },
-	dev: { npm: 'build:dev', out: 'dev', buildEnv: 'development' },
+	dev: { npm: 'build:dev', out: 'dev', buildEnv: 'dev' },
+	development: { npm: 'build:dev', out: 'dev', buildEnv: 'dev' },
 	stg: { npm: 'build:stg', out: 'stg', buildEnv: 'stg' },
 	staging: { npm: 'build:stg', out: 'stg', buildEnv: 'stg' },
 	prd: { npm: 'build:prd', out: 'prd', buildEnv: 'prd' },
@@ -47,7 +47,7 @@ function parseArgs(argv) {
 const args = parseArgs(process.argv.slice(2));
 const mapped = envMap[args.env];
 if (!mapped) {
-	console.error(`Unknown env: ${args.env}. Use development|stg|prd`);
+	console.error(`Unknown env: ${args.env}. Use dev|stg|prd`);
 	process.exit(1);
 }
 

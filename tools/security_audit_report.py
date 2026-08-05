@@ -8,7 +8,7 @@ Usage (from repo root):
   python tools/security_audit_report.py
 
 App discovery scans every existing container among:
-  development_v1/product-page-apps, product-page-apps, staging (under the
+  apps, product-page-apps, development_v1/product-page-apps, staging (under the
   workspace folder that contains this tools/ directory).
 
 PDF: tries xhtml2pdf first, then Chromium/Chrome/Edge headless (see pdf_from_html).
@@ -35,10 +35,11 @@ REPORTS_DIR = REPO_ROOT / "reports"
 
 
 def iter_app_container_dirs(workspace: Path) -> list[Path]:
-	"""Ordered app roots: nested development_v1 layout, flat product-page-apps, staging."""
+	"""Ordered app roots: apps/, legacy BP layouts, staging."""
 	candidates = (
-		workspace / "development_v1" / "product-page-apps",
+		workspace / "apps",
 		workspace / "product-page-apps",
+		workspace / "development_v1" / "product-page-apps",
 		workspace / "staging",
 	)
 	out: list[Path] = []

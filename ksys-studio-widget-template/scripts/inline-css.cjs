@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const { getConfig } = require('../config/env.config.cjs');
 
-const env = process.env.BUILD_ENV || process.env.NODE_ENV || 'development';
+const env = process.env.BUILD_ENV || process.env.NODE_ENV || 'dev';
 const config = getConfig(env);
 const distDir = path.resolve(__dirname, '..', 'dist-build');
 const jsFile = path.join(distDir, config.filename);

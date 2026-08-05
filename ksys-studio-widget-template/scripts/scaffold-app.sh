@@ -6,7 +6,7 @@
 #
 # Examples:
 #   ./scripts/scaffold-app.sh acme pageHeader
-#   ./scripts/scaffold-app.sh acme overview ~/Documents/GitHub/acme-pp/development_v1/product-page-apps
+#   ./scripts/scaffold-app.sh acme overview ~/Documents/GitHub/acme-pp/apps
 #
 # Creates: ksys-<client>-<widget>/ with package name + env filename/containerId updated.
 

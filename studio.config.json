@@ -2,7 +2,7 @@
 	"$schema": "./studio.config.schema.json",
 	"clientSlug": "client",
 	"appPrefix": "ksys",
-	"appsRoot": "development_v1/product-page-apps",
+	"appsRoot": "apps",
 	"buildResultRoot": "BuildResult",
 	"widgetTemplatePath": "./ksys-studio-widget-template",
 	"hostMode": "dxm",

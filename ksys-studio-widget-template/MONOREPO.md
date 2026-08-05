@@ -1,48 +1,48 @@
 # Client product-page monorepo layout
 
-Mirror the Boston Partners archive layout so build/deploy tooling stays consistent.
+Apps live under a single `apps/` folder at the monorepo root.
 
 ```
 <client>-pp/
 ├── BuildResult/
-│   ├── dev/
-│   ├── staging/
-│   └── prod/
-│       ├── pageHeader/pageHeader.js
-│       ├── overview/overview.js
-│       └── appManager/
-│           ├── appManager.js
-│           └── shared.css          # optional
-├── tools/                          # optional bp_cli-style wizard
-└── development_v1/
-    └── product-page-apps/
-        ├── config/                 # shared client utilities (optional)
-        ├── ksys-<client>-appManager/
-        ├── ksys-<client>-pageHeader/
-        ├── ksys-<client>-overview/
-        └── ksys-<client>-.../
+│   ├── dxm/{dev,stg,prd}/
+│   └── cms/{dev,stg,prd}/
+│       └── <appId>/<appId>.js
+├── tools/                          # optional CLI / reports
+├── ksys-studio-widget-template/    # in-repo starter for apps:add
+└── apps/
+    ├── config/                     # shared client utilities (optional)
+    ├── ksys-<client>-pageHeader/
+    ├── ksys-<client>-overview/
+    └── ksys-<client>-.../
 ```
 
-## Rules that prevent the BP holdingsExposure issue
+## Rules
 
-1. **All widgets live under** `development_v1/product-page-apps/`
+1. **All widgets live under** `apps/`
 2. Folder prefix: `ksys-<client>-*`
-3. Each app has its own `package.json` with `build:dev` / `build:staging` / `build:prod`
-4. Do not keep a production widget only as a sibling repo outside the monorepo unless you also copy/symlink it into `product-page-apps/`
+3. Each app has its own `package.json` with `build:dev` / `build:stg` / `build:prd`
+4. Do not keep a production widget only as a sibling repo outside the monorepo unless you also copy/symlink it into `apps/`
 
 ## Creating a new widget
 
-From this template:
+Prefer monorepo root:
+
+```bash
+npm run apps:add -- <widget> [port]
+```
+
+Or from this template directly:
 
 ```bash
 ./scripts/scaffold-app.sh <client> <widget> \
-  /path/to/<client>-pp/development_v1/product-page-apps
+  /path/to/<client>-pp/apps
 ```
 
 Then:
 
 ```bash
-cd /path/to/<client>-pp/development_v1/product-page-apps/ksys-<client>-<widget>
+cd /path/to/<client>-pp/apps/ksys-<client>-<widget>
 # edit config/env.config.cjs
 npm install
 npm run dev

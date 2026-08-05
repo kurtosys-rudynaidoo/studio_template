@@ -75,7 +75,7 @@ ksys-studio-widget-template/  # in-repo widget starter for apps:add
 hosts/{dxm,cms}/
 docs/integration-specs/
 BuildResult/{dxm,cms}/{dev,stg,prd}/<appId>/
-development_v1/product-page-apps/ksys-<client>-<appId>/
+apps/ksys-<client>-<appId>/
 ```
 
 Duplicate this whole folder for each new client — the widget template comes along automatically.

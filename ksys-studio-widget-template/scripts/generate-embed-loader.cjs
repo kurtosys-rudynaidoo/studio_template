@@ -6,7 +6,7 @@ var distDir = path.resolve(__dirname, '..', 'dist-build');
 var manifestPath = path.join(distDir, 'asset-manifest.json');
 var loaderPath = path.join(distDir, 'embed-loader.js');
 
-var env = process.env.BUILD_ENV || process.env.NODE_ENV || 'development';
+var env = process.env.BUILD_ENV || process.env.NODE_ENV || 'dev';
 var baseUrl = envConfig.getBaseUrl(env);
 var config = envConfig.getConfig(env);
 

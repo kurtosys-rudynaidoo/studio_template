@@ -5,7 +5,7 @@ const distDir = path.resolve(__dirname, '..', 'dist-build');
 const outputPath = path.join(distDir, 'index.html');
 
 function generateStandaloneEmbed() {
-  const env = process.env.BUILD_ENV || process.env.NODE_ENV || 'development';
+  const env = process.env.BUILD_ENV || process.env.NODE_ENV || 'dev';
   const envConfig = require('../config/env.config.cjs');
   const baseUrl = envConfig.getBaseUrl(env);
 

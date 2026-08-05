@@ -7,7 +7,7 @@ import { nodePolyfills } from 'vite-plugin-node-polyfills';
 
 const require = createRequire(import.meta.url);
 const envConfig = require('./config/env.config.cjs');
-const buildEnv = process.env.BUILD_ENV || process.env.NODE_ENV || 'development';
+const buildEnv = process.env.BUILD_ENV || process.env.NODE_ENV || 'dev';
 const config = envConfig.getConfig(buildEnv);
 const sharedStylesEmpty = path.resolve(__dirname, './config/shared-styles-empty.css');
 

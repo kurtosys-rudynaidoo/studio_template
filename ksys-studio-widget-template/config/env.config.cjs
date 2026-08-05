@@ -1,9 +1,9 @@
 // Environment configuration for Kurtosys Studio embeddable builds.
-// Env keys: development | stg | prd
-// Aliases accepted: staging→stg, production|prod→prd
+// Env keys: dev | stg | prd
+// Aliases accepted: development→dev, staging→stg, production|prod→prd
 
 const environments = {
-	development: {
+	dev: {
 		baseUrl: 'https://api-us.kurtosys.app',
 		fundApiUrl: 'https://api-us.fundpress.io',
 		path: 'applicationManager/apps',
@@ -43,15 +43,15 @@ const ENV_ALIASES = {
 	staging: 'stg',
 	production: 'prd',
 	prod: 'prd',
-	dev: 'development',
+	development: 'dev',
 };
 
 /**
  * @param {string} env
  * @returns {string}
  */
-function normalizeEnv(env = 'development') {
-	const raw = String(env || 'development');
+function normalizeEnv(env = 'dev') {
+	const raw = String(env || 'dev');
 	return ENV_ALIASES[raw] || raw;
 }
 
@@ -59,7 +59,7 @@ function normalizeEnv(env = 'development') {
  * @param {string} env
  * @returns {string}
  */
-function getBaseUrl(env = 'development') {
+function getBaseUrl(env = 'dev') {
 	const key = normalizeEnv(env);
 	const config = environments[key];
 	if (!config) {
@@ -79,7 +79,7 @@ function getBaseUrl(env = 'development') {
 function sharedStylesheetUrl(env, baseUrl, path) {
 	const key = normalizeEnv(env);
 	const sharedGuidByEnv = {
-		development: 'YOUR_SHARED_CSS_DEV_GUID_HERE',
+		dev: 'YOUR_SHARED_CSS_DEV_GUID_HERE',
 		stg: 'YOUR_SHARED_CSS_STG_GUID_HERE',
 		prd: 'YOUR_SHARED_CSS_PRD_GUID_HERE',
 	};
@@ -92,7 +92,7 @@ function sharedStylesheetUrl(env, baseUrl, path) {
  * @param {string} env
  * @returns {object}
  */
-function getConfig(env = 'development') {
+function getConfig(env = 'dev') {
 	const key = normalizeEnv(env);
 	const config = environments[key];
 	if (!config) {
