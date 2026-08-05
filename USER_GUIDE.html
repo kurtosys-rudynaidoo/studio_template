@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kurtosys Studio Product-Page Monorepo — User Guide</title>
+  <style>
+    :root {
+      --ink: #0f172a;
+      --muted: #334155;
+      --border: #cbd5e1;
+      --panel: #f8fafc;
+      --accent: #0c4a6e;
+      --note: #eff6ff;
+      --note-border: #0284c7;
+      --warn: #fff7ed;
+      --warn-border: #ea580c;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 3rem;
+      max-width: 52rem;
+      color: var(--ink);
+      line-height: 1.55;
+      background: #fff;
+    }
+    h1 {
+      font-size: 1.85rem;
+      line-height: 1.25;
+      margin: 0 0 0.5rem;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 0.5rem;
+      color: var(--accent);
+    }
+    h2 {
+      font-size: 1.25rem;
+      margin-top: 2.25rem;
+      margin-bottom: 0.65rem;
+      color: var(--accent);
+      page-break-after: avoid;
+    }
+    h3 {
+      font-size: 1.05rem;
+      margin-top: 1.35rem;
+      margin-bottom: 0.4rem;
+      color: var(--ink);
+      page-break-after: avoid;
+    }
+    p, li { color: var(--ink); }
+    .lead { font-size: 1.05rem; color: var(--muted); margin-top: 0.75rem; }
+    .meta { font-size: 0.9rem; color: var(--muted); margin: 0.25rem 0 1.25rem; }
+    nav.toc {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem 1.15rem;
+      margin: 1.25rem 0 1.75rem;
+    }
+    nav.toc ol { margin: 0.35rem 0 0; padding-left: 1.25rem; }
+    nav.toc a { color: var(--accent); text-decoration: none; }
+    nav.toc a:hover { text-decoration: underline; }
+    code, pre { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 0.86rem; }
+    code {
+      background: #f1f5f9;
+      padding: 0.12rem 0.35rem;
+      border-radius: 4px;
+    }
+    pre {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      padding: 0.85rem 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      page-break-inside: avoid;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0.75rem 0 1rem;
+      font-size: 0.92rem;
+      page-break-inside: avoid;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.45rem 0.55rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: #e2e8f0; }
+    ul, ol { padding-left: 1.25rem; }
+    .note, .warn {
+      border-left: 4px solid;
+      padding: 0.7rem 1rem;
+      margin: 1rem 0;
+      border-radius: 0 6px 6px 0;
+      font-size: 0.95rem;
+      page-break-inside: avoid;
+    }
+    .note { background: var(--note); border-color: var(--note-border); }
+    .warn { background: var(--warn); border-color: var(--warn-border); }
+    .footer {
+      margin-top: 2.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    @media print {
+      body { padding: 0.75rem; max-width: none; }
+      a { color: inherit; text-decoration: none; }
+      nav.toc { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+<h1>Kurtosys Studio Product-Page Monorepo — User Guide</h1>
+<p class="meta">Repository: <code>ksys-studio-pp-template</code> · Companion widget starter: <code>ksys-studio-widget-template</code></p>
+<p class="lead">
+  This guide explains how to reuse this monorepo for a new client, add or rename apps,
+  develop locally, build for Studio, and follow the accessibility / security defaults
+  that ship with every widget.
+</p>
+
+<nav class="toc" aria-label="Table of contents">
+  <strong>Contents</strong>
+  <ol>
+    <li><a href="#what">What this repo is</a></li>
+    <li><a href="#prereqs">Prerequisites</a></li>
+    <li><a href="#layout">Repository layout</a></li>
+    <li><a href="#new-client">Start a new client project</a></li>
+    <li><a href="#config">Understanding <code>studio.config.json</code></a></li>
+    <li><a href="#apps">Manage apps (list / add / rename)</a></li>
+    <li><a href="#develop">Develop a single app</a></li>
+    <li><a href="#env">Configure environments (GUIDs &amp; tokens)</a></li>
+    <li><a href="#dxm">DXM mount contract</a></li>
+    <li><a href="#build">Build for dev / staging / prod</a></li>
+    <li><a href="#defaults">Built-in defaults (a11y, Tailwind, embed, security)</a></li>
+    <li><a href="#security">Security audit reports</a></li>
+    <li><a href="#checklist">End-to-end checklist</a></li>
+    <li><a href="#troubleshoot">Troubleshooting</a></li>
+    <li><a href="#regen">Regenerate this PDF</a></li>
+  </ol>
+</nav>
+
+<h2 id="what">1. What this repo is</h2>
+<p>
+  A <strong>generic, reusable monorepo</strong> for Kurtosys Studio / DXM embeddable React widgets.
+  Each widget is its own Vite app under <code>development_v1/product-page-apps/</code>, discovered and
+  orchestrated by <code>studio.config.json</code> and root npm scripts.
+</p>
+<p>Starter apps included out of the box:</p>
+<table>
+  <thead>
+    <tr>
+      <th>App id</th>
+      <th>Folder (default client)</th>
+      <th>Mount id</th>
+      <th>Embed global</th>
+      <th>Dev port</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>pageHeader</code></td>
+      <td><code>ksys-client-pageHeader</code></td>
+      <td><code>#pageHeader</code></td>
+      <td><code>window.pageHeader</code></td>
+      <td>5173</td>
+    </tr>
+    <tr>
+      <td><code>overview</code></td>
+      <td><code>ksys-client-overview</code></td>
+      <td><code>#overview</code></td>
+      <td><code>window.overview</code></td>
+      <td>5174</td>
+    </tr>
+    <tr>
+      <td><code>performance</code></td>
+      <td><code>ksys-client-performance</code></td>
+      <td><code>#performance</code></td>
+      <td><code>window.performanceApp</code>*</td>
+      <td>5175</td>
+    </tr>
+    <tr>
+      <td><code>portfolioBreakdown</code></td>
+      <td><code>ksys-client-portfolioBreakdown</code></td>
+      <td><code>#portfolioBreakdown</code></td>
+      <td><code>window.portfolioBreakdown</code></td>
+      <td>5176</td>
+    </tr>
+    <tr>
+      <td><code>literature</code></td>
+      <td><code>ksys-client-literature</code></td>
+      <td><code>#literature</code></td>
+      <td><code>window.literature</code></td>
+      <td>5177</td>
+    </tr>
+  </tbody>
+</table>
+<p class="note">
+  <strong>*</strong> The browser already owns <code>window.performance</code>. For that app id the embed loader
+  automatically uses <code>performanceApp</code> so the native Performance API is not overwritten.
+</p>
+
+<h2 id="prereqs">2. Prerequisites</h2>
+<ul>
+  <li><strong>Node.js</strong> 20+ and <strong>npm</strong></li>
+  <li><strong>Python 3.10+</strong> (security reports and PDF generation)</li>
+  <li>Optional: Chrome / Edge / Chromium for PDF export if <code>xhtml2pdf</code> is unavailable</li>
+  <li>Sibling folder <code>ksys-studio-widget-template</code> (used by <code>npm run apps:add</code>)</li>
+</ul>
+
+<h2 id="layout">3. Repository layout</h2>
+<pre>ksys-studio-pp-template/
+├── USER_GUIDE.html / USER_GUIDE.pdf   ← this guide
+├── README.md
+├── studio.config.json                ← app registry + client slug
+├── package.json                      ← monorepo orchestration scripts
+├── docs/ACCESSIBILITY.md
+├── scripts/
+│   ├── add-app.mjs
+│   ├── rename-app.mjs
+│   ├── set-client.mjs
+│   ├── list-apps.mjs
+│   ├── build-all.mjs
+│   ├── run-app.mjs
+│   └── run-all.mjs
+├── tools/
+│   ├── security_audit_report.py
+│   ├── build_user_guide_pdf.py
+│   └── pdf_from_html.py
+├── BuildResult/{dev,staging,prod}/   ← collected production-like bundles
+├── reports/                          ← security audit HTML/PDF
+└── development_v1/product-page-apps/
+    ├── config/                       ← optional shared client utilities
+    └── ksys-&lt;client&gt;-&lt;appId&gt;/        ← one Vite app per widget
+</pre>
+
+<h2 id="new-client">4. Start a new client project</h2>
+<ol>
+  <li>Copy the template (keep the widget template nearby):
+<pre>cp -R ~/Documents/GitHub/ksys-studio-pp-template ~/Documents/GitHub/acme-pp
+# ensure widget template remains at:
+# ~/Documents/GitHub/ksys-studio-widget-template
+cd ~/Documents/GitHub/acme-pp</pre>
+  </li>
+  <li>Set the client slug (renames all <code>ksys-client-*</code> folders and updates config):
+<pre>npm run client:set -- acme</pre>
+    Folders become <code>ksys-acme-pageHeader</code>, <code>ksys-acme-overview</code>, etc.
+  </li>
+  <li>Confirm registry:
+<pre>npm run apps:list</pre>
+  </li>
+  <li>Fill GUIDs / API tokens in each app’s <code>config/env.config.cjs</code> (see <a href="#env">§8</a>).</li>
+  <li>Run an app:
+<pre>npm run dev -- overview</pre>
+  </li>
+</ol>
+<p class="warn">
+  <strong>Do not</strong> keep production widgets only outside this monorepo. Always register them under
+  <code>development_v1/product-page-apps/</code> so builds and audits discover them.
+</p>
+
+<h2 id="config">5. Understanding <code>studio.config.json</code></h2>
+<p>This file is the source of truth for orchestration:</p>
+<pre>{
+  "clientSlug": "client",
+  "appPrefix": "ksys",
+  "appsRoot": "development_v1/product-page-apps",
+  "buildResultRoot": "BuildResult",
+  "widgetTemplatePath": "../ksys-studio-widget-template",
+  "apps": [
+    { "id": "pageHeader", "label": "Page Header", "port": 5173 },
+    { "id": "overview", "label": "Overview", "port": 5174 }
+  ]
+}</pre>
+<ul>
+  <li><code>clientSlug</code> — folder segment after <code>ksys-</code></li>
+  <li><code>apps[].id</code> — camelCase app id (mount id, JS filename, embed global)</li>
+  <li><code>apps[].port</code> — Vite dev server port</li>
+  <li><code>widgetTemplatePath</code> — path to the single-app scaffold used by <code>apps:add</code></li>
+</ul>
+
+<h2 id="apps">6. Manage apps (list / add / rename)</h2>
+
+<h3>List</h3>
+<pre>npm run apps:list</pre>
+
+<h3>Add a new app</h3>
+<pre>npm run apps:add -- holdingsExposure 5178</pre>
+<p>This will:</p>
+<ul>
+  <li>Copy <code>ksys-studio-widget-template</code> into <code>ksys-&lt;client&gt;-holdingsExposure/</code></li>
+  <li>Set <code>filename</code>, <code>containerId</code>, and <code>embedGlobalName</code> to <code>holdingsExposure</code></li>
+  <li>Assign the Vite port and register the app in <code>studio.config.json</code></li>
+</ul>
+
+<h3>Rename an app</h3>
+<pre>npm run apps:rename -- literature materials</pre>
+<p>Renames the folder, package name, mount id, embed global references, and config entry.</p>
+
+<h3>Change client slug later</h3>
+<pre>npm run client:set -- newclient</pre>
+
+<h2 id="develop">7. Develop a single app</h2>
+<pre># from monorepo root
+npm run dev -- overview
+
+# equivalent:
+cd development_v1/product-page-apps/ksys-&lt;client&gt;-overview
+npm install   # first time only
+npm run dev</pre>
+<p>
+  Open the URL Vite prints (default <code>http://localhost:5174</code> for overview).
+  Local <code>index.html</code> simulates the Kurtosys App Manager + mount node.
+</p>
+<p>Useful per-app scripts:</p>
+<table>
+  <thead><tr><th>Script</th><th>Purpose</th></tr></thead>
+  <tbody>
+    <tr><td><code>npm run dev</code></td><td>Vite HMR development server</td></tr>
+    <tr><td><code>npm run test</code></td><td>Vitest unit tests</td></tr>
+    <tr><td><code>npm run lint</code></td><td>ESLint (includes jsx-a11y)</td></tr>
+    <tr><td><code>npm run build:dev</code></td><td>Production bundle using development env config</td></tr>
+    <tr><td><code>npm run build:staging</code></td><td>Staging env config</td></tr>
+    <tr><td><code>npm run build:prod</code></td><td>Production env config</td></tr>
+    <tr><td><code>npm run audit:deps</code></td><td>Write <code>npm-audit.json</code> (omit dev deps)</td></tr>
+  </tbody>
+</table>
+<p>From the monorepo root you can also run tests/lints across all registered apps:</p>
+<pre>npm test
+npm run lint</pre>
+
+<h2 id="env">8. Configure environments (GUIDs &amp; tokens)</h2>
+<p>Each app has <code>config/env.config.cjs</code> with three tiers: <code>development</code>, <code>staging</code>, <code>production</code>.</p>
+<p>Replace placeholders before deploy:</p>
+<ul>
+  <li><code>guid</code> — Studio applicationCode UUID</li>
+  <li><code>apiToken</code> / <code>savedSearchToken</code> — public Kurtosys tokens for that tier</li>
+  <li><code>filename</code> — output JS name (e.g. <code>overview.js</code>)</li>
+  <li><code>containerId</code> — DXM mount element id</li>
+  <li><code>embedGlobalName</code> — <code>window.&lt;name&gt;</code> for the embed loader</li>
+</ul>
+<p class="warn">
+  Do not commit real secrets to public remotes. Prefer CI secrets or a local untracked override
+  when sharing the repo.
+</p>
+
+<h2 id="dxm">9. DXM mount contract</h2>
+<p>On the DXM / Elementor page (or local <code>index.html</code>):</p>
+<pre>&lt;div
+  data-ksys-app-template-id="ksys-app-manager"
+  data-input-client-code="YOUR_CLIENT_CODE"
+  data-input-culture="en-US"
+  data-input-product-type="mutualFunds"
+&gt;&lt;/div&gt;
+
+&lt;div id="overview"&gt;&lt;/div&gt;
+&lt;script src=".../overview.js"&gt;&lt;/script&gt;</pre>
+<p>Each widget resolves inputs in this order:</p>
+<ol>
+  <li>Mount node <code>data-input-*</code> attributes</li>
+  <li>App Manager node attributes</li>
+  <li>Query string fallbacks (<code>kurtosys_id</code>, <code>clientCode</code>) for local/dev</li>
+</ol>
+<p>
+  Implementation lives in <code>src/utils/resolve-mount-inputs.ts</code> and
+  <code>src/main.tsx</code> (find container → create React root → MutationObserver guard).
+</p>
+
+<h2 id="build">10. Build for dev / staging / prod</h2>
+<p>From the monorepo root:</p>
+<pre>npm run build:dev
+npm run build:staging
+npm run build:prod</pre>
+<p>For each registered app this:</p>
+<ol>
+  <li>Runs the matching <code>build:*</code> npm script</li>
+  <li>Produces a flat IIFE bundle with CSS inlined into the JS</li>
+  <li>Copies <strong>only the relevant artifact</strong> into
+    <code>BuildResult/&lt;env&gt;/&lt;appId&gt;/&lt;appId&gt;.js</code></li>
+</ol>
+<p class="note">
+  Scaffolding files (<code>index.html</code>, manifests, <code>embed-loader.js</code>, <code>vite.svg</code>) stay in
+  each app’s <code>dist-build/</code> for local inspection but are not copied into <code>BuildResult</code>
+  by <code>build-all</code> — matching the clean deploy layout used on BP.
+</p>
+<p>Upload the JS from <code>BuildResult/&lt;env&gt;/&lt;appId&gt;/</code> to the matching Studio application asset.</p>
+
+<h2 id="defaults">11. Built-in defaults</h2>
+
+<h3>Accessibility (WCAG 2.1 / 2.2 oriented)</h3>
+<ul>
+  <li>Semantic landmarks and labelled headings in the starter widget</li>
+  <li>High-contrast CSS variables (<code>--studio-color-text</code> on white)</li>
+  <li>Visible <code>:focus-visible</code> rings for keyboard users</li>
+  <li><code>VisuallyHidden</code> + <code>accessibleImageProps</code> helpers</li>
+  <li><code>prefers-reduced-motion</code> respect</li>
+  <li><code>eslint-plugin-jsx-a11y</code> recommended rules</li>
+</ul>
+<p>See <code>docs/ACCESSIBILITY.md</code> for the checklist when building real UI.</p>
+
+<h3>Tailwind specificity</h3>
+<pre>@import "tailwindcss" important;</pre>
+<p>
+  Every utility is emitted with <code>!important</code> so DXM / Elementor host styles cannot
+  silently override your layout.
+</p>
+
+<h3>Embed loader global name</h3>
+<p>
+  <code>scripts/generate-embed-loader.cjs</code> exposes <code>window.&lt;appId&gt;</code>
+  (for example <code>window.overview</code>), not <code>YourAppEmbed</code> or a hard-coded client name.
+  Reserved browser globals (like <code>performance</code>) are automatically remapped.
+</p>
+
+<h3>Security dependency pins</h3>
+<p>Each app pins / overrides the previously vulnerable set:</p>
+<ul>
+  <li><code>vite</code></li>
+  <li><code>rollup</code></li>
+  <li><code>tar</code></li>
+  <li><code>picomatch</code></li>
+  <li><code>postcss</code></li>
+</ul>
+
+<h2 id="security">12. Security audit reports</h2>
+<pre>pip install -r tools/requirements-audit-report.txt   # optional PDF helper
+npm run audit:security</pre>
+<p>Produces timestamped HTML + PDF under <code>reports/</code>.</p>
+<p>Scope is intentional and production-facing:</p>
+<ul>
+  <li><code>npm audit --omit=dev</code> for every discovered <code>ksys-*</code> app package</li>
+  <li>Heuristic secret / leak scan of app <code>dist-build</code> and <code>BuildResult</code> JS only</li>
+</ul>
+<p class="note">
+  This is not a penetration test. Validate findings manually before acting on them.
+</p>
+
+<h2 id="checklist">13. End-to-end checklist</h2>
+<ol>
+  <li>Copy monorepo → <code>npm run client:set -- &lt;slug&gt;</code></li>
+  <li>Add/rename apps as needed → <code>npm run apps:list</code></li>
+  <li>Fill <code>config/env.config.cjs</code> for each app / environment</li>
+  <li>Implement UI in <code>src/components/Widget/</code> (keep a11y patterns)</li>
+  <li><code>npm run dev -- &lt;appId&gt;</code> and verify mount + inputs</li>
+  <li><code>npm test</code> / <code>npm run lint</code></li>
+  <li><code>npm run build:staging</code> (or prod) → check <code>BuildResult/</code></li>
+  <li>Upload JS assets to Studio</li>
+  <li>Wire DXM containers to matching mount ids</li>
+  <li><code>npm run audit:security</code> before release</li>
+</ol>
+
+<h2 id="troubleshoot">14. Troubleshooting</h2>
+<table>
+  <thead><tr><th>Symptom</th><th>Likely fix</th></tr></thead>
+  <tbody>
+    <tr>
+      <td>Mount container not found</td>
+      <td>Ensure DXM element id matches <code>containerId</code> / <code>VITE_CONTAINER_ID</code></td>
+    </tr>
+    <tr>
+      <td><code>apps:add</code> cannot find template</td>
+      <td>Confirm <code>widgetTemplatePath</code> in <code>studio.config.json</code> points at <code>ksys-studio-widget-template</code></td>
+    </tr>
+    <tr>
+      <td>Styles overridden by DXM</td>
+      <td>Confirm <code>@import "tailwindcss" important;</code> is present in <code>src/index.css</code></td>
+    </tr>
+    <tr>
+      <td>Embed global missing / wrong</td>
+      <td>Check <code>embedGlobalName</code> in <code>env.config.cjs</code>; rebuild so <code>embed-loader.js</code> regenerates</td>
+    </tr>
+    <tr>
+      <td><code>window.performance</code> broken after load</td>
+      <td>Use <code>performanceApp</code> (default) — never set embed global to reserved browser names</td>
+    </tr>
+    <tr>
+      <td>Build env GUIDs still placeholders</td>
+      <td>Replace <code>YOUR_*_GUID_HERE</code> before Studio deploy</td>
+    </tr>
+    <tr>
+      <td>Python 3.9 fails on tooling</td>
+      <td>Use Python 3.10+ (type syntax / tooling expectation)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="regen">15. Regenerate this PDF</h2>
+<p>Edit <code>USER_GUIDE.html</code>, then from the monorepo root:</p>
+<pre>python3 tools/build_user_guide_pdf.py
+# or
+npm run docs:user-guide</pre>
+<p>
+  PDF generation tries <strong>xhtml2pdf</strong> first, then headless Chrome / Edge / Chromium.
+  The HTML guide is always the source of truth if PDF generation is unavailable.
+</p>
+
+<div class="footer">
+  <p>
+    Kurtosys Studio product-page monorepo template · User guide ·
+    Keep this file with the repo so every client handoff includes the same operating instructions.
+  </p>
+</div>
+
+</body>
+</html>

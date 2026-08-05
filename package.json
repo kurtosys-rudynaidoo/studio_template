@@ -16,6 +16,7 @@
 		"test": "node scripts/run-all.mjs test",
 		"lint": "node scripts/run-all.mjs lint",
 		"audit:security": "python3 tools/security_audit_report.py",
-		"audit:deps": "node scripts/run-all.mjs audit:deps"
+		"audit:deps": "node scripts/run-all.mjs audit:deps",
+		"docs:user-guide": "python3 tools/build_user_guide_pdf.py"
 	}
 }

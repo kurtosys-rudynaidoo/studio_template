@@ -9,11 +9,10 @@ Default starter apps:
 | `pageHeader` | `#pageHeader` / `window.pageHeader` | 5173 |
 | `overview` | `#overview` / `window.overview` | 5174 |
 | `performance` | `#performance` / `window.performanceApp`* | 5175 |
-
-\* `window.performance` is reserved by the browser; the embed loader uses `performanceApp` automatically for that app id.
-
 | `portfolioBreakdown` | `#portfolioBreakdown` / `window.portfolioBreakdown` | 5176 |
 | `literature` | `#literature` / `window.literature` | 5177 |
+
+\* `window.performance` is reserved by the browser; the embed loader uses `performanceApp` automatically for that app id.
 
 ## First-time setup for a new client
 
@@ -29,6 +28,19 @@ npm run dev -- overview
 ```
 
 Keep `../ksys-studio-widget-template` next to this repo (or update `widgetTemplatePath` in `studio.config.json`) so `apps:add` can scaffold new widgets.
+
+## User guide
+
+Full operating instructions (HTML + PDF):
+
+- [`USER_GUIDE.html`](./USER_GUIDE.html) — open in a browser
+- [`USER_GUIDE.pdf`](./USER_GUIDE.pdf) — printable handoff doc
+
+Regenerate the PDF after editing the HTML:
+
+```bash
+npm run docs:user-guide
+```
 
 ## Manage apps
 
