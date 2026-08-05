@@ -141,7 +141,7 @@
     <li><a href="#env">Configure environments</a></li>
     <li><a href="#dxm-contract">DXM mount contract</a></li>
     <li><a href="#cms-specs">CMS integration specs</a></li>
-    <li><a href="#build">Build for dev / staging / prod</a></li>
+    <li><a href="#build">Build for dev / stg / prd</a></li>
     <li><a href="#defaults">Built-in defaults</a></li>
     <li><a href="#security">Security audit reports</a></li>
     <li><a href="#checklist">End-to-end checklist</a></li>
@@ -253,8 +253,8 @@ npm run init -- --host both --client acme --cms-platform wordpress</pre>
 ├── scripts/                    ← init, add/rename, build-all
 ├── tools/                      ← security audit + user-guide PDF
 ├── BuildResult/
-│   ├── dxm/{dev,staging,prod}/
-│   └── cms/{dev,staging,prod}/
+│   ├── dxm/{dev,stg,prd}/
+│   └── cms/{dev,stg,prd}/
 └── development_v1/product-page-apps/
     └── ksys-&lt;client&gt;-&lt;appId&gt;/
 </pre>
@@ -302,7 +302,7 @@ cd ~/Documents/GitHub/acme-pp</pre>
 
 <h3><code>both</code></h3>
 <p>
-  <code>npm run build:staging</code> builds each app twice and collects into both
+  <code>npm run build:stg</code> builds each app twice and collects into both
   <code>BuildResult/dxm/…</code> and <code>BuildResult/cms/…</code>.
 </p>
 
@@ -319,12 +319,12 @@ npm run client:set -- newclient</pre>
 For CMS work, the same mount <code>data-input-*</code> attributes are still the preferred contract.</p>
 
 <h2 id="env">8. Configure environments</h2>
-<p>Each app <code>config/env.config.cjs</code>: <code>development</code> / <code>staging</code> / <code>production</code>.</p>
+<p>Each app <code>config/env.config.cjs</code>: <code>development</code> / <code>stg</code> / <code>prd</code>.</p>
 <ul>
   <li><code>guid</code>, <code>apiToken</code>, <code>savedSearchToken</code></li>
   <li><code>filename</code>, <code>containerId</code>, <code>embedGlobalName</code></li>
 </ul>
-<p class="warn">Do not commit production secrets to public remotes.</p>
+<p class="warn">Do not commit production (prd) secrets to public remotes.</p>
 
 <h2 id="dxm-contract">9. DXM mount contract</h2>
 <pre>&lt;div
@@ -352,21 +352,28 @@ For CMS work, the same mount <code>data-input-*</code> attributes are still the 
    docs/integration-specs/acme-global-equity-us.md</pre>
 <p>See <code>hosts/cms/README.md</code> for embed snippets.</p>
 
-<h2 id="build">11. Build for dev / staging / prod</h2>
+<h2 id="build">11. Build for dev / stg / prd</h2>
 <pre># uses studio.config.json hostMode
 npm run build:dev
-npm run build:staging
-npm run build:prod
+npm run build:stg
+npm run build:prd
 
 # force a single host even if mode is "both"
-npm run build:staging:dxm
-npm run build:staging:cms
+npm run build:stg:dxm
+npm run build:stg:cms
 </pre>
 <p>Artifacts:</p>
-<pre>BuildResult/dxm/staging/overview/overview.js
-BuildResult/cms/staging/overview/overview.js</pre>
+<pre>BuildResult/dxm/stg/overview/overview.js
+BuildResult/cms/stg/overview/overview.js</pre>
 <p class="note">
-  Per-app scripts also exist: <code>build:dxm:staging</code>, <code>build:cms:staging</code>, etc.
+  <strong>Clean artifacts only.</strong> Each app build ends with
+  <code>clean-dist-artifacts</code>, which deletes scaffolding
+  (<code>index.html</code>, <code>vite.svg</code>, manifests, embed-loader, etc.)
+  and keeps only the deployable <code>&lt;appId&gt;.js</code>
+  (plus optional <code>shared.css</code>). <code>BuildResult</code> folders stay equally lean.
+</p>
+<p class="note">
+  Per-app scripts also exist: <code>build:dxm:stg</code>, <code>build:cms:stg</code>, etc.
   Monorepo <code>build-all</code> sets <code>HOST_MODE</code> and prefers those scripts.
 </p>
 
@@ -391,7 +398,7 @@ npm run audit:security</pre>
   <li>Fill <code>env.config.cjs</code></li>
   <li>If CMS/both: create integration specs from <code>_TEMPLATE.md</code></li>
   <li>Implement UI; keep a11y patterns</li>
-  <li><code>npm run build:staging</code> → verify <code>BuildResult/&lt;host&gt;/…</code></li>
+  <li><code>npm run build:stg</code> → verify <code>BuildResult/&lt;host&gt;/…</code></li>
   <li>Deploy (Studio upload and/or CMS CDN)</li>
   <li><code>npm run audit:security</code></li>
 </ol>

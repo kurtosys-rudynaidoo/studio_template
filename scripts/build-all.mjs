@@ -3,12 +3,14 @@
  * Build every registered app for an environment and host target(s).
  *
  * Usage:
- *   npm run build:staging
- *   node scripts/build-all.mjs staging
- *   node scripts/build-all.mjs staging --host cms
+ *   npm run build:stg
+ *   node scripts/build-all.mjs stg
+ *   node scripts/build-all.mjs stg --host cms
  *
- * Outputs:
+ * Outputs (clean — JS only):
  *   BuildResult/<host>/<env>/<appId>/<appId>.js
+ *
+ * Env abbreviations: stg (staging), prd (production)
  */
 import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
@@ -22,15 +24,17 @@ import {
 } from './lib.mjs';
 
 const envMap = {
-	development: { npm: 'build:dev', out: 'dev' },
-	staging: { npm: 'build:staging', out: 'staging' },
-	production: { npm: 'build:prod', out: 'prod' },
-	dev: { npm: 'build:dev', out: 'dev' },
-	prod: { npm: 'build:prod', out: 'prod' },
+	development: { npm: 'build:dev', out: 'dev', buildEnv: 'development' },
+	dev: { npm: 'build:dev', out: 'dev', buildEnv: 'development' },
+	stg: { npm: 'build:stg', out: 'stg', buildEnv: 'stg' },
+	staging: { npm: 'build:stg', out: 'stg', buildEnv: 'stg' },
+	prd: { npm: 'build:prd', out: 'prd', buildEnv: 'prd' },
+	prod: { npm: 'build:prd', out: 'prd', buildEnv: 'prd' },
+	production: { npm: 'build:prd', out: 'prd', buildEnv: 'prd' },
 };
 
 function parseArgs(argv) {
-	const out = { env: 'staging', host: null };
+	const out = { env: 'stg', host: null };
 	const rest = [];
 	for (let i = 0; i < argv.length; i++) {
 		if (argv[i] === '--host') out.host = argv[++i];
@@ -43,7 +47,7 @@ function parseArgs(argv) {
 const args = parseArgs(process.argv.slice(2));
 const mapped = envMap[args.env];
 if (!mapped) {
-	console.error(`Unknown env: ${args.env}. Use development|staging|production`);
+	console.error(`Unknown env: ${args.env}. Use development|stg|prd`);
 	process.exit(1);
 }
 
@@ -56,6 +60,9 @@ try {
 	console.error('Run: npm run init -- --host dxm|cms|both');
 	process.exit(1);
 }
+
+const envSuffix =
+	mapped.out === 'dev' ? 'dev' : mapped.out === 'prd' ? 'prd' : 'stg';
 
 let failed = 0;
 for (const host of hosts) {
@@ -78,13 +85,6 @@ for (const host of hosts) {
 			}
 		}
 
-		// Prefer host-specific script when present; else HOST_MODE + generic build:*
-		const envSuffix =
-			args.env === 'development' || args.env === 'dev'
-				? 'dev'
-				: args.env === 'production' || args.env === 'prod'
-					? 'prod'
-					: 'staging';
 		const preferred = `build:${host}:${envSuffix}`;
 		const pkg = JSON.parse(fs.readFileSync(path.join(dir, 'package.json'), 'utf8'));
 		const scriptName = pkg.scripts?.[preferred] ? preferred : mapped.npm;
@@ -97,6 +97,7 @@ for (const host of hosts) {
 			env: {
 				...process.env,
 				HOST_MODE: host,
+				BUILD_ENV: mapped.buildEnv,
 			},
 		});
 		if (result.status !== 0) {
@@ -118,14 +119,17 @@ for (const host of hosts) {
 		}
 		fs.copyFileSync(jsSrc, path.join(target, jsName));
 
-		for (const extra of ['shared.css', 'bp-shared.css', 'embed-loader.js']) {
+		for (const extra of ['shared.css', 'bp-shared.css']) {
 			const p = path.join(dist, extra);
-			if (fs.existsSync(p) && host === 'cms' && extra === 'embed-loader.js') {
-				fs.copyFileSync(p, path.join(target, path.basename(p)));
-			} else if (fs.existsSync(p) && extra !== 'embed-loader.js') {
-				fs.copyFileSync(p, path.join(target, path.basename(p)));
-			}
+			if (fs.existsSync(p)) fs.copyFileSync(p, path.join(target, path.basename(p)));
 		}
+
+		// Ensure BuildResult folder only has deployables
+		for (const entry of fs.readdirSync(target)) {
+			if (entry === jsName || entry === 'shared.css' || entry === 'bp-shared.css') continue;
+			fs.rmSync(path.join(target, entry), { recursive: true, force: true });
+		}
+
 		console.log(`Collected ${path.relative(ROOT, path.join(target, jsName))}`);
 	}
 }
@@ -134,4 +138,4 @@ if (failed) {
 	console.error(`\n${failed} app build(s) failed.`);
 	process.exit(1);
 }
-console.log(`\nDone. Host target(s): ${hosts.join(', ')}`);
+console.log(`\nDone. Host target(s): ${hosts.join(', ')} · env: ${mapped.out}`);

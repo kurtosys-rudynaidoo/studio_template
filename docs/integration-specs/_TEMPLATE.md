@@ -38,7 +38,7 @@ Describe which widgets appear on this product page and how the CMS embeds them.
 Artifact path after monorepo build:
 
 ```text
-BuildResult/cms/<env>/<appId>/<appId>.js
+BuildResult/cms/{dev|stg|prd}/<appId>/<appId>.js
 ```
 
 ## 4. Embed contract

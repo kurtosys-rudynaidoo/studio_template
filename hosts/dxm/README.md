@@ -24,8 +24,8 @@ npm run dev -- overview
 
 ```bash
 npm run init -- --host dxm --client acme
-npm run build:staging
-# → BuildResult/dxm/staging/<appId>/<appId>.js
+npm run build:stg
+# → BuildResult/dxm/stg/<appId>/<appId>.js
 ```
 
 ## DXM checklist

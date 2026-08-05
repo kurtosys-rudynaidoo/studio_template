@@ -11,8 +11,6 @@
 		"client:set": "node scripts/set-client.mjs",
 		"dev": "node scripts/run-app.mjs dev",
 		"build:dev": "node scripts/build-all.mjs development",
-		"build:staging": "node scripts/build-all.mjs staging",
-		"build:prod": "node scripts/build-all.mjs production",
 		"test": "node scripts/run-all.mjs test",
 		"lint": "node scripts/run-all.mjs lint",
 		"audit:security": "python3 tools/security_audit_report.py",
@@ -20,9 +18,11 @@
 		"docs:user-guide": "python3 tools/build_user_guide_pdf.py",
 		"init": "node scripts/init-project.mjs",
 		"host:set": "node scripts/init-project.mjs --force",
-		"build:staging:dxm": "node scripts/build-all.mjs staging --host dxm",
-		"build:staging:cms": "node scripts/build-all.mjs staging --host cms",
-		"build:prod:dxm": "node scripts/build-all.mjs production --host dxm",
-		"build:prod:cms": "node scripts/build-all.mjs production --host cms"
+		"build:stg": "node scripts/build-all.mjs stg",
+		"build:prd": "node scripts/build-all.mjs prd",
+		"build:stg:dxm": "node scripts/build-all.mjs stg --host dxm",
+		"build:stg:cms": "node scripts/build-all.mjs stg --host cms",
+		"build:prd:dxm": "node scripts/build-all.mjs prd --host dxm",
+		"build:prd:cms": "node scripts/build-all.mjs prd --host cms"
 	}
 }

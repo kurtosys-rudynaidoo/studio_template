@@ -1,6 +1,6 @@
 // Environment configuration for Kurtosys Studio embeddable builds.
-// Replace placeholders before deploy. Keep secrets out of git when possible
-// (use local overrides or CI secrets for tokens).
+// Env keys: development | stg | prd
+// Aliases accepted: staging→stg, production|prod→prd
 
 const environments = {
 	development: {
@@ -15,36 +15,53 @@ const environments = {
 		/** window.<embedGlobalName> — defaults to containerId / filename stem */
 		embedGlobalName: 'pageHeader',
 	},
-	staging: {
+	stg: {
 		baseUrl: 'https://api-us.kurtosys.app',
 		fundApiUrl: 'https://api-us.fundpress.io',
 		path: 'applicationManager/apps',
-		guid: 'YOUR_STAGING_GUID_HERE',
+		guid: 'YOUR_STG_GUID_HERE',
 		filename: 'pageHeader.js',
-		apiToken: 'YOUR_STAGING_API_TOKEN_HERE',
-		savedSearchToken: 'YOUR_STAGING_SAVED_SEARCH_TOKEN_HERE',
+		apiToken: 'YOUR_STG_API_TOKEN_HERE',
+		savedSearchToken: 'YOUR_STG_SAVED_SEARCH_TOKEN_HERE',
 		containerId: 'pageHeader',
 		embedGlobalName: 'pageHeader',
 	},
-	production: {
+	prd: {
 		baseUrl: 'https://api-us.kurtosys.app',
 		fundApiUrl: 'https://api-us.fundpress.io',
 		path: 'applicationManager/apps',
-		guid: 'YOUR_PRODUCTION_GUID_HERE',
+		guid: 'YOUR_PRD_GUID_HERE',
 		filename: 'pageHeader.js',
-		apiToken: 'YOUR_PRODUCTION_API_TOKEN_HERE',
-		savedSearchToken: 'YOUR_PRODUCTION_SAVED_SEARCH_TOKEN_HERE',
+		apiToken: 'YOUR_PRD_API_TOKEN_HERE',
+		savedSearchToken: 'YOUR_PRD_SAVED_SEARCH_TOKEN_HERE',
 		containerId: 'pageHeader',
 		embedGlobalName: 'pageHeader',
 	},
+};
+
+const ENV_ALIASES = {
+	staging: 'stg',
+	production: 'prd',
+	prod: 'prd',
+	dev: 'development',
 };
 
 /**
  * @param {string} env
  * @returns {string}
  */
+function normalizeEnv(env = 'development') {
+	const raw = String(env || 'development');
+	return ENV_ALIASES[raw] || raw;
+}
+
+/**
+ * @param {string} env
+ * @returns {string}
+ */
 function getBaseUrl(env = 'development') {
-	const config = environments[env];
+	const key = normalizeEnv(env);
+	const config = environments[key];
 	if (!config) {
 		throw new Error(`Unknown environment: ${env}. Available: ${Object.keys(environments).join(', ')}`);
 	}
@@ -60,12 +77,13 @@ function getBaseUrl(env = 'development') {
  * @returns {string}
  */
 function sharedStylesheetUrl(env, baseUrl, path) {
+	const key = normalizeEnv(env);
 	const sharedGuidByEnv = {
 		development: 'YOUR_SHARED_CSS_DEV_GUID_HERE',
-		staging: 'YOUR_SHARED_CSS_STAGING_GUID_HERE',
-		production: 'YOUR_SHARED_CSS_PRODUCTION_GUID_HERE',
+		stg: 'YOUR_SHARED_CSS_STG_GUID_HERE',
+		prd: 'YOUR_SHARED_CSS_PRD_GUID_HERE',
 	};
-	const guid = sharedGuidByEnv[env];
+	const guid = sharedGuidByEnv[key];
 	if (!guid || guid.includes('YOUR_')) return '';
 	return `${baseUrl}/${path}/${guid}/shared.css`;
 }
@@ -75,21 +93,24 @@ function sharedStylesheetUrl(env, baseUrl, path) {
  * @returns {object}
  */
 function getConfig(env = 'development') {
-	const config = environments[env];
+	const key = normalizeEnv(env);
+	const config = environments[key];
 	if (!config) {
 		throw new Error(`Unknown environment: ${env}. Available: ${Object.keys(environments).join(', ')}`);
 	}
 	return {
 		...config,
-		embedBaseUrl: getBaseUrl(env),
+		envKey: key,
+		embedBaseUrl: getBaseUrl(key),
 		apiBaseUrl: config.baseUrl,
 		fundApiBaseUrl: config.fundApiUrl,
-		sharedCssUrl: sharedStylesheetUrl(env, config.baseUrl, config.path),
+		sharedCssUrl: sharedStylesheetUrl(key, config.baseUrl, config.path),
 	};
 }
 
 module.exports = {
 	environments,
+	normalizeEnv,
 	getBaseUrl,
 	getConfig,
 };

@@ -20,8 +20,8 @@ For those implementations you typically maintain an **integration spec per produ
 
 ```bash
 npm run init -- --host cms --client acme --cms-platform wordpress
-npm run build:staging
-# → BuildResult/cms/staging/<appId>/<appId>.js
+npm run build:stg
+# → BuildResult/cms/stg/<appId>/<appId>.js
 ```
 
 If `hostMode=both`, CMS artifacts land under `BuildResult/cms/...` and DXM under `BuildResult/dxm/...`.

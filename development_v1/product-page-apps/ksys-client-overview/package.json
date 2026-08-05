@@ -6,21 +6,21 @@
 	"description": "Kurtosys Studio embeddable widget: overview (client)",
 	"scripts": {
 		"dev": "vite",
-		"build": "tsc -b && vite build && node scripts/flatten-build.cjs && node scripts/inline-css.cjs && node scripts/fix-html-preloads.cjs && node scripts/generate-asset-manifest.cjs && node scripts/generate-embed-loader.cjs && node scripts/generate-standalone-embed.cjs",
+		"build": "tsc -b && vite build && node scripts/flatten-build.cjs && node scripts/inline-css.cjs && node scripts/clean-dist-artifacts.cjs",
 		"build:dev": "cross-env NODE_ENV=production BUILD_ENV=development HOST_MODE=dxm npm run build",
-		"build:staging": "cross-env NODE_ENV=production BUILD_ENV=staging HOST_MODE=dxm npm run build",
-		"build:prod": "cross-env NODE_ENV=production BUILD_ENV=production HOST_MODE=dxm npm run build",
 		"lint": "eslint .",
 		"preview": "vite preview",
 		"test": "vitest run",
 		"test:watch": "vitest",
 		"audit:deps": "npm audit --omit=dev --json > npm-audit.json || true",
 		"build:dxm:dev": "cross-env NODE_ENV=production BUILD_ENV=development HOST_MODE=dxm npm run build",
-		"build:dxm:staging": "cross-env NODE_ENV=production BUILD_ENV=staging HOST_MODE=dxm npm run build",
-		"build:dxm:prod": "cross-env NODE_ENV=production BUILD_ENV=production HOST_MODE=dxm npm run build",
 		"build:cms:dev": "cross-env NODE_ENV=production BUILD_ENV=development HOST_MODE=cms npm run build",
-		"build:cms:staging": "cross-env NODE_ENV=production BUILD_ENV=staging HOST_MODE=cms npm run build",
-		"build:cms:prod": "cross-env NODE_ENV=production BUILD_ENV=production HOST_MODE=cms npm run build"
+		"build:stg": "cross-env NODE_ENV=production BUILD_ENV=stg HOST_MODE=dxm npm run build",
+		"build:prd": "cross-env NODE_ENV=production BUILD_ENV=prd HOST_MODE=dxm npm run build",
+		"build:dxm:stg": "cross-env NODE_ENV=production BUILD_ENV=stg HOST_MODE=dxm npm run build",
+		"build:dxm:prd": "cross-env NODE_ENV=production BUILD_ENV=prd HOST_MODE=dxm npm run build",
+		"build:cms:stg": "cross-env NODE_ENV=production BUILD_ENV=stg HOST_MODE=cms npm run build",
+		"build:cms:prd": "cross-env NODE_ENV=production BUILD_ENV=prd HOST_MODE=cms npm run build"
 	},
 	"dependencies": {
 		"@tailwindcss/vite": "^4.1.13",

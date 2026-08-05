@@ -45,12 +45,21 @@ npm run apps:rename -- literature materials
 npm run client:set -- acme
 
 npm run dev -- overview
-npm run build:staging          # uses hostMode from studio.config.json
-npm run build:staging:cms      # force CMS artifacts
-npm run build:staging:dxm      # force DXM artifacts
+npm run build:stg          # uses hostMode from studio.config.json
+npm run build:stg:cms      # force CMS artifacts
+npm run build:stg:dxm      # force DXM artifacts
 
 npm run audit:security
 ```
+
+## Clean build artifacts
+
+Each app build keeps **only** deployable files in `dist-build/` and `BuildResult/`:
+
+- `<appId>.js` (required)
+- `shared.css` / `bp-shared.css` (optional)
+
+Scaffolding (`index.html`, `vite.svg`, manifests, embed-loader, etc.) is removed automatically.
 
 ## Host docs
 
@@ -64,7 +73,7 @@ npm run audit:security
 studio.config.json          # hostMode + app registry
 hosts/{dxm,cms}/
 docs/integration-specs/
-BuildResult/{dxm,cms}/<env>/<appId>/
+BuildResult/{dxm,cms}/{dev,stg,prd}/<appId>/
 development_v1/product-page-apps/ksys-<client>-<appId>/
 ```
 

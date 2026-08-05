@@ -136,7 +136,7 @@ async function main() {
 	}
 	console.log('  # fill each app config/env.config.cjs GUIDs/tokens');
 	console.log('  npm run apps:list');
-	console.log(`  npm run build:staging`);
+	console.log(`  npm run build:stg`);
 	if (host === 'cms' || host === 'both') {
 		console.log('  # copy docs/integration-specs/_TEMPLATE.md per product page');
 	}
