@@ -4,7 +4,7 @@
 	"appPrefix": "ksys",
 	"appsRoot": "development_v1/product-page-apps",
 	"buildResultRoot": "BuildResult",
-	"widgetTemplatePath": "../ksys-studio-widget-template",
+	"widgetTemplatePath": "./ksys-studio-widget-template",
 	"hostMode": "dxm",
 	"cms": {
 		"platform": "wordpress",

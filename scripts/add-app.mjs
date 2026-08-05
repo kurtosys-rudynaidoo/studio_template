@@ -36,7 +36,7 @@ const template = path.resolve(ROOT, cfg.widgetTemplatePath);
 const scaffold = path.join(template, 'scripts', 'scaffold-app.sh');
 if (!fs.existsSync(scaffold)) {
 	console.error(`Widget template scaffold not found: ${scaffold}`);
-	console.error('Set studio.config.json widgetTemplatePath to ksys-studio-widget-template');
+	console.error('Expected ./ksys-studio-widget-template inside this repo (see studio.config.json widgetTemplatePath)');
 	process.exit(1);
 }
 

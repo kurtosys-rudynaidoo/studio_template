@@ -120,7 +120,7 @@
 <body>
 
 <h1>Kurtosys Studio Product-Page Monorepo — User Guide</h1>
-<p class="meta">Repository: <code>ksys-studio-pp-template</code> · Companion widget starter: <code>ksys-studio-widget-template</code></p>
+<p class="meta">Repository: <code>ksys-studio-pp-template</code> (includes nested <code>ksys-studio-widget-template/</code>)</p>
 <p class="lead">
   One monorepo for product-page widgets. The first decision is <strong>where they embed</strong>
   (Kurtosys DXM vs external CMS). That choice factors builds, deploy paths, and docs —
@@ -235,14 +235,15 @@ npm run init -- --host both --client acme --cms-platform wordpress</pre>
 <ul>
   <li><strong>Node.js</strong> 20+ and <strong>npm</strong></li>
   <li><strong>Python 3.10+</strong> for security reports and PDF generation</li>
-  <li>Sibling <code>ksys-studio-widget-template</code> (for <code>npm run apps:add</code>)</li>
+  <li>Nested <code>ksys-studio-widget-template/</code> inside this repo (for <code>npm run apps:add</code>)</li>
   <li>Optional: Chrome / Edge for PDF export</li>
 </ul>
 
 <h2 id="layout">3. Repository layout</h2>
 <pre>ksys-studio-pp-template/
 ├── USER_GUIDE.html / USER_GUIDE.pdf
-├── studio.config.json          ← hostMode + apps registry
+├── studio.config.json          ← hostMode + apps registry + widgetTemplatePath
+├── ksys-studio-widget-template/ ← in-repo widget starter (used by apps:add)
 ├── hosts/
 │   ├── ACTIVE_HOST_MODE.txt
 │   ├── dxm/                    ← DXM checklist &amp; notes
@@ -261,7 +262,7 @@ npm run init -- --host both --client acme --cms-platform wordpress</pre>
 
 <h2 id="init">4. Initialize a client project</h2>
 <ol>
-  <li>Copy the template next to the widget starter:
+  <li>Copy the template (widget starter is included inside it):
 <pre>cp -R ~/Documents/GitHub/ksys-studio-pp-template ~/Documents/GitHub/acme-pp
 cd ~/Documents/GitHub/acme-pp</pre>
   </li>
@@ -425,7 +426,7 @@ npm run audit:security</pre>
     </tr>
     <tr>
       <td><code>apps:add</code> cannot find template</td>
-      <td>Fix <code>widgetTemplatePath</code> in <code>studio.config.json</code></td>
+      <td>Confirm <code>./ksys-studio-widget-template</code> exists (nested in this repo) and <code>widgetTemplatePath</code> in <code>studio.config.json</code></td>
     </tr>
   </tbody>
 </table>

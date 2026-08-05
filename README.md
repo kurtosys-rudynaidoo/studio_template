@@ -71,10 +71,11 @@ Scaffolding (`index.html`, `vite.svg`, manifests, embed-loader, etc.) is removed
 
 ```text
 studio.config.json          # hostMode + app registry
+ksys-studio-widget-template/  # in-repo widget starter for apps:add
 hosts/{dxm,cms}/
 docs/integration-specs/
 BuildResult/{dxm,cms}/{dev,stg,prd}/<appId>/
 development_v1/product-page-apps/ksys-<client>-<appId>/
 ```
 
-Keep `../ksys-studio-widget-template` beside this repo for `apps:add`.
+Duplicate this whole folder for each new client — the widget template comes along automatically.

@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Studio Widget Template</title>
+  </head>
+  <body>
+    <!-- Simulates the Kurtosys Application Manager on the DXM page -->
+    <div
+      data-ksys-app-template-id="ksys-app-manager"
+      data-input-client-code="DEMO_CLIENT_CODE"
+      data-input-culture="en-US"
+      data-input-product-type="mutualFunds"
+    ></div>
+
+    <!-- Widget mount node (must match config.containerId / VITE_CONTAINER_ID) -->
+    <div id="widget"></div>
+
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
