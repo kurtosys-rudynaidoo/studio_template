@@ -78,6 +78,6 @@ The widget reads inputs from:
 | `pageHeader` | `pageHeader` | Title, docs, managers |
 | `overview` | `overview` | Strategy / fund overview |
 | `performance` | `performance` | Returns tables / charts |
-| `materials` | `materials` | Document list |
+| `literature` | `literature` | Document list |
 
 Start from this template for each; only `appManager` needs special shared-CSS / child-GUID wiring.

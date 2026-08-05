@@ -377,29 +377,58 @@ npm run dev</pre>
   (for example rename <code>literature</code> → <code>materials</code>, or
   <code>portfolioBreakdown</code> → <code>holdings</code>).
 </p>
+<pre>npm run apps:rename -- &lt;oldId&gt; &lt;newId&gt;
+# example:
+npm run apps:rename -- literature materials</pre>
+<p class="ok">
+  <strong>Goal:</strong> after a rename, the old name should not remain anywhere that still
+  describes this widget — <em>inside</em> the repo or <em>outside</em> it on host pages.
+  That keeps mounts, filenames, docs, and deploys aligned.
+</p>
 <ol>
-  <li>Rename folder, package references, mount/embed ids, and the registry entry in one step:
-<pre>npm run apps:rename -- literature materials</pre>
+  <li>
+    <strong>In the repo (automated).</strong>
+    <code>apps:rename</code> rewrites the old name to the new name across the monorepo:
+    <ul>
+      <li>App folder (<code>apps/ksys-&lt;client&gt;-&lt;oldId&gt;/</code> → <code>…-&lt;newId&gt;/</code>)</li>
+      <li>Package name, mount id, filename, embed global, labels inside that app</li>
+      <li><code>studio.config.json</code> registry entry</li>
+      <li>Other in-repo references (READMEs, <code>docs/integration-specs/</code>, <code>hosts/</code>, etc.)</li>
+      <li><code>BuildResult/…/&lt;oldId&gt;/</code> folders when present</li>
+    </ul>
+    It then prints what changed and flags any leftover in-repo mentions to review.
   </li>
-  <li>Check the result:
+  <li>
+    Confirm locally:
 <pre>npm run apps:list
 # folder is now apps/ksys-&lt;clientSlug&gt;-materials
-# mount / filename / embed global follow the new id (e.g. #materials, materials.js)</pre>
+# mount / filename / embed global use the new id (e.g. #materials, materials.js)</pre>
   </li>
-  <li>Update anything <em>outside</em> the repo that still uses the old name:
+  <li>
+    <strong>Outside the repo (required — manual).</strong>
+    Update every host or doc that still uses the old name to the new name:
     <ul>
-      <li>DXM / CMS mount nodes (<code>id="literature"</code> → <code>id="materials"</code>)</li>
-      <li>Script URLs and App Manager child GUIDs pointing at the old filename</li>
-      <li>CMS integration specs under <code>docs/integration-specs/</code></li>
+      <li>DXM / Elementor / App Manager mount nodes (<code>id="literature"</code> → <code>id="materials"</code>)</li>
+      <li>Script / CDN URLs (<code>literature.js</code> → <code>materials.js</code>)</li>
+      <li>Studio child-app / GUID wiring that points at the old filename</li>
+      <li>WordPress / Pantheon / CMS embeds and tag-manager snippets</li>
+      <li>Confluence / tickets / runbooks that cite the old mount or file</li>
     </ul>
+    The command prints this checklist when it finishes — treat it as part of the rename, not optional cleanup.
   </li>
-  <li>Re-fill or confirm <code>config/env.config.cjs</code> still has the correct GUIDs for the renamed app.</li>
+  <li>Re-confirm <code>config/env.config.cjs</code> GUIDs still match the (renamed) Studio app.</li>
 </ol>
+<p class="warn">
+  The rename is only “done” when the old id is gone from both this repo and the live host pages.
+  Leaving one side on the old name causes blank mounts and mismatched uploads.
+</p>
 <p class="note">
   <code>apps:rename</code> only renames <strong>one widget id</strong>.
   To change the client prefix on <em>every</em> folder
   (<code>ksys-client-*</code> → <code>ksys-acme-*</code>), use
   <code>npm run client:set -- acme</code> instead — that is not an app rename.
+  Template instructional files (<code>USER_GUIDE.html</code> / <code>.pdf</code>) are left unchanged on purpose;
+  regenerate the PDF after you edit the HTML if your handoff copy should list the new starter names.
 </p>
 
 <h3>Client slug vs app id</h3>
