@@ -11,6 +11,37 @@ const buildEnv = process.env.BUILD_ENV || process.env.NODE_ENV || 'development';
 const config = envConfig.getConfig(buildEnv);
 const sharedStylesEmpty = path.resolve(__dirname, './config/shared-styles-empty.css');
 
+/**
+ * Host mode:
+ * - dxm (default): React externalized — Kurtosys DXM / App Manager provides React
+ * - cms: React bundled — self-contained for WordPress / Pantheon / custom CMS
+ */
+const hostMode = (process.env.HOST_MODE || 'dxm').toLowerCase();
+const bundleReact = hostMode === 'cms';
+
+const rollupOutput = {
+	format: 'iife',
+	entryFileNames: config.filename,
+	assetFileNames: (assetInfo) => {
+		const name = assetInfo.name ?? '';
+		if (name.endsWith('.ttf') || name.endsWith('.woff') || name.endsWith('.woff2') || name.endsWith('.otf')) {
+			const fileName = name.split('/').pop() || name;
+			return fileName;
+		}
+		return '[name][extname]';
+	},
+};
+
+if (!bundleReact) {
+	rollupOutput.globals = {
+		react: 'React',
+		'react-dom': 'ReactDOM',
+		'react-dom/client': 'ReactDOM',
+		'react/jsx-runtime': '__REACT_JSX_RUNTIME',
+		'react/jsx-dev-runtime': '__REACT_JSX_RUNTIME',
+	};
+}
+
 export default defineConfig(({ command }) => ({
 	base: './',
 	server: {
@@ -25,7 +56,6 @@ export default defineConfig(({ command }) => ({
 	resolve: {
 		alias: {
 			'@': path.resolve(__dirname, './src'),
-			// In a monorepo, point this at your shared CSS entry for local `vite` serve.
 			'@client/shared-styles': sharedStylesEmpty,
 		},
 	},
@@ -37,6 +67,7 @@ export default defineConfig(({ command }) => ({
 		'import.meta.env.VITE_FUND_API_URL': JSON.stringify(config.fundApiBaseUrl),
 		'import.meta.env.VITE_SAVED_SEARCH_TOKEN': JSON.stringify(config.savedSearchToken),
 		'import.meta.env.VITE_CONTAINER_ID': JSON.stringify(config.containerId),
+		'import.meta.env.VITE_HOST_MODE': JSON.stringify(hostMode),
 		global: 'globalThis',
 	},
 	optimizeDeps: {
@@ -51,27 +82,10 @@ export default defineConfig(({ command }) => ({
 		cssCodeSplit: false,
 		manifest: 'manifest.json',
 		rollupOptions: {
-			// DXM / App Manager typically provide React on the page.
-			external: ['react', 'react-dom', 'react-dom/client', 'react/jsx-runtime', 'react/jsx-dev-runtime'],
-			output: {
-				format: 'iife',
-				globals: {
-					react: 'React',
-					'react-dom': 'ReactDOM',
-					'react-dom/client': 'ReactDOM',
-					'react/jsx-runtime': '__REACT_JSX_RUNTIME',
-					'react/jsx-dev-runtime': '__REACT_JSX_RUNTIME',
-				},
-				entryFileNames: config.filename,
-				assetFileNames: (assetInfo) => {
-					const name = assetInfo.name ?? '';
-					if (name.endsWith('.ttf') || name.endsWith('.woff') || name.endsWith('.woff2') || name.endsWith('.otf')) {
-						const fileName = name.split('/').pop() || name;
-						return fileName;
-					}
-					return '[name][extname]';
-				},
-			},
+			external: bundleReact
+				? []
+				: ['react', 'react-dom', 'react-dom/client', 'react/jsx-runtime', 'react/jsx-dev-runtime'],
+			output: rollupOutput,
 		},
 		chunkSizeWarningLimit: 1000,
 	},

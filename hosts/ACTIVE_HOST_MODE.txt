@@ -1,0 +1,7 @@
+hostMode=dxm
+cms.platform=wordpress
+updated=2026-08-05T19:42:27.362Z
+
+DXM: Kurtosys DXM / Studio embeds (App Manager + applicationManager GUIDs)
+CMS: External WordPress / Pantheon / custom CMS embeds + integration specs
+both: same widget source, dual build outputs under BuildResult/dxm and BuildResult/cms

@@ -17,6 +17,12 @@
 		"lint": "node scripts/run-all.mjs lint",
 		"audit:security": "python3 tools/security_audit_report.py",
 		"audit:deps": "node scripts/run-all.mjs audit:deps",
-		"docs:user-guide": "python3 tools/build_user_guide_pdf.py"
+		"docs:user-guide": "python3 tools/build_user_guide_pdf.py",
+		"init": "node scripts/init-project.mjs",
+		"host:set": "node scripts/init-project.mjs --force",
+		"build:staging:dxm": "node scripts/build-all.mjs staging --host dxm",
+		"build:staging:cms": "node scripts/build-all.mjs staging --host cms",
+		"build:prod:dxm": "node scripts/build-all.mjs production --host dxm",
+		"build:prod:cms": "node scripts/build-all.mjs production --host cms"
 	}
 }

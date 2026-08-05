@@ -5,6 +5,11 @@
 	"appsRoot": "development_v1/product-page-apps",
 	"buildResultRoot": "BuildResult",
 	"widgetTemplatePath": "../ksys-studio-widget-template",
+	"hostMode": "dxm",
+	"cms": {
+		"platform": "wordpress",
+		"notes": "Set platform to wordpress|pantheon|custom after init when hostMode is cms or both."
+	},
 	"apps": [
 		{
 			"id": "pageHeader",
