@@ -120,10 +120,12 @@
 <body>
 
 <h1>Kurtosys Studio Product-Page Monorepo — User Guide</h1>
-<p class="meta">Repository: <code>ksys-studio-pp-template</code> (includes nested <code>ksys-studio-widget-template/</code>)</p>
+<p class="meta">Repository: <code>ksys-studio-pp-template</code></p>
 <p class="lead">
-  One monorepo for product-page widgets. The first decision is <strong>where they embed</strong>
-  (Kurtosys DXM vs external CMS). That choice factors builds, deploy paths, and docs —
+  One folder is enough. This monorepo includes the nested widget starter
+  (<code>ksys-studio-widget-template/</code>), so you duplicate a single root for each client —
+  no sibling template repo. The first decision is <strong>where widgets embed</strong>
+  (Kurtosys DXM vs external CMS). That choice factors builds, deploy paths, and docs
   without forking the widget source.
 </p>
 
@@ -203,6 +205,12 @@ npm run init -- --host both --client acme --cms-platform wordpress</pre>
 </p>
 
 <h2 id="what">1. What this repo is</h2>
+<p class="ok">
+  <strong>Single-folder template.</strong> Copy <code>ksys-studio-pp-template</code> once per client.
+  The widget starter lives at <code>ksys-studio-widget-template/</code> inside that copy and is what
+  <code>npm run apps:add</code> scaffolds from. You do not need a separate
+  <code>ksys-studio-widget-template</code> checkout beside it.
+</p>
 <p>
   A <strong>generic, reusable monorepo</strong> for embeddable React product-page widgets.
   Each widget is a Vite app under <code>development_v1/product-page-apps/</code>, registered in
@@ -235,9 +243,13 @@ npm run init -- --host both --client acme --cms-platform wordpress</pre>
 <ul>
   <li><strong>Node.js</strong> 20+ and <strong>npm</strong></li>
   <li><strong>Python 3.10+</strong> for security reports and PDF generation</li>
-  <li>Nested <code>ksys-studio-widget-template/</code> inside this repo (for <code>npm run apps:add</code>)</li>
   <li>Optional: Chrome / Edge for PDF export</li>
 </ul>
+<p class="note">
+  The nested <code>ksys-studio-widget-template/</code> ships with this repo. Keep it when you
+  duplicate the folder; <code>studio.config.json</code> → <code>widgetTemplatePath</code> points at
+  <code>./ksys-studio-widget-template</code>.
+</p>
 
 <h2 id="layout">3. Repository layout</h2>
 <pre>ksys-studio-pp-template/
@@ -261,10 +273,16 @@ npm run init -- --host both --client acme --cms-platform wordpress</pre>
 </pre>
 
 <h2 id="init">4. Initialize a client project</h2>
+<p>
+  Duplicate <strong>only</strong> <code>ksys-studio-pp-template</code>. The nested widget starter
+  comes along automatically — do not copy a second template folder.
+</p>
 <ol>
-  <li>Copy the template (widget starter is included inside it):
+  <li>Copy the whole monorepo and rename it for the client:
 <pre>cp -R ~/Documents/GitHub/ksys-studio-pp-template ~/Documents/GitHub/acme-pp
-cd ~/Documents/GitHub/acme-pp</pre>
+cd ~/Documents/GitHub/acme-pp
+# confirm the nested starter is present:
+ls ksys-studio-widget-template/scripts/scaffold-app.sh</pre>
   </li>
   <li><strong>Init host mode</strong> (Step 0).</li>
   <li>If the client slug is not still <code>client</code>, rename folders:
@@ -312,6 +330,12 @@ cd ~/Documents/GitHub/acme-pp</pre>
 npm run apps:add -- holdingsExposure 5178
 npm run apps:rename -- literature materials
 npm run client:set -- newclient</pre>
+<p>
+  <code>apps:add</code> scaffolds from the in-repo
+  <code>ksys-studio-widget-template/</code> into
+  <code>development_v1/product-page-apps/ksys-&lt;clientSlug&gt;-&lt;appId&gt;/</code>
+  and registers the app in <code>studio.config.json</code>.
+</p>
 <p>Folder convention: <code>ksys-&lt;clientSlug&gt;-&lt;appId&gt;/</code></p>
 
 <h2 id="develop">7. Develop a single app</h2>
@@ -393,9 +417,10 @@ npm run audit:security</pre>
 
 <h2 id="checklist">14. End-to-end checklist</h2>
 <ol>
+  <li>Duplicate <code>ksys-studio-pp-template</code> → rename for the client (widget starter stays nested)</li>
   <li><code>npm run init -- --host dxm|cms|both --client &lt;slug&gt;</code></li>
   <li><code>npm run client:set -- &lt;slug&gt;</code> if folders still use the old slug</li>
-  <li>Add/rename apps as needed</li>
+  <li>Add/rename apps as needed (<code>apps:add</code> uses <code>./ksys-studio-widget-template</code>)</li>
   <li>Fill <code>env.config.cjs</code></li>
   <li>If CMS/both: create integration specs from <code>_TEMPLATE.md</code></li>
   <li>Implement UI; keep a11y patterns</li>
@@ -426,7 +451,7 @@ npm run audit:security</pre>
     </tr>
     <tr>
       <td><code>apps:add</code> cannot find template</td>
-      <td>Confirm <code>./ksys-studio-widget-template</code> exists (nested in this repo) and <code>widgetTemplatePath</code> in <code>studio.config.json</code></td>
+      <td>Confirm <code>ksys-studio-widget-template/</code> was kept when you copied the monorepo, and that <code>widgetTemplatePath</code> in <code>studio.config.json</code> is <code>./ksys-studio-widget-template</code></td>
     </tr>
   </tbody>
 </table>
@@ -439,7 +464,8 @@ npm run audit:security</pre>
 <div class="footer">
   <p>
     Kurtosys Studio product-page monorepo · User guide ·
-    Start with <code>npm run init</code> so host mode factors the rest of the project correctly.
+    Duplicate one folder (widget starter included) · then
+    <code>npm run init</code> so host mode factors the rest of the project correctly.
   </p>
 </div>
 
