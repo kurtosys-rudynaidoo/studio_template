@@ -1,0 +1,35 @@
+{
+	"$schema": "./studio.config.schema.json",
+	"clientSlug": "client",
+	"appPrefix": "ksys",
+	"appsRoot": "development_v1/product-page-apps",
+	"buildResultRoot": "BuildResult",
+	"widgetTemplatePath": "../ksys-studio-widget-template",
+	"apps": [
+		{
+			"id": "pageHeader",
+			"label": "Page Header",
+			"port": 5173
+		},
+		{
+			"id": "overview",
+			"label": "Overview",
+			"port": 5174
+		},
+		{
+			"id": "performance",
+			"label": "Performance",
+			"port": 5175
+		},
+		{
+			"id": "portfolioBreakdown",
+			"label": "Portfolio Breakdown",
+			"port": 5176
+		},
+		{
+			"id": "literature",
+			"label": "Literature",
+			"port": 5177
+		}
+	]
+}

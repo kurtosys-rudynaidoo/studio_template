@@ -1,0 +1,21 @@
+{
+	"name": "ksys-studio-pp-template",
+	"private": true,
+	"version": "0.1.0",
+	"description": "Generic Kurtosys Studio product-page monorepo template — reusable across clients",
+	"type": "module",
+	"scripts": {
+		"apps:list": "node scripts/list-apps.mjs",
+		"apps:add": "node scripts/add-app.mjs",
+		"apps:rename": "node scripts/rename-app.mjs",
+		"client:set": "node scripts/set-client.mjs",
+		"dev": "node scripts/run-app.mjs dev",
+		"build:dev": "node scripts/build-all.mjs development",
+		"build:staging": "node scripts/build-all.mjs staging",
+		"build:prod": "node scripts/build-all.mjs production",
+		"test": "node scripts/run-all.mjs test",
+		"lint": "node scripts/run-all.mjs lint",
+		"audit:security": "python3 tools/security_audit_report.py",
+		"audit:deps": "node scripts/run-all.mjs audit:deps"
+	}
+}

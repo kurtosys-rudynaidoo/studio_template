@@ -1,0 +1,16 @@
+node_modules/
+dist/
+dist-build/
+BuildResult/**/asset-manifest.json
+BuildResult/**/embed-loader.js
+BuildResult/**/index.html
+BuildResult/**/manifest.json
+BuildResult/**/vite.svg
+reports/*.html
+reports/*.pdf
+npm-audit.json
+.DS_Store
+*.local
+.vscode/*
+!.vscode/extensions.json
+.idea/

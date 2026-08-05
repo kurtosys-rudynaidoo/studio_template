@@ -1,0 +1,55 @@
+/* Tailwind utilities use !important so DXM/Elementor host CSS cannot override them. */
+@import "tailwindcss" important;
+
+:root {
+	/* WCAG-oriented defaults: strong contrast, predictable type, keyboard focus */
+	color-scheme: light;
+	--studio-color-text: #0f172a; /* slate-900 ≈ 16:1 on white */
+	--studio-color-text-muted: #334155; /* slate-700 ≈ 8:1 on white */
+	--studio-color-bg: #ffffff;
+	--studio-color-focus: #0369a1; /* sky-700, visible focus ring */
+	--studio-font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+	font-family: var(--studio-font-sans);
+	color: var(--studio-color-text);
+	background: var(--studio-color-bg);
+	line-height: 1.5;
+}
+
+body {
+	margin: 0;
+	min-width: 320px;
+}
+
+#performance {
+	width: 100%;
+}
+
+/* Screen-reader-only helper (also available as .sr-only via Tailwind) */
+.studio-sr-only {
+	position: absolute !important;
+	width: 1px !important;
+	height: 1px !important;
+	padding: 0 !important;
+	margin: -1px !important;
+	overflow: hidden !important;
+	clip: rect(0, 0, 0, 0) !important;
+	white-space: nowrap !important;
+	border: 0 !important;
+}
+
+/* Predictable keyboard focus — do not remove outlines without an equivalent */
+:where(a, button, summary, input, select, textarea, [tabindex]:not([tabindex="-1"])):focus-visible {
+	outline: 3px solid var(--studio-color-focus) !important;
+	outline-offset: 2px !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+}
