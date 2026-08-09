@@ -1,0 +1,51 @@
+@layer base {
+	#appManager *,
+	#appManager *::before,
+	#appManager *::after {
+		box-sizing: border-box;
+		border-width: 0;
+		border-style: solid;
+	}
+	#appManager a {
+		color: inherit;
+		text-decoration: inherit;
+	}
+	#appManager img,
+	#appManager svg {
+		display: block;
+		max-width: 100%;
+	}
+	#appManager button {
+		background: transparent;
+		border: none;
+		padding: 0;
+		margin: 0;
+		font: inherit;
+		color: inherit;
+		cursor: pointer;
+	}
+}
+
+#appManager [data-am='tab-nav'] {
+	width: 100% !important;
+	max-width: 100% !important;
+}
+
+#appManager [data-am='tab-nav-scroll'] {
+	display: flex !important;
+	width: 100% !important;
+	max-width: none !important;
+	overflow-x: auto !important;
+	-webkit-overflow-scrolling: touch;
+	scrollbar-width: thin;
+}
+
+#appManager [data-am='tab-nav-scroll'] button[role='tab'] {
+	flex: 0 0 auto !important;
+}
+
+.elementor-widget-container #appManager [data-am='tab-nav'],
+.elementor-widget-container #appManager [data-am='tab-nav-scroll'] {
+	width: 100% !important;
+	max-width: none !important;
+}

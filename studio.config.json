@@ -12,6 +12,13 @@
 	},
 	"apps": [
 		{
+			"id": "appManager",
+			"label": "App Manager",
+			"port": 5170,
+			"required": true,
+			"notes": "Required default shell — shared CSS + child widget loader. Do not remove."
+		},
+		{
 			"id": "fundCentre",
 			"label": "Fund Centre",
 			"port": 5178

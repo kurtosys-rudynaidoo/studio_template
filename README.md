@@ -31,12 +31,15 @@ npm run docs:user-guide
 
 | App id | Mount / embed global | Dev port |
 |--------|----------------------|----------|
+| **`appManager`** ★ | `#appManager` / `window.appManager` | 5170 |
 | `fundCentre` | `#fundCentre` (+ `#fundCenter` config) / `window.fundCentre` | 5178 |
 | `pageHeader` | `#pageHeader` / `window.pageHeader` | 5173 |
 | `overview` | `#overview` / `window.overview` | 5174 |
 | `performance` | `#performance` / `window.performanceApp`* | 5175 |
 | `portfolioBreakdown` | `#portfolioBreakdown` / `window.portfolioBreakdown` | 5176 |
 | `literature` | `#literature` / `window.literature` | 5177 |
+
+★ **Required default** for every project — child script loader + co-deployed `shared.css` (`BuildResult/.../appManager/`). Do not remove or rename.
 
 \* Reserved-name safe (`window.performance` is a browser API).
 
@@ -64,7 +67,7 @@ npm run audit:security
 Each app build keeps **only** deployable files in `dist-build/` and `BuildResult/`:
 
 - `<appId>.js` (required)
-- `shared.css` / `bp-shared.css` (optional)
+- `shared.css` / `bp-shared.css` — **required from `appManager`**; optional elsewhere
 
 Scaffolding (`index.html`, `vite.svg`, manifests, embed-loader, etc.) is removed automatically.
 
@@ -82,8 +85,9 @@ ksys-studio-widget-template/  # in-repo widget starter for apps:add
 hosts/{dxm,cms}/
 docs/integration-specs/
 BuildResult/{dxm,cms}/{dev,stg,prd}/<appId>/
+apps/ksys-<client>-appManager/   # required default
 apps/ksys-<client>-fundCentre/
 apps/ksys-<client>-<appId>/
 ```
 
-Duplicate this whole folder for each new client — Fund Centre, product-page apps, and the widget template come along automatically.
+Duplicate this whole folder for each new client — App Manager, Fund Centre, product-page apps, and the widget template come along automatically.

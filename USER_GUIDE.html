@@ -213,9 +213,16 @@ npm run init -- --host both --client acme --cms-platform wordpress</pre>
   <code>ksys-studio-widget-template</code> checkout beside it.
 </p>
 <p>
-  A <strong>generic, reusable monorepo</strong> for embeddable React product-page widgets.
-  Each widget is a Vite app under <code>apps/</code>, registered in
+  A <strong>generic, reusable monorepo</strong> for Fund Centre and product-page embeds.
+  Each app is a Vite package under <code>apps/</code>, registered in
   <code>studio.config.json</code>.
+</p>
+<p class="ok">
+  <strong>Required default: <code>appManager</code>.</strong>
+  Every client project must keep <code>ksys-&lt;client&gt;-appManager/</code>.
+  It loads child product-page scripts by Studio GUID and publishes co-deployed
+  shared CSS (<code>shared.css</code>). Do not rename or remove it
+  (<code>apps:rename</code> will refuse).
 </p>
 <p>Starter apps:</p>
 <table>
@@ -228,6 +235,7 @@ npm run init -- --host both --client acme --cms-platform wordpress</pre>
     </tr>
   </thead>
   <tbody>
+    <tr><td><code>appManager</code> ★</td><td><code>#appManager</code></td><td><code>window.appManager</code></td><td>5170</td></tr>
     <tr><td><code>fundCentre</code></td><td><code>#fundCentre</code> (+ <code>#fundCenter</code> config)</td><td><code>window.fundCentre</code></td><td>5178</td></tr>
     <tr><td><code>pageHeader</code></td><td><code>#pageHeader</code></td><td><code>window.pageHeader</code></td><td>5173</td></tr>
     <tr><td><code>overview</code></td><td><code>#overview</code></td><td><code>window.overview</code></td><td>5174</td></tr>
@@ -236,6 +244,13 @@ npm run init -- --host both --client acme --cms-platform wordpress</pre>
     <tr><td><code>literature</code></td><td><code>#literature</code></td><td><code>window.literature</code></td><td>5177</td></tr>
   </tbody>
 </table>
+<p class="note">
+  ★ Required for all projects. Build output:
+  <code>BuildResult/&lt;host&gt;/&lt;env&gt;/appManager/appManager.js</code> +
+  <code>shared.css</code> (and <code>bp-shared.css</code> alias).
+  Fill <code>childAppGuids</code> in its <code>config/env.config.cjs</code> after deploying each child widget.
+  See <code>apps/ksys-&lt;client&gt;-appManager/MONOREPO.md</code>.
+</p>
 <p class="note">
   Fund Centre also needs <code>defaultFundlist</code> and optional
   <code>subadvisedLandingUrl</code> in its <code>config/env.config.cjs</code>
@@ -276,6 +291,7 @@ npm run init -- --host both --client acme --cms-platform wordpress</pre>
 │   ├── dxm/{dev,stg,prd}/
 │   └── cms/{dev,stg,prd}/
 └── apps/
+    ├── ksys-&lt;client&gt;-appManager/   ★ required default (shell + shared.css)
     ├── ksys-&lt;client&gt;-fundCentre/
     └── ksys-&lt;client&gt;-&lt;appId&gt;/
 </pre>
@@ -292,6 +308,7 @@ npm run init -- --host both --client acme --cms-platform wordpress</pre>
 cd ~/Documents/GitHub/acme-studio
 # confirm the nested starter + fund centre are present:
 ls ksys-studio-widget-template/scripts/scaffold-app.sh
+ls apps/ksys-client-appManager/config/env.config.cjs   # required
 ls apps/ksys-client-fundCentre/config/env.config.cjs</pre>
   </li>
   <li><strong>Init host mode</strong> (Step 0).</li>
@@ -390,6 +407,11 @@ npm run dev</pre>
 <pre>npm run apps:rename -- &lt;oldId&gt; &lt;newId&gt;
 # example:
 npm run apps:rename -- literature materials</pre>
+<p class="warn">
+  <strong>Do not rename <code>appManager</code>.</strong>
+  It is the required default shell for every project. The command refuses
+  renaming to or from <code>appManager</code>.
+</p>
 <p class="ok">
   <strong>Goal:</strong> after a rename, the old name should not remain anywhere that still
   describes this widget — <em>inside</em> the repo or <em>outside</em> it on host pages.
@@ -528,7 +550,13 @@ BuildResult/cms/stg/overview/overview.js</pre>
   <code>clean-dist-artifacts</code>, which deletes scaffolding
   (<code>index.html</code>, <code>vite.svg</code>, manifests, embed-loader, etc.)
   and keeps only the deployable <code>&lt;appId&gt;.js</code>
-  (plus optional <code>shared.css</code>). <code>BuildResult</code> folders stay equally lean.
+  (plus <code>shared.css</code> / <code>bp-shared.css</code> from <code>appManager</code>).
+  <code>BuildResult</code> folders stay equally lean.
+</p>
+<p class="ok">
+  App Manager build example:
+  <code>BuildResult/dxm/stg/appManager/{appManager.js,shared.css,bp-shared.css}</code>.
+  Deploy the JS + CSS together; child widgets ship their own <code>&lt;appId&gt;.js</code> only.
 </p>
 <p class="note">
   Per-app scripts also exist: <code>build:dxm:stg</code>, <code>build:cms:stg</code>, etc.
@@ -537,6 +565,7 @@ BuildResult/cms/stg/overview/overview.js</pre>
 
 <h2 id="defaults">12. Built-in defaults</h2>
 <ul>
+  <li><strong>App Manager</strong> — required shell in every project (<code>apps/ksys-&lt;client&gt;-appManager/</code>); loads children by GUID and publishes shared CSS</li>
   <li><strong>A11y</strong> — WCAG-oriented landmarks, contrast tokens, focus rings, jsx-a11y (see <code>docs/ACCESSIBILITY.md</code>)</li>
   <li><strong>Tailwind</strong> — <code>@import "tailwindcss" important;</code></li>
   <li><strong>Embed global</strong> — <code>window.&lt;appId&gt;</code> (not <code>YourAppEmbed</code>)</li>
@@ -550,11 +579,11 @@ npm run audit:security</pre>
 
 <h2 id="checklist">14. End-to-end checklist</h2>
 <ol>
-  <li>Duplicate <code>ksys-studio-template</code> → rename for the client (Fund Centre + widgets stay nested)</li>
+  <li>Duplicate <code>ksys-studio-template</code> → rename for the client (keep <code>appManager</code>)</li>
   <li><code>npm run init -- --host dxm|cms|both --client &lt;slug&gt;</code></li>
   <li><code>npm run client:set -- &lt;slug&gt;</code> if folders still use the old slug</li>
-  <li>Rename starter apps to match the page (<code>npm run apps:rename -- literature materials</code>) and/or add missing ones (<code>npm run apps:add -- holdingsExposure</code>)</li>
-  <li>Fill <code>env.config.cjs</code></li>
+  <li>Keep <code>appManager</code> (required). Rename/add other apps as needed — never rename <code>appManager</code></li>
+  <li>Fill each <code>env.config.cjs</code>; for App Manager fill <code>childAppGuids</code> after child Studio uploads</li>
   <li>If CMS/both: create integration specs from <code>_TEMPLATE.md</code></li>
   <li>Implement UI; keep a11y patterns</li>
   <li><code>npm run build:stg</code> → verify <code>BuildResult/&lt;host&gt;/…</code></li>

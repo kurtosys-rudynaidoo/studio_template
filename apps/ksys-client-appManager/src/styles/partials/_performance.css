@@ -1,0 +1,384 @@
+@layer base {
+	#performance *,
+	#performance *::before,
+	#performance *::after {
+		box-sizing: border-box;
+		border-width: 0;
+		border-style: solid;
+	}
+	#performance a {
+		color: inherit;
+		text-decoration: inherit;
+	}
+	#performance img,
+	#performance svg {
+		display: block;
+		max-width: 100%;
+	}
+	#performance button:not([role='tab']) {
+		background: transparent;
+		border: none;
+		padding: 0;
+		margin: 0;
+		font: inherit;
+		color: inherit;
+		cursor: pointer;
+	}
+}
+
+#performance h1,
+#performance h2,
+#performance h3 {
+	font-family: 'Roboto Condensed', 'Roboto', system-ui, sans-serif !important;
+	text-decoration: none !important;
+	letter-spacing: normal !important;
+	text-transform: none !important;
+}
+
+#performance p {
+	font-family: 'Roboto Condensed', 'Roboto', system-ui, sans-serif !important;
+	text-decoration: none !important;
+	letter-spacing: normal !important;
+}
+
+/* Heading block — Figma node 9770:17133 (10px gap, 40px before tabs) */
+#performance [data-perf-header] {
+	display: flex !important;
+	flex-direction: column !important;
+	align-items: flex-start !important;
+	gap: 10px !important;
+	width: 100% !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	position: relative !important;
+	z-index: 2 !important;
+}
+
+#performance [data-perf-title-wrap] {
+	display: flex !important;
+	flex-direction: column !important;
+	justify-content: center !important;
+	line-height: 0 !important;
+	width: 100% !important;
+	min-height: 34px !important;
+}
+
+#performance [data-perf-title] {
+	font-family: 'Roboto Condensed', sans-serif !important;
+	font-weight: 900 !important;
+	font-size: 42px !important;
+	line-height: 0.81 !important;
+	color: #000000 !important;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+#performance [data-perf-asof] {
+	font-family: 'Roboto', sans-serif !important;
+	font-weight: 300 !important;
+	font-size: 14px !important;
+	line-height: 0.81 !important;
+	color: #000000 !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	white-space: nowrap !important;
+}
+
+#performance .bp-performance-wrapper {
+	display: flex !important;
+	flex-direction: column !important;
+	gap: 40px !important;
+	align-items: flex-start !important;
+}
+
+#performance section,
+#performance aside {
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+#performance ul,
+#performance li {
+	list-style: none !important;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+#performance table {
+	font-family: 'Roboto Condensed', 'Roboto', system-ui, sans-serif !important;
+	border-collapse: collapse !important;
+}
+
+#performance th,
+#performance td {
+	font-family: 'Roboto Condensed', 'Roboto', system-ui, sans-serif !important;
+	text-decoration: none !important;
+	letter-spacing: normal !important;
+}
+
+#performance button:not([role='tab']) {
+	font-family: 'Roboto Condensed', 'Roboto', system-ui, sans-serif !important;
+	text-decoration: none !important;
+	letter-spacing: normal !important;
+	text-transform: none !important;
+	background: transparent !important;
+	border: none !important;
+}
+
+#performance button[role='tab'] {
+	font-family: 'Roboto Condensed', 'Roboto', system-ui, sans-serif !important;
+	text-decoration: none !important;
+	letter-spacing: normal !important;
+	text-transform: none !important;
+	border: none !important;
+}
+
+#performance button[role='tab'][aria-selected='true'] {
+	background-color: #0072bc !important;
+	color: #ffffff !important;
+}
+
+#performance button[role='tab'][aria-selected='false'] {
+	background-color: #ffffff !important;
+	color: #000000 !important;
+}
+
+#performance button[role='tab'][aria-selected='false']:hover {
+	background-color: #e5e9e9 !important;
+	color: #000000 !important;
+}
+
+/* Tab strip — desktop ≥1101px; compact select below */
+@media (min-width: 1101px) {
+	#performance [data-perf-tablist] {
+		display: flex !important;
+		flex-direction: row !important;
+		align-items: stretch !important;
+		width: 100% !important;
+		height: 44px !important;
+		margin-top: 0 !important;
+		position: relative !important;
+		flex-shrink: 0 !important;
+		overflow-x: auto !important;
+		overflow-y: hidden !important;
+		-webkit-overflow-scrolling: touch;
+	}
+
+	#performance [data-perf-tablist-inner],
+	#performance [data-perf-tablist] > div {
+		display: flex !important;
+		flex: 0 0 auto !important;
+		height: 100% !important;
+		min-width: 0 !important;
+		width: auto !important;
+		gap: 12px !important;
+	}
+
+	#performance button[data-perf-tab] {
+		display: inline-flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+		height: 44px !important;
+		font-family: 'Roboto Condensed', sans-serif !important;
+		font-weight: 500 !important;
+		font-size: 18px !important;
+		line-height: 1.2 !important;
+		white-space: nowrap !important;
+		border: none !important;
+		cursor: pointer !important;
+		flex: 0 0 auto !important;
+		width: auto !important;
+		max-width: none !important;
+	}
+
+	#performance button[data-perf-tab][data-perf-active='true'] {
+		padding: 6px 12px !important;
+	}
+
+	#performance button[data-perf-tab][data-perf-active='false'] {
+		padding: 6px 12px 6px 0 !important;
+		background-color: transparent !important;
+	}
+
+	.elementor-widget-container #performance button[data-perf-tab] {
+		flex: 0 0 auto !important;
+		width: auto !important;
+	}
+
+	.elementor-widget-container #performance [data-perf-tablist-inner],
+	.elementor-widget-container #performance [data-perf-tablist] > div {
+		width: auto !important;
+		flex: 0 0 auto !important;
+	}
+
+	.elementor-widget-container #performance [data-perf-tablist] {
+		display: flex !important;
+		width: 100% !important;
+	}
+}
+
+#performance button[data-perf-tab][data-perf-active='true'] {
+	background-color: #0072bc !important;
+	color: #ffffff !important;
+}
+
+#performance button[data-perf-tab][data-perf-active='false'] {
+	background-color: transparent !important;
+	color: #000000 !important;
+}
+
+#performance button[data-perf-tab][data-perf-active='false']:hover {
+	background-color: #e5e9e9 !important;
+	color: #000000 !important;
+}
+
+#performance .bp-performance-wrapper {
+	font-family: 'Roboto Condensed', 'Roboto', system-ui, sans-serif !important;
+	font-size: 16px !important;
+	line-height: 1.5 !important;
+	color: #000000 !important;
+	background: #ffffff !important;
+	padding: 0 !important;
+}
+
+#performance table[data-perf-table] tbody tr:nth-child(odd),
+#performance table[data-perf-table] tbody tr[data-perf-stripe='odd'] {
+	background-color: #e5e9e9 !important;
+}
+
+#performance table[data-perf-table] tbody tr:nth-child(even),
+#performance table[data-perf-table] tbody tr[data-perf-stripe='even'] {
+	background-color: #ffffff !important;
+}
+
+#performance table[data-perf-table] tbody tr[data-perf-stripe='odd'] td {
+	background-color: #e5e9e9 !important;
+}
+
+#performance table[data-perf-table] tbody tr[data-perf-stripe='even'] td {
+	background-color: #ffffff !important;
+}
+
+#performance table[data-perf-table] thead th[data-perf-col='name'] {
+	color: #0072bc !important;
+	font-weight: 900 !important;
+	text-align: left !important;
+}
+
+#performance table[data-perf-table] thead th:not([data-perf-col='name']) {
+	color: #000000 !important;
+	font-weight: 700 !important;
+	text-align: center !important;
+}
+
+.elementor-widget-container #performance,
+.elementor-widget-wrap #performance,
+.elementor-element #performance {
+	width: 100% !important;
+	max-width: none !important;
+}
+
+.elementor-widget-container #performance button[role='tab'],
+.elementor-widget-container #performance [data-perf-tablist],
+.elementor-widget-container #performance table {
+	max-width: none !important;
+}
+
+.elementor-widget-container #performance table[data-perf-table] {
+	width: 100% !important;
+}
+
+#performance [data-perf-tab-select-wrap] {
+	display: none;
+	width: 100%;
+	position: relative;
+}
+
+#performance [data-perf-tab-select] {
+	width: 100%;
+	height: 44px;
+	padding: 6px 44px 6px 16px;
+	font-family: 'Roboto Condensed', sans-serif !important;
+	font-weight: 500 !important;
+	font-size: 18px !important;
+	line-height: normal !important;
+	color: #000000 !important;
+	background-color: #ffffff !important;
+	border: 1px solid #c5c7c9 !important;
+	border-radius: 0 !important;
+	appearance: none !important;
+	-webkit-appearance: none !important;
+	-moz-appearance: none !important;
+	box-sizing: border-box !important;
+	cursor: pointer !important;
+}
+
+#performance [data-perf-tab-select-chevron] {
+	position: absolute;
+	right: 16px;
+	top: 50%;
+	transform: translateY(-50%);
+	pointer-events: none;
+}
+
+@media (max-width: 1100px) {
+	#performance [data-perf-tab-select-wrap] {
+		display: block !important;
+		width: 100% !important;
+	}
+
+	#performance [data-perf-tablist-wrap],
+	#performance [data-perf-tablist],
+	#performance button[data-perf-tab] {
+		display: none !important;
+		visibility: hidden !important;
+		height: 0 !important;
+		overflow: hidden !important;
+		margin: 0 !important;
+		padding: 0 !important;
+	}
+
+	#performance [data-perf-tab-select] {
+		width: 100% !important;
+		max-width: 100% !important;
+	}
+
+	.elementor-widget-container #performance [data-perf-tablist],
+	.elementor-widget-container #performance button[data-perf-tab] {
+		display: none !important;
+	}
+
+	.elementor-widget-container #performance [data-perf-tab-select-wrap] {
+		display: block !important;
+		width: 100% !important;
+	}
+}
+
+@media (max-width: 767px) {
+	#performance .bp-performance-wrapper {
+		gap: 24px !important;
+		padding-left: 16px !important;
+		padding-right: 16px !important;
+		box-sizing: border-box !important;
+	}
+
+	#performance [data-perf-title] {
+		font-size: 32px !important;
+		line-height: 1.1 !important;
+	}
+
+	#performance [data-perf-bar-chart='horizontal'] {
+		overflow-x: auto !important;
+		-webkit-overflow-scrolling: touch;
+	}
+
+	.elementor-widget-container #performance [data-perf-tablist],
+	.elementor-widget-container #performance button[data-perf-tab] {
+		display: none !important;
+	}
+
+	.elementor-widget-container #performance [data-perf-tab-select-wrap] {
+		display: block !important;
+		width: 100% !important;
+	}
+}

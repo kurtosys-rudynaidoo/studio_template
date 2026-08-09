@@ -1,0 +1,440 @@
+@layer base {
+	#overview_mutualFunds *,
+	#overview_mutualFunds *::before,
+	#overview_mutualFunds *::after,
+	#overview_institutionalStrategies *,
+	#overview_institutionalStrategies *::before,
+	#overview_institutionalStrategies *::after {
+		box-sizing: border-box;
+		border-width: 0;
+		border-style: solid;
+		@apply border-border outline-ring/50;
+	}
+	#overview_mutualFunds a,
+	#overview_institutionalStrategies a {
+		color: inherit;
+		text-decoration: inherit;
+	}
+	#overview_mutualFunds img,
+	#overview_mutualFunds svg,
+	#overview_institutionalStrategies img,
+	#overview_institutionalStrategies svg {
+		display: block;
+		max-width: 100%;
+	}
+	#overview_mutualFunds button,
+	#overview_institutionalStrategies button {
+		background: transparent;
+		border: none;
+		padding: 0;
+		margin: 0;
+		font: inherit;
+		color: inherit;
+		cursor: pointer;
+	}
+}
+
+.bp-overview .bp-sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border-width: 0;
+}
+
+.bp-overview *:focus-visible {
+	outline: 3px solid #0072bc !important;
+	outline-offset: 2px !important;
+	border-radius: 2px !important;
+}
+
+.bp-overview {
+	font-family: 'Roboto Condensed', sans-serif !important;
+	background: #ffffff !important;
+	padding: 0 0 40px 0 !important;
+	width: 100% !important;
+	box-sizing: border-box !important;
+	text-decoration: none !important;
+}
+
+.bp-overview-heading {
+	font-family: 'Roboto Condensed', sans-serif !important;
+	font-weight: 900 !important;
+	font-size: 42px !important;
+	line-height: 0.81 !important;
+	color: #000000 !important;
+	margin: 0 0 40px 0 !important;
+	padding: 0 !important;
+	text-transform: none !important;
+	text-decoration: none !important;
+	letter-spacing: normal !important;
+}
+
+.bp-overview-columns {
+	display: flex !important;
+	gap: 80px !important;
+	align-items: flex-start !important;
+}
+
+.bp-overview-left {
+	display: flex !important;
+	flex-direction: column !important;
+	gap: 30px !important;
+	width: 291px !important;
+	flex-shrink: 0 !important;
+}
+
+.bp-overview-right {
+	display: flex !important;
+	flex-direction: column !important;
+	flex: 1 !important;
+	min-width: 0 !important;
+}
+
+.bp-commentary {
+	display: flex !important;
+	flex-direction: column !important;
+	gap: 5px !important;
+}
+
+.bp-commentary-title {
+	font-family: 'Roboto Condensed', sans-serif !important;
+	font-weight: 900 !important;
+	font-size: 18px !important;
+	line-height: 1.2 !important;
+	color: #0072bc !important;
+	text-transform: uppercase !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	text-decoration: none !important;
+	letter-spacing: normal !important;
+}
+
+.bp-commentary-text {
+	font-family: 'Roboto Condensed', sans-serif !important;
+	font-weight: 300 !important;
+	font-size: 18px !important;
+	line-height: 1.33 !important;
+	color: #000000 !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	text-decoration: none !important;
+	letter-spacing: normal !important;
+}
+
+.bp-facts-row {
+	display: flex !important;
+	width: 100% !important;
+}
+
+.bp-fact-card {
+	flex: 1 !important;
+	display: flex !important;
+	flex-direction: column !important;
+	gap: 5px !important;
+	align-items: center !important;
+	justify-content: center !important;
+	min-height: 140px !important;
+	padding: 24px 16px !important;
+	background: #ffffff !important;
+	border: 0.5px solid #e8e8e8 !important;
+	box-sizing: border-box !important;
+}
+
+.bp-fact-title {
+	font-family: 'Roboto Condensed', sans-serif !important;
+	font-weight: 900 !important;
+	font-size: 18px !important;
+	line-height: 1.2 !important;
+	color: #0072bc !important;
+	text-transform: uppercase !important;
+	text-align: center !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	gap: 6px !important;
+	text-decoration: none !important;
+	letter-spacing: normal !important;
+}
+
+.bp-fact-grouping {
+	display: flex !important;
+	flex-direction: column !important;
+	align-items: center !important;
+	gap: 6px !important;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+.bp-fact-value {
+	font-family: 'Roboto Condensed', sans-serif !important;
+	font-weight: 700 !important;
+	font-size: 18px !important;
+	line-height: 21.6px !important;
+	color: #000000 !important;
+	text-align: center !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	text-decoration: none !important;
+	letter-spacing: normal !important;
+}
+
+.bp-fact-subtitle {
+	font-family: 'Roboto Condensed', sans-serif !important;
+	font-weight: 400 !important;
+	font-size: 13px !important;
+	line-height: 1.2 !important;
+	color: #545960 !important;
+	text-align: center !important;
+	letter-spacing: -0.02px !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	text-decoration: none !important;
+}
+
+.bp-facts-grid {
+	display: flex !important;
+	flex-direction: column !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	width: 100% !important;
+}
+
+.bp-morningstar {
+	display: flex !important;
+	flex-direction: column !important;
+	gap: 5px !important;
+}
+
+.bp-morningstar-header {
+	display: flex !important;
+	gap: 10px !important;
+	align-items: center !important;
+}
+
+.bp-morningstar-title {
+	font-family: 'Roboto Condensed', sans-serif !important;
+	font-weight: 900 !important;
+	font-size: 18px !important;
+	line-height: 1.2 !important;
+	color: #0072bc !important;
+	text-transform: uppercase !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	text-decoration: none !important;
+	letter-spacing: normal !important;
+}
+
+.bp-morningstar-stars {
+	display: flex !important;
+	gap: 10px !important;
+	align-items: center !important;
+}
+
+.bp-morningstar-medalist {
+	height: 36px !important;
+	width: auto !important;
+	flex-shrink: 0 !important;
+}
+
+.bp-morningstar-star {
+	width: 24px !important;
+	height: 24px !important;
+	flex-shrink: 0 !important;
+}
+
+.bp-morningstar-text {
+	font-family: 'Roboto Condensed', sans-serif !important;
+	font-weight: 300 !important;
+	font-size: 13px !important;
+	line-height: 1.23 !important;
+	color: #000000 !important;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+.bp-tooltip-wrapper {
+	position: relative !important;
+	display: inline-flex !important;
+}
+
+.bp-tooltip-trigger {
+	display: inline-flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	background: none !important;
+	border: none !important;
+	padding: 0 !important;
+	cursor: pointer !important;
+	line-height: 0 !important;
+}
+
+.bp-tooltip-content {
+	position: absolute !important;
+	top: calc(100% + 8px) !important;
+	left: 50% !important;
+	transform: translateX(-50%) !important;
+	width: 280px !important;
+	max-width: min(280px, calc(100vw - 32px)) !important;
+	background: #ffffff !important;
+	color: #000000 !important;
+	font-family: 'Roboto Condensed', sans-serif !important;
+	font-weight: 300 !important;
+	font-size: 13px !important;
+	line-height: 1.4 !important;
+	padding: 12px 16px !important;
+	border: 1px solid #e8e8e8 !important;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+	z-index: 10 !important;
+	white-space: normal !important;
+	word-wrap: break-word !important;
+	overflow-wrap: break-word !important;
+}
+
+.bp-overview .bp-loading,
+.bp-overview .bp-error {
+	font-family: 'Roboto Condensed', sans-serif !important;
+	font-size: 18px !important;
+	color: #545960 !important;
+	padding: 40px 0 !important;
+}
+
+@media (forced-colors: active) {
+	.bp-fact-card {
+		border: 1px solid CanvasText;
+	}
+	.bp-commentary-title,
+	.bp-fact-title {
+		color: LinkText;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.bp-overview * {
+		animation-duration: 0.01ms !important;
+		transition-duration: 0.01ms !important;
+	}
+}
+
+/* Mobile: vertical list — commentary first, key-fact blocks after Objective, 2 columns */
+@media (max-width: 767px) {
+	#overview_mutualFunds .bp-overview,
+	#overview_institutionalStrategies .bp-overview {
+		padding-left: 16px !important;
+		padding-right: 16px !important;
+		padding-bottom: 32px !important;
+	}
+
+	#overview_mutualFunds .bp-overview-heading,
+	#overview_institutionalStrategies .bp-overview-heading {
+		font-size: 32px !important;
+		line-height: 1.1 !important;
+		margin-bottom: 24px !important;
+	}
+
+	#overview_mutualFunds .bp-overview-columns,
+	#overview_institutionalStrategies .bp-overview-columns {
+		flex-direction: column !important;
+		align-items: stretch !important;
+		gap: 32px !important;
+	}
+
+	#overview_mutualFunds .bp-overview-left,
+	#overview_institutionalStrategies .bp-overview-left,
+	#overview_mutualFunds .bp-overview-right,
+	#overview_institutionalStrategies .bp-overview-right {
+		width: 100% !important;
+		max-width: 100% !important;
+		flex: none !important;
+		min-width: 0 !important;
+	}
+
+	#overview_mutualFunds .bp-overview-left,
+	#overview_institutionalStrategies .bp-overview-left {
+		gap: 24px !important;
+	}
+
+	#overview_mutualFunds .bp-facts-grid,
+	#overview_institutionalStrategies .bp-facts-grid {
+		display: grid !important;
+		grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+		width: 100% !important;
+	}
+
+	#overview_mutualFunds .bp-facts-row,
+	#overview_institutionalStrategies .bp-facts-row {
+		display: contents !important;
+	}
+
+	#overview_mutualFunds .bp-fact-card,
+	#overview_institutionalStrategies .bp-fact-card {
+		flex: none !important;
+		width: 100% !important;
+		min-height: 120px !important;
+		padding: 20px 12px !important;
+	}
+
+	#overview_mutualFunds .bp-fact-title,
+	#overview_institutionalStrategies .bp-fact-title {
+		font-size: 14px !important;
+	}
+
+	#overview_mutualFunds .bp-fact-value,
+	#overview_institutionalStrategies .bp-fact-value {
+		font-size: 16px !important;
+		line-height: 1.25 !important;
+	}
+
+	.elementor-widget-container #overview_mutualFunds .bp-overview-columns,
+	.elementor-widget-container #overview_institutionalStrategies .bp-overview-columns {
+		display: flex !important;
+		flex-direction: column !important;
+		gap: 32px !important;
+	}
+
+	.elementor-widget-container #overview_mutualFunds .bp-overview-left,
+	.elementor-widget-container #overview_institutionalStrategies .bp-overview-left,
+	.elementor-widget-container #overview_mutualFunds .bp-overview-right,
+	.elementor-widget-container #overview_institutionalStrategies .bp-overview-right {
+		width: 100% !important;
+		max-width: none !important;
+		flex: none !important;
+	}
+
+	.elementor-widget-container #overview_mutualFunds .bp-facts-grid,
+	.elementor-widget-container #overview_institutionalStrategies .bp-facts-grid {
+		display: grid !important;
+		grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+	}
+
+	.elementor-widget-container #overview_mutualFunds .bp-facts-row,
+	.elementor-widget-container #overview_institutionalStrategies .bp-facts-row {
+		display: contents !important;
+	}
+
+	.elementor-widget-container #overview_mutualFunds .bp-fact-card,
+	.elementor-widget-container #overview_institutionalStrategies .bp-fact-card {
+		flex: none !important;
+		width: auto !important;
+		max-width: none !important;
+	}
+}
+
+@media (min-width: 768px) {
+	#overview_mutualFunds .bp-facts-grid,
+	#overview_institutionalStrategies .bp-facts-grid {
+		display: flex !important;
+		flex-direction: column !important;
+	}
+
+	#overview_mutualFunds .bp-facts-row,
+	#overview_institutionalStrategies .bp-facts-row {
+		display: flex !important;
+	}
+}

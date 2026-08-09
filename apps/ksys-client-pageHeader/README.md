@@ -100,5 +100,5 @@ This template includes patterns that BP product pages actually use in production
 
 1. Copy this repo or scaffold apps into `apps/`
 2. Add shared client config (document rules, fetch cache, etc.) under a sibling `config/` folder when needed
-3. Optionally add an `appManager` shell that loads child widgets by GUID
+3. Keep the required `appManager` shell (loads child widgets by GUID + shared CSS)
 4. Wire `tools/bp_cli.py`-style build/package/deploy once GUIDs exist in Studio

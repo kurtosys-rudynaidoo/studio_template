@@ -53,6 +53,12 @@ if (oldId === newId) {
 	console.error('oldId and newId are the same after normalization');
 	process.exit(1);
 }
+if (oldId === 'appManager' || newId === 'appManager') {
+	console.error(
+		'appManager is a required default app and cannot be renamed. Keep ksys-<client>-appManager.',
+	);
+	process.exit(1);
+}
 
 const oldFolder = folderName(cfg, oldId);
 const newFolder = folderName(cfg, newId);

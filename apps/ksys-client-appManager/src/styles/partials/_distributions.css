@@ -1,0 +1,239 @@
+@layer base {
+	#distributions *,
+	#distributions *::before,
+	#distributions *::after {
+		box-sizing: border-box;
+		border-width: 0;
+		border-style: solid;
+	}
+	#distributions a {
+		color: inherit;
+		text-decoration: inherit;
+	}
+	#distributions img,
+	#distributions svg {
+		display: block;
+		max-width: 100%;
+	}
+	#distributions button {
+		background: transparent;
+		border: none;
+		padding: 0;
+		margin: 0;
+		font: inherit;
+		color: inherit;
+		cursor: pointer;
+	}
+}
+
+#distributions .bp-sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border-width: 0;
+}
+
+#distributions *:focus-visible {
+	outline: 3px solid #0072bc;
+	outline-offset: 2px;
+	border-radius: 2px;
+}
+
+#distributions .bp-distributions {
+	font-family: 'Roboto Condensed', sans-serif !important;
+	background: #ffffff !important;
+	padding: 0 0 40px 0 !important;
+	width: 100% !important;
+	box-sizing: border-box !important;
+	text-decoration: none !important;
+	display: flex !important;
+	flex-direction: column !important;
+	gap: 40px !important;
+}
+
+#distributions .bp-section-title {
+	font-family: 'Roboto Condensed', sans-serif !important;
+	font-style: normal !important;
+	font-weight: 900 !important;
+	font-size: 42px !important;
+	line-height: 0.81 !important;
+	color: #000000 !important;
+	text-transform: none !important;
+	text-decoration: none !important;
+	letter-spacing: normal !important;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+#distributions .bp-as-of-date {
+	font-family: 'Roboto', sans-serif !important;
+	font-style: normal !important;
+	font-weight: 300 !important;
+	font-size: 14px !important;
+	line-height: 0.81 !important;
+	color: #000000 !important;
+	text-decoration: none !important;
+	letter-spacing: normal !important;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+#distributions .bp-table-header {
+	font-family: 'Roboto Condensed', sans-serif !important;
+	font-style: normal !important;
+	font-weight: 900 !important;
+	font-size: 18px !important;
+	line-height: 120% !important;
+	text-transform: uppercase !important;
+	color: #0072bc !important;
+	text-decoration: none !important;
+	letter-spacing: normal !important;
+}
+
+#distributions .bp-column-header {
+	font-family: 'Roboto Condensed', sans-serif !important;
+	font-style: normal !important;
+	font-weight: 700 !important;
+	font-size: 18px !important;
+	line-height: 1.15 !important;
+	color: #000000 !important;
+	text-decoration: none !important;
+	letter-spacing: normal !important;
+	white-space: normal !important;
+}
+
+#distributions table[data-ks-distributions-table] th {
+	white-space: normal !important;
+}
+
+#distributions .bp-table-cell {
+	font-family: 'Roboto Condensed', sans-serif !important;
+	font-style: normal !important;
+	font-weight: 300 !important;
+	font-size: 16px !important;
+	line-height: 18px !important;
+	letter-spacing: 0px !important;
+	vertical-align: middle !important;
+	color: #000000 !important;
+	text-decoration: none !important;
+}
+
+#distributions .bp-fund-name-cell {
+	font-family: 'Roboto Condensed', sans-serif !important;
+	font-style: normal !important;
+	font-weight: 300 !important;
+	font-size: 18px !important;
+	line-height: 21.6px !important;
+	letter-spacing: 0px !important;
+	vertical-align: middle !important;
+	color: #000000 !important;
+	text-decoration: none !important;
+}
+
+@media (min-width: 768px) {
+	#distributions table[data-ks-distributions-table] {
+		table-layout: fixed !important;
+		width: 100% !important;
+	}
+
+	#distributions table[data-ks-distributions-table] col.bp-col-fund-name {
+		width: 38%;
+	}
+
+	#distributions table[data-ks-distributions-table] col.bp-col-ticker {
+		width: 7%;
+	}
+
+	#distributions table[data-ks-distributions-table] col.bp-col-year {
+		width: 7%;
+	}
+
+	#distributions table[data-ks-distributions-table] col.bp-col-amount {
+		width: 12%;
+	}
+
+	#distributions .bp-fund-name-cell {
+		white-space: nowrap !important;
+		max-width: none !important;
+		width: auto !important;
+	}
+
+	#distributions table[data-ks-distributions-table] .bp-column-header,
+	#distributions table[data-ks-distributions-table] .bp-amount-cell {
+		padding-left: 8px !important;
+		padding-right: 8px !important;
+	}
+}
+
+@media (max-width: 1440px) {
+	#distributions table[data-ks-distributions-table] .bp-table-header,
+	#distributions table[data-ks-distributions-table] .bp-column-header {
+		font-size: 16px !important;
+	}
+
+	#distributions table[data-ks-distributions-table] .bp-table-cell,
+	#distributions table[data-ks-distributions-table] .bp-fund-name-cell {
+		font-size: 15px !important;
+	}
+}
+
+@media (max-width: 1280px) {
+	#distributions table[data-ks-distributions-table] col.bp-col-fund-name {
+		width: 30% !important;
+	}
+
+	#distributions table[data-ks-distributions-table] col.bp-col-ticker {
+		width: 8% !important;
+	}
+
+	#distributions table[data-ks-distributions-table] col.bp-col-year {
+		width: 8% !important;
+	}
+
+	#distributions table[data-ks-distributions-table] col.bp-col-amount {
+		width: 13.5% !important;
+	}
+
+	#distributions table[data-ks-distributions-table] .bp-table-header,
+	#distributions table[data-ks-distributions-table] .bp-column-header {
+		font-size: 14px !important;
+		line-height: 1.2 !important;
+		padding-top: 10px !important;
+		padding-bottom: 10px !important;
+	}
+
+	#distributions table[data-ks-distributions-table] .bp-table-cell,
+	#distributions table[data-ks-distributions-table] .bp-fund-name-cell {
+		font-size: 14px !important;
+	}
+}
+
+#distributions .tabular-nums {
+	font-variant-numeric: tabular-nums;
+}
+
+#distributions .bp-loading,
+#distributions .bp-error {
+	font-family: 'Roboto Condensed', sans-serif !important;
+	font-size: 18px !important;
+	color: #545960 !important;
+	padding: 40px 0 !important;
+}
+
+@media (forced-colors: active) {
+	#distributions .bp-table-header {
+		color: LinkText;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	#distributions .bp-distributions * {
+		animation-duration: 0.01ms !important;
+		transition-duration: 0.01ms !important;
+	}
+}

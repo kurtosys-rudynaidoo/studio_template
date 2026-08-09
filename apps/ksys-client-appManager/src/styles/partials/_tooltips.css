@@ -1,0 +1,42 @@
+/**
+ * Shared disclaimer info-tooltips (overview key facts, Morningstar, key statistics, etc.).
+ * Long disclaimer HTML scrolls inside the panel instead of being clipped.
+ */
+:root {
+	--bp-tooltip-max-height: min(280px, 50vh);
+}
+
+.bp-tooltip-content,
+.bp-ks-tooltip-portal-panel,
+[data-ks-tooltip-panel] {
+	max-height: var(--bp-tooltip-max-height) !important;
+	overflow-x: hidden !important;
+	overflow-y: auto !important;
+	overscroll-behavior: contain;
+	-webkit-overflow-scrolling: touch;
+	box-sizing: border-box !important;
+	text-transform: none !important;
+	letter-spacing: normal !important;
+	font-variant: normal !important;
+}
+
+.bp-tooltip-content *,
+.bp-ks-tooltip-portal-panel *,
+[data-ks-tooltip-panel] * {
+	text-transform: none !important;
+	letter-spacing: normal !important;
+	font-variant: normal !important;
+}
+
+.bp-tooltip-content:focus,
+.bp-ks-tooltip-portal-panel:focus,
+[data-ks-tooltip-panel]:focus {
+	outline: none !important;
+}
+
+.bp-tooltip-content:focus-visible,
+.bp-ks-tooltip-portal-panel:focus-visible,
+[data-ks-tooltip-panel]:focus-visible {
+	outline: 2px solid #0072bc !important;
+	outline-offset: 2px !important;
+}

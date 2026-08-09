@@ -1,0 +1,398 @@
+@layer base {
+	:is(#keyStatistics, #keyStatistics-app) *,
+	:is(#keyStatistics, #keyStatistics-app) *::before,
+	:is(#keyStatistics, #keyStatistics-app) *::after {
+		box-sizing: border-box;
+		border-width: 0;
+		border-style: solid;
+	}
+	:is(#keyStatistics, #keyStatistics-app) a {
+		color: inherit;
+		text-decoration: inherit;
+	}
+	:is(#keyStatistics, #keyStatistics-app) img {
+		display: block;
+		max-width: 100%;
+	}
+	:is(#keyStatistics, #keyStatistics-app) svg:not([data-ks-tooltip-icon]) {
+		display: block;
+		max-width: 100%;
+	}
+	:is(#keyStatistics, #keyStatistics-app) button:not([data-ks-tooltip-trigger]) {
+		background: transparent;
+		border: none;
+		padding: 0;
+		margin: 0;
+		font: inherit;
+		color: inherit;
+		cursor: pointer;
+	}
+}
+
+.bp-key-statistics .bp-sr-only {
+	position: absolute !important;
+	width: 1px !important;
+	height: 1px !important;
+	padding: 0 !important;
+	margin: -1px !important;
+	overflow: hidden !important;
+	clip: rect(0, 0, 0, 0) !important;
+	white-space: nowrap !important;
+	border-width: 0 !important;
+}
+
+.bp-key-statistics *:focus-visible {
+	outline: 3px solid #0072bc !important;
+	outline-offset: 2px !important;
+	border-radius: 2px !important;
+}
+
+.bp-key-statistics {
+	font-family: 'Roboto Condensed', sans-serif !important;
+	background: #f5f5f5 !important;
+	padding: 0 0 40px 0 !important;
+	width: 100% !important;
+	box-sizing: border-box !important;
+	text-decoration: none !important;
+	display: block !important;
+}
+
+.bp-key-statistics .bp-main-title {
+	font-family: 'Roboto Condensed', sans-serif !important;
+	font-style: normal !important;
+	font-weight: 900 !important;
+	font-size: 42px !important;
+	line-height: 0.81 !important;
+	color: #000000 !important;
+	text-decoration: none !important;
+	letter-spacing: normal !important;
+	text-transform: none !important;
+	margin: 0 0 10px 0 !important;
+	padding: 0 !important;
+	display: block !important;
+}
+
+.bp-key-statistics .bp-as-of-date {
+	font-family: 'Roboto', sans-serif !important;
+	font-style: normal !important;
+	font-weight: 300 !important;
+	font-size: 14px !important;
+	line-height: 0.81 !important;
+	color: #000000 !important;
+	text-decoration: none !important;
+	letter-spacing: normal !important;
+	text-transform: none !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	display: block !important;
+}
+
+.bp-key-statistics .bp-section-title {
+	font-family: 'Roboto Condensed', sans-serif !important;
+	font-style: normal !important;
+	font-weight: 900 !important;
+	font-size: 18px !important;
+	line-height: 120% !important;
+	text-transform: uppercase !important;
+	color: #0072bc !important;
+	text-decoration: none !important;
+	letter-spacing: normal !important;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+.bp-key-statistics .bp-column-header {
+	font-family: 'Roboto Condensed', sans-serif !important;
+	font-style: normal !important;
+	font-weight: 700 !important;
+	font-size: 18px !important;
+	line-height: 120% !important;
+	color: #000000 !important;
+	text-decoration: none !important;
+	letter-spacing: normal !important;
+	text-transform: none !important;
+	text-align: left !important;
+}
+
+.bp-key-statistics .bp-table-cell {
+	font-family: 'Roboto Condensed', sans-serif !important;
+	font-style: normal !important;
+	font-weight: 300 !important;
+	font-size: 18px !important;
+	line-height: 21.6px !important;
+	letter-spacing: 0px !important;
+	vertical-align: middle !important;
+	color: #000000 !important;
+	text-decoration: none !important;
+	text-transform: none !important;
+	text-align: left !important;
+}
+
+:is(#keyStatistics, #keyStatistics-app) table[data-ks-table] th,
+:is(#keyStatistics, #keyStatistics-app) table[data-ks-table] td {
+	text-align: left !important;
+}
+
+:is(#keyStatistics, #keyStatistics-app) table[data-ks-table] .bp-section-title {
+	text-align: left !important;
+}
+
+.elementor-widget-container :is(#keyStatistics, #keyStatistics-app) table[data-ks-table] th,
+.elementor-widget-container :is(#keyStatistics, #keyStatistics-app) table[data-ks-table] td {
+	text-align: left !important;
+}
+
+:is(#keyStatistics, #keyStatistics-app) table[data-ks-table] {
+	overflow: visible !important;
+}
+
+:is(#keyStatistics, #keyStatistics-app) table[data-ks-table] tbody tr[data-ks-stripe='odd'],
+:is(#keyStatistics, #keyStatistics-app) table[data-ks-table] tbody tr:nth-child(odd) {
+	background-color: #e5e9e9 !important;
+}
+
+:is(#keyStatistics, #keyStatistics-app) table[data-ks-table] tbody tr[data-ks-stripe='even'],
+:is(#keyStatistics, #keyStatistics-app) table[data-ks-table] tbody tr:nth-child(even) {
+	background-color: transparent !important;
+}
+
+:is(#keyStatistics, #keyStatistics-app) table[data-ks-table] tbody tr[data-ks-stripe='odd'] td {
+	background-color: #e5e9e9 !important;
+}
+
+:is(#keyStatistics, #keyStatistics-app) table[data-ks-table] tbody tr[data-ks-stripe='even'] td {
+	background-color: transparent !important;
+}
+
+:is(#keyStatistics, #keyStatistics-app) table[data-ks-table] td[data-ks-label-cell] {
+	overflow: visible !important;
+	position: relative !important;
+}
+
+:is(#keyStatistics, #keyStatistics-app) .bp-tooltip-wrapper,
+:is(#keyStatistics, #keyStatistics-app) [data-ks-tooltip-wrap] {
+	position: relative !important;
+	display: inline-flex !important;
+	align-items: center !important;
+	vertical-align: middle !important;
+	margin-left: 4px !important;
+	z-index: auto !important;
+}
+
+:is(#keyStatistics, #keyStatistics-app) [data-ks-tooltip-wrap][data-ks-tooltip-open='true'] {
+	z-index: 3 !important;
+}
+
+:is(#keyStatistics, #keyStatistics-app) .bp-tooltip-trigger,
+:is(#keyStatistics, #keyStatistics-app) [data-ks-tooltip-trigger] {
+	display: inline-flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	background: transparent !important;
+	border: none !important;
+	padding: 0 !important;
+	margin: 0 !important;
+	cursor: pointer !important;
+	line-height: 0 !important;
+	width: auto !important;
+	min-width: 0 !important;
+	max-width: none !important;
+}
+
+:is(#keyStatistics, #keyStatistics-app) .bp-tooltip-trigger svg,
+:is(#keyStatistics, #keyStatistics-app) [data-ks-tooltip-icon] {
+	display: inline-block !important;
+	width: 16px !important;
+	height: 16px !important;
+	max-width: none !important;
+	flex-shrink: 0 !important;
+}
+
+:is(#keyStatistics, #keyStatistics-app) .bp-tooltip-content,
+:is(#keyStatistics, #keyStatistics-app) [data-ks-tooltip-panel],
+:is(#keyStatistics, #keyStatistics-app) [role='tooltip'].bp-tooltip-content {
+	position: absolute !important;
+	display: block !important;
+	top: calc(100% + 8px) !important;
+	left: 0 !important;
+	transform: none !important;
+	width: 288px !important;
+	max-width: min(288px, 90vw) !important;
+	min-width: 200px !important;
+	background: #ffffff !important;
+	background-color: #ffffff !important;
+	color: #000000 !important;
+	font-family: 'Roboto', sans-serif !important;
+	font-weight: 300 !important;
+	font-size: 13px !important;
+	line-height: 1.4 !important;
+	padding: 12px 16px !important;
+	border: 1px solid #e5e9e9 !important;
+	border-width: 1px !important;
+	border-style: solid !important;
+	border-color: #e5e9e9 !important;
+	border-radius: 0 !important;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+	z-index: 10000 !important;
+	white-space: normal !important;
+	word-wrap: break-word !important;
+	overflow-wrap: break-word !important;
+	box-sizing: border-box !important;
+	text-decoration: none !important;
+	letter-spacing: normal !important;
+	text-transform: none !important;
+	opacity: 1 !important;
+}
+
+:is(#keyStatistics, #keyStatistics-app) [data-ks-tooltip-panel]::before,
+:is(#keyStatistics, #keyStatistics-app) .bp-tooltip-content::before {
+	content: '' !important;
+	position: absolute !important;
+	top: -7px !important;
+	left: 10px !important;
+	width: 0 !important;
+	height: 0 !important;
+	border-style: solid !important;
+	border-width: 0 7px 7px 7px !important;
+	border-color: transparent transparent #ffffff transparent !important;
+}
+
+:is(#keyStatistics, #keyStatistics-app) [data-ks-tooltip-panel]::after,
+:is(#keyStatistics, #keyStatistics-app) .bp-tooltip-content::after {
+	content: '' !important;
+	position: absolute !important;
+	top: -8px !important;
+	left: 9px !important;
+	width: 0 !important;
+	height: 0 !important;
+	border-style: solid !important;
+	border-width: 0 8px 8px 8px !important;
+	border-color: transparent transparent #e5e9e9 transparent !important;
+	z-index: -1 !important;
+}
+
+.elementor-widget-container :is(#keyStatistics, #keyStatistics-app) [data-ks-tooltip-panel],
+.elementor-widget-container :is(#keyStatistics, #keyStatistics-app) .bp-tooltip-content {
+	background: #ffffff !important;
+	color: #000000 !important;
+}
+
+/* Portaled to document.body — outside :is(#keyStatistics, #keyStatistics-app) */
+.bp-ks-tooltip-portal-panel {
+	position: fixed !important;
+	display: block !important;
+	background: #ffffff !important;
+	background-color: #ffffff !important;
+	color: #000000 !important;
+	border: 1px solid #e5e9e9 !important;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+	z-index: 2147483646 !important;
+	isolation: isolate !important;
+	pointer-events: auto !important;
+	white-space: normal !important;
+	word-wrap: break-word !important;
+	overflow-wrap: break-word !important;
+	box-sizing: border-box !important;
+}
+
+.bp-ks-tooltip-portal-panel::before {
+	content: '' !important;
+	position: absolute !important;
+	top: -7px !important;
+	left: 10px !important;
+	width: 0 !important;
+	height: 0 !important;
+	border-style: solid !important;
+	border-width: 0 7px 7px 7px !important;
+	border-color: transparent transparent #ffffff transparent !important;
+}
+
+.bp-ks-tooltip-portal-panel::after {
+	content: '' !important;
+	position: absolute !important;
+	top: -8px !important;
+	left: 9px !important;
+	width: 0 !important;
+	height: 0 !important;
+	border-style: solid !important;
+	border-width: 0 8px 8px 8px !important;
+	border-color: transparent transparent #e5e9e9 transparent !important;
+	z-index: -1 !important;
+}
+
+.bp-key-statistics .tabular-nums {
+	font-variant-numeric: tabular-nums !important;
+}
+
+.bp-key-statistics .bp-loading,
+.bp-key-statistics .bp-error {
+	font-family: 'Roboto Condensed', sans-serif !important;
+	font-size: 18px !important;
+	color: #545960 !important;
+	padding: 40px 0 !important;
+	text-decoration: none !important;
+	letter-spacing: normal !important;
+}
+
+@media (forced-colors: active) {
+	.bp-key-statistics .bp-section-title {
+		color: LinkText;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.bp-key-statistics * {
+		animation-duration: 0.01ms !important;
+		transition-duration: 0.01ms !important;
+	}
+}
+
+@media (max-width: 767px) {
+	:is(#keyStatistics, #keyStatistics-app).bp-key-statistics,
+	:is(#keyStatistics, #keyStatistics-app) .bp-key-statistics {
+		padding-left: 16px !important;
+		padding-right: 16px !important;
+		padding-bottom: 32px !important;
+		box-sizing: border-box !important;
+	}
+
+	:is(#keyStatistics, #keyStatistics-app) .bp-main-title {
+		font-size: 32px !important;
+		line-height: 1.1 !important;
+	}
+
+	:is(#keyStatistics, #keyStatistics-app) [data-ks-tables] {
+		display: flex !important;
+		flex-direction: column !important;
+		align-items: stretch !important;
+		gap: 32px !important;
+		width: 100% !important;
+	}
+
+	:is(#keyStatistics, #keyStatistics-app) [data-ks-table-block] {
+		flex: none !important;
+		width: 100% !important;
+		max-width: 100% !important;
+		min-width: 0 !important;
+	}
+
+	:is(#keyStatistics, #keyStatistics-app) table[data-ks-table] {
+		width: 100% !important;
+	}
+
+	.elementor-widget-container :is(#keyStatistics, #keyStatistics-app) [data-ks-tables] {
+		flex-direction: column !important;
+	}
+
+	.elementor-widget-container :is(#keyStatistics, #keyStatistics-app) [data-ks-table-block] {
+		width: 100% !important;
+		flex: none !important;
+	}
+}
+
+@media (min-width: 768px) {
+	:is(#keyStatistics, #keyStatistics-app) [data-ks-tables] {
+		flex-direction: row !important;
+		align-items: flex-start !important;
+	}
+}

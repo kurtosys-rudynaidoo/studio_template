@@ -74,10 +74,11 @@ The widget reads inputs from:
 
 | Widget | Mount id | Typical job |
 |--------|----------|-------------|
-| `appManager` | `appManager` | Nav + load child scripts by GUID |
+| `appManager` ★ | `appManager` | **Required default** — load child scripts by GUID + shared CSS |
 | `pageHeader` | `pageHeader` | Title, docs, managers |
 | `overview` | `overview` | Strategy / fund overview |
 | `performance` | `performance` | Returns tables / charts |
 | `literature` | `literature` | Document list |
 
-Start from this template for each; only `appManager` needs special shared-CSS / child-GUID wiring.
+`appManager` is already in the monorepo as a required default (do not scaffold/rename/remove it).
+Start from this template for other widgets; only `appManager` needs shared-CSS / child-GUID wiring.

@@ -1,0 +1,35 @@
+@import 'tailwindcss' important;
+@import 'tw-animate-css';
+
+/* Scan App Manager + sibling product-page widgets for Tailwind utilities */
+@source '..';
+@source '../../ksys-client-pageHeader/src';
+@source '../../ksys-client-overview/src';
+@source '../../ksys-client-performance/src';
+@source '../../ksys-client-portfolioBreakdown/src';
+@source '../../ksys-client-literature/src';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+	/* Generic Studio tokens — customize per client brand */
+	--studio-color-text: #0f172a;
+	--studio-color-text-muted: #334155;
+	--studio-color-focus: #0369a1;
+	--studio-fund-color: #0071bb;
+	--studio-benchmark-color: #7bb13e;
+	--studio-secondary-benchmark-color: #00a7bf;
+
+	/* Aliases used by some BP-era widget CSS (kept for compatibility) */
+	--bp-fund-color: var(--studio-fund-color);
+	--bp-benchmark-color: var(--studio-benchmark-color);
+	--bp-secondary-benchmark-color: var(--studio-secondary-benchmark-color);
+
+	--radius: 0.625rem;
+	--background: oklch(1 0 0);
+	--foreground: oklch(0.145 0 0);
+	--primary: oklch(0.205 0 0);
+	--primary-foreground: oklch(0.985 0 0);
+}
+
+@import './partials/_app-manager.css';

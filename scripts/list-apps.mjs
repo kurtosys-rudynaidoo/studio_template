@@ -10,5 +10,6 @@ if (cfg.hostMode === 'cms' || cfg.hostMode === 'both') {
 console.log(`appsRoot:   ${cfg.appsRoot}`);
 console.log('');
 for (const app of cfg.apps) {
-	console.log(`- ${app.id.padEnd(22)} ${folderName(cfg, app.id)}  :${app.port ?? '-'}`);
+	const flag = app.required ? ' [required]' : '';
+	console.log(`- ${app.id.padEnd(22)} ${folderName(cfg, app.id)}  :${app.port ?? '-'}${flag}`);
 }

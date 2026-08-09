@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>App Manager — local preview</title>
+  </head>
+  <body>
+    <!--
+      Required shell mount. Propagates data-input-* to child widgets.
+      Host DXM/CMS pages should include matching mount nodes for each child
+      (#pageHeader, #overview, #performance, …).
+    -->
+    <div
+      id="appManager"
+      data-input-client-code="DEMO_CLIENT_CODE"
+      data-input-culture="en-US"
+      data-input-product-type="mutualFunds"
+    ></div>
+
+    <!-- Example child mounts (empty until child scripts load) -->
+    <div id="pageHeader"></div>
+    <div id="overview"></div>
+    <div id="performance"></div>
+    <div id="portfolioBreakdown"></div>
+    <div id="literature"></div>
+
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
