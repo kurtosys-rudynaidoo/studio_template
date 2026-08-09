@@ -1,6 +1,6 @@
 # Kurtosys Studio Widget Template
 
-Reusable **DXM-embeddable** Vite + React + TypeScript widget template, distilled from the Boston Partners product-page apps (`ksys-bp-*`).
+Reusable **DXM-embeddable** Vite + React + TypeScript widget template for Kurtosys Studio product-page apps.
 
 Use this for new client builds so every widget shares the same mount, build, and Studio deploy shape.
 
@@ -67,7 +67,7 @@ Follow BP-style folders so deploy tools can discover apps:
 ksys-<clientSlug>-<widgetId>/
 ```
 
-Examples: `ksys-bp-pageHeader`, `ksys-acme-overview`, `ksys-acme-keyStatistics`.
+Examples: `ksys-acme-pageHeader`, `ksys-acme-overview`, `ksys-acme-keyStatistics`.
 
 `widgetId` should match:
 

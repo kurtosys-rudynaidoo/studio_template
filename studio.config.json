@@ -12,6 +12,11 @@
 	},
 	"apps": [
 		{
+			"id": "fundCentre",
+			"label": "Fund Centre",
+			"port": 5178
+		},
+		{
 			"id": "pageHeader",
 			"label": "Page Header",
 			"port": 5173

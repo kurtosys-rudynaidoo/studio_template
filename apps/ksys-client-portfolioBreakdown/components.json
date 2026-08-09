@@ -5,7 +5,7 @@
 	"tsx": true,
 	"tailwind": {
 		"config": "",
-		"css": "../ksys-bp-appManager/src/styles/bp-shared.entry.css",
+		"css": "./src/index.css",
 		"baseColor": "neutral",
 		"cssVariables": true,
 		"prefix": ""

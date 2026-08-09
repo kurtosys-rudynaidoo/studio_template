@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fund Centre — local preview</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <a class="skip-to-main" href="#main-content">Skip to main content</a>
+    <div id="root"></div>
+    <!--
+      Fund Centre embed configuration (host page / CMS).
+      Keep id="fundCenter" for data-* parsing (useFundCenterConfig).
+      Deployed IIFE also accepts #fundCentre as a mount node.
+    -->
+    <div
+      id="fundCenter"
+      data-culture="en-US"
+      data-country="us"
+      data-audience="institutional"
+      data-api-url="/ksys-app-fund-centre"
+      data-fundlist="us_institutional"
+      data-base-url="https://www.example.com"
+      data-subadvised-landing-url=""
+      data-configuration-key="default"
+      data-ksys-app-template-id="/ksys-app-fund-center"
+      data-initialized="true"
+    ></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

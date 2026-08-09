@@ -1,6 +1,9 @@
-# Kurtosys Studio Product-Page Monorepo Template
+# Kurtosys Studio Monorepo Template (`ksys-studio-template`)
 
-Generic, reusable monorepo for embeddable product-page widgets.
+Generic, reusable monorepo for Kurtosys Studio embeds:
+
+- **Fund Centre** — list / filter / performance / materials browser
+- **Product-page widgets** — pageHeader, overview, performance, portfolioBreakdown, literature, …
 
 **Start here:** choose the embed host, then the rest of the project is factored for you.
 
@@ -28,6 +31,7 @@ npm run docs:user-guide
 
 | App id | Mount / embed global | Dev port |
 |--------|----------------------|----------|
+| `fundCentre` | `#fundCentre` (+ `#fundCenter` config) / `window.fundCentre` | 5178 |
 | `pageHeader` | `#pageHeader` / `window.pageHeader` | 5173 |
 | `overview` | `#overview` / `window.overview` | 5174 |
 | `performance` | `#performance` / `window.performanceApp`* | 5175 |
@@ -36,14 +40,17 @@ npm run docs:user-guide
 
 \* Reserved-name safe (`window.performance` is a browser API).
 
+Fund Centre–specific env fields: `defaultFundlist`, `subadvisedLandingUrl` (see `apps/ksys-client-fundCentre/MONOREPO.md`).
+
 ## Common commands
 
 ```bash
 npm run apps:list
-npm run apps:add -- holdingsExposure 5178
+npm run apps:add -- holdingsExposure 5179
 npm run apps:rename -- literature materials
 npm run client:set -- acme
 
+npm run dev -- fundCentre
 npm run dev -- overview
 npm run build:stg          # uses hostMode from studio.config.json
 npm run build:stg:cms      # force CMS artifacts
@@ -75,7 +82,8 @@ ksys-studio-widget-template/  # in-repo widget starter for apps:add
 hosts/{dxm,cms}/
 docs/integration-specs/
 BuildResult/{dxm,cms}/{dev,stg,prd}/<appId>/
+apps/ksys-<client>-fundCentre/
 apps/ksys-<client>-<appId>/
 ```
 
-Duplicate this whole folder for each new client — the widget template comes along automatically.
+Duplicate this whole folder for each new client — Fund Centre, product-page apps, and the widget template come along automatically.

@@ -1,0 +1,415 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+	/* Typography — override per client brand guidelines */
+	--font-sans: 'Roboto', system-ui, Arial, Helvetica, sans-serif;
+	--font-condensed: 'Roboto Condensed', 'Roboto', system-ui, Arial, Helvetica, sans-serif;
+	font-family: var(--font-sans);
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+
+	/* Embed mount: limit WordPress / Elementor inheritance (flex columns, text-align, stacking) */
+	isolation: isolate;
+	box-sizing: border-box;
+	min-width: 0;
+	max-width: 100%;
+	text-align: start;
+
+	/* Brand + Fund Centre UI tokens (customize per client) */
+	--header-bg: #0E294B;
+	--header-text: #FFFFFF;
+	--tab-active-bg: #1A6DBC;
+	--tab-active-text: #FFFFFF;
+	--tab-inactive-text: #333333;
+	--table-header-bg: #F0F0F0;
+	/** Column header labels (Name, Inception Date, AUM, etc.). */
+	--table-header-font-size: 14px;
+	--table-header-line-height: 1.25;
+	/** Fund / share class name in table body (Overview name column); use for any primary-name column. */
+	--table-name-font-weight: 600;
+	--text-dark: #333333;
+	--text-body: #333333;
+	--section-header: #1A6DBC;
+	--border-row: #EEF0F0;
+	--tab-module-row-border: #e0e0e0;
+	--tab-module-active-underline: var(--primary);
+
+	/*
+	 * Surfaces (page vs. components):
+	 * - `--background` — app shell, tab panels, tables body, materials hero under the image.
+	 * - `--table-header-bg` — table `<thead>` row only (not full-page).
+	 * - `--border-row` — horizontal rules between data rows.
+	 * - `--secondary` / `--muted` / `--accent` (oklch ~0.97) — shadcn inset UI (e.g. tab list track); not full-page fills.
+	 */
+	--radius: 0.625rem;
+	--background: #FFFFFF;
+	--foreground: var(--text-dark);
+	--card: oklch(1 0 0);
+	--card-foreground: var(--text-dark);
+	--popover: oklch(1 0 0);
+	--popover-foreground: var(--text-dark);
+	--primary: #1A6DBC;
+	--primary-foreground: #FFFFFF;
+	--secondary: oklch(0.97 0 0);
+	--secondary-foreground: oklch(0.205 0 0);
+	--muted: oklch(0.97 0 0);
+	--muted-foreground: oklch(0.556 0 0);
+	--accent: oklch(0.97 0 0);
+	--accent-foreground: oklch(0.205 0 0);
+	--destructive: oklch(0.577 0.245 27.325);
+	--border: oklch(0.922 0 0);
+	--input: oklch(0.922 0 0);
+	--ring: oklch(0.708 0 0);
+	--chart-1: oklch(0.646 0.222 41.116);
+	--chart-2: oklch(0.6 0.118 184.704);
+	--chart-3: oklch(0.398 0.07 227.392);
+	--chart-4: oklch(0.828 0.189 84.429);
+	--chart-5: oklch(0.769 0.188 70.08);
+	--sidebar: oklch(0.985 0 0);
+	--sidebar-foreground: oklch(0.145 0 0);
+	--sidebar-primary: oklch(0.205 0 0);
+	--sidebar-primary-foreground: oklch(0.985 0 0);
+	--sidebar-accent: oklch(0.97 0 0);
+	--sidebar-accent-foreground: oklch(0.205 0 0);
+	--sidebar-border: oklch(0.922 0 0);
+	--sidebar-ring: oklch(0.708 0 0);
+}
+
+@theme inline {
+	--radius-sm: calc(var(--radius) - 4px);
+	--radius-md: calc(var(--radius) - 2px);
+	--radius-lg: var(--radius);
+	--radius-xl: calc(var(--radius) + 4px);
+	--color-background: var(--background);
+	--color-foreground: var(--foreground);
+	--color-card: var(--card);
+	--color-card-foreground: var(--card-foreground);
+	--color-popover: var(--popover);
+	--color-popover-foreground: var(--popover-foreground);
+	--color-primary: var(--primary);
+	--color-primary-foreground: var(--primary-foreground);
+	--color-secondary: var(--secondary);
+	--color-secondary-foreground: var(--secondary-foreground);
+	--color-muted: var(--muted);
+	--color-muted-foreground: var(--muted-foreground);
+	--color-accent: var(--accent);
+	--color-accent-foreground: var(--accent-foreground);
+	--color-destructive: var(--destructive);
+	--color-border: var(--border);
+	--color-input: var(--input);
+	--color-ring: var(--ring);
+	--color-chart-1: var(--chart-1);
+	--color-chart-2: var(--chart-2);
+	--color-chart-3: var(--chart-3);
+	--color-chart-4: var(--chart-4);
+	--color-chart-5: var(--chart-5);
+	--color-sidebar: var(--sidebar);
+	--color-sidebar-foreground: var(--sidebar-foreground);
+	--color-sidebar-primary: var(--sidebar-primary);
+	--color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+	--color-sidebar-accent: var(--sidebar-accent);
+	--color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+	--color-sidebar-border: var(--sidebar-border);
+	--color-sidebar-ring: var(--sidebar-ring);
+}
+
+.dark {
+	--background: oklch(0.145 0 0);
+	--foreground: oklch(0.985 0 0);
+	--card: oklch(0.205 0 0);
+	--card-foreground: oklch(0.985 0 0);
+	--popover: oklch(0.205 0 0);
+	--popover-foreground: oklch(0.985 0 0);
+	--primary: oklch(0.922 0 0);
+	--primary-foreground: oklch(0.205 0 0);
+	--secondary: oklch(0.269 0 0);
+	--secondary-foreground: oklch(0.985 0 0);
+	--muted: oklch(0.269 0 0);
+	--muted-foreground: oklch(0.708 0 0);
+	--accent: oklch(0.269 0 0);
+	--accent-foreground: oklch(0.985 0 0);
+	--destructive: oklch(0.704 0.191 22.216);
+	--border: oklch(1 0 0 / 10%);
+	--input: oklch(1 0 0 / 15%);
+	--ring: oklch(0.556 0 0);
+	--chart-1: oklch(0.488 0.243 264.376);
+	--chart-2: oklch(0.696 0.17 162.48);
+	--chart-3: oklch(0.769 0.188 70.08);
+	--chart-4: oklch(0.627 0.265 303.9);
+	--chart-5: oklch(0.645 0.246 16.439);
+	--sidebar: oklch(0.205 0 0);
+	--sidebar-foreground: oklch(0.985 0 0);
+	--sidebar-primary: oklch(0.488 0.243 264.376);
+	--sidebar-primary-foreground: oklch(0.985 0 0);
+	--sidebar-accent: oklch(0.269 0 0);
+	--sidebar-accent-foreground: oklch(0.985 0 0);
+	--sidebar-border: oklch(1 0 0 / 10%);
+	--sidebar-ring: oklch(0.556 0 0);
+}
+
+/*
+ * Materials Institutional – design block
+ * Spec: width 1044px, height 2000px, background url(Materials Institutional.jpg)
+ * Applied when the Materials tab is active. Add your image to public/ as
+ * Materials-Institutional.jpg — use a path relative to bundle.css (same app folder on Kurtosys),
+ * not a leading slash (that hits the API host root, not .../apps/{guid}/).
+ * Flat color matches `--background` so gutters match the rest of the app; the photo still covers via `background-image`.
+ */
+.materials-institutional {
+	--materials-institutional-bg: url('./Materials-Institutional.jpg');
+	position: relative;
+	width: 100%;
+	min-height: 0;
+	flex: 1 1 auto;
+	background-color: var(--background);
+	background-image: var(--materials-institutional-bg);
+	background-repeat: no-repeat;
+	background-position: top center;
+	background-size: cover;
+}
+
+/* PDF icons — scoped in embed build; resists host `img` rules (e.g. Elementor). */
+.fund-center-document-icon {
+	display: block;
+	max-width: 100%;
+	height: auto;
+	object-fit: contain;
+	vertical-align: middle;
+	visibility: visible;
+	/* Asset: `icons/pdf-icon.png` */
+	opacity: 1;
+}
+
+/* Many-column tables: scroll horizontally instead of crushing headers / clipping last columns. */
+.fund-center-table-scroll {
+	width: 100%;
+	max-width: 100%;
+	min-width: 0;
+	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
+	/* Scroll affordance — subtle edge fade when content overflows */
+	background:
+		linear-gradient(to right, var(--background, #fff), var(--background, #fff)),
+		linear-gradient(to right, var(--background, #fff), var(--background, #fff)),
+		linear-gradient(to right, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0)),
+		linear-gradient(to left, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0));
+	background-position: left center, right center, left center, right center;
+	background-repeat: no-repeat;
+	background-color: var(--background, #fff);
+	background-size: 16px 100%, 16px 100%, 10px 100%, 10px 100%;
+	background-attachment: local, local, scroll, scroll;
+}
+
+#fund-center-module-panel {
+	min-width: 0;
+}
+
+.fund-center-overview-disclaimer {
+	color: var(--text-body);
+	font-family: var(--font-condensed);
+	font-size: 14px;
+	line-height: 1.5;
+}
+
+.fund-center-overview-disclaimer p {
+	margin: 0;
+	font-size: 14px;
+}
+
+.fund-center-overview-disclaimer i,
+.fund-center-overview-disclaimer em {
+	font-style: italic;
+}
+
+.fund-center-overview-disclaimer strong,
+.fund-center-overview-disclaimer b {
+	font-weight: 700;
+}
+
+.fund-center-overview-disclaimer a {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.fund-center-overview-disclaimer a:hover {
+	text-decoration: underline;
+}
+
+/* Forms tab — table layout matches Materials; avoid theme `<li>` spacing in embed. */
+#root .fund-center-forms-table-wrap,
+#your-app-container .fund-center-forms-table-wrap {
+	margin: 0;
+	padding: 0;
+}
+
+#root table.fund-center-forms-table,
+#your-app-container table.fund-center-forms-table {
+	margin: 0;
+	border-collapse: collapse;
+}
+
+/* Fund Center tables — consistent alignment in local dev (#root) and embed. */
+#root table thead th,
+#your-app-container table thead th {
+	text-align: left;
+	vertical-align: middle;
+	font-size: var(--table-header-font-size);
+	line-height: var(--table-header-line-height);
+}
+
+#root table thead th.fund-center-document-header,
+#your-app-container table thead th.fund-center-document-header {
+	text-align: center;
+}
+
+#root table thead th.fund-center-performance-group-header,
+#your-app-container table thead th.fund-center-performance-group-header {
+	text-align: center;
+}
+
+#root table tbody td:not(.fund-center-document-cell),
+#your-app-container table tbody td:not(.fund-center-document-cell) {
+	text-align: left;
+	vertical-align: middle;
+}
+
+#root table tbody td.fund-center-document-cell,
+#your-app-container table tbody td.fund-center-document-cell {
+	text-align: center;
+	vertical-align: middle;
+}
+
+#root table tbody td.fund-center-document-cell .fund-center-document-cell-inner,
+#your-app-container table tbody td.fund-center-document-cell .fund-center-document-cell-inner {
+	display: grid;
+	place-items: center;
+	width: 100%;
+}
+
+#root table tbody td.fund-center-document-cell .fund-center-document-action-btn,
+#root table tbody td.fund-center-document-cell .fund-center-document-cell-content,
+#your-app-container table tbody td.fund-center-document-cell .fund-center-document-action-btn,
+#your-app-container table tbody td.fund-center-document-cell .fund-center-document-cell-content {
+	margin-inline: auto;
+}
+
+#root table tbody td.fund-center-name-cell .fund-center-name-with-expand,
+#your-app-container table tbody td.fund-center-name-cell .fund-center-name-with-expand {
+	display: flex;
+	align-items: flex-start;
+	gap: 0.25rem;
+	min-width: 0;
+}
+
+#root table tbody td.fund-center-name-cell button.fund-center-expand-toggle,
+#your-app-container table tbody td.fund-center-name-cell button.fund-center-expand-toggle {
+	box-sizing: border-box;
+	flex-shrink: 0;
+	min-width: 20px;
+	min-height: 20px;
+	width: 20px;
+	height: 20px;
+	margin: 0;
+	padding: 0;
+}
+
+#root button.fund-center-card-expand-toggle,
+#your-app-container button.fund-center-card-expand-toggle {
+	box-sizing: border-box;
+	flex-shrink: 0;
+	width: 36px;
+	height: 36px;
+	min-width: 36px;
+	min-height: 36px;
+	padding: 0;
+	margin: 0;
+	border-radius: 9999px;
+	background-color: #fff;
+	border: 1px solid #e5e7eb;
+	color: var(--text-dark, #333333);
+	font-size: 1.125rem;
+	line-height: 1;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#root button.fund-center-card-expand-toggle:hover,
+#your-app-container button.fund-center-card-expand-toggle:hover {
+	background-color: #f9fafb;
+}
+
+@layer base {
+	* {
+		@apply border-border outline-ring/50;
+	}
+	html {
+		height: 100%;
+	}
+	body {
+		@apply bg-background text-foreground;
+		min-height: 100%;
+		height: 100%;
+		margin: 0;
+	}
+	#root {
+		min-height: 100%;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+	}
+}
+
+/* Keyboard focus for interactive elements */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:not([tabindex='-1']):focus-visible {
+	outline: 2px solid var(--primary);
+	outline-offset: 2px;
+}
+
+/* Skip link: first focusable control for keyboard / screen reader users */
+.skip-to-main {
+	position: absolute;
+	left: -9999px;
+	top: 0;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	z-index: 10000;
+}
+.skip-to-main:focus {
+	position: fixed;
+	left: 1rem;
+	top: 1rem;
+	width: auto;
+	height: auto;
+	overflow: visible;
+	padding: 0.5rem 1rem;
+	background: var(--background);
+	color: var(--text-dark);
+	outline: 2px solid var(--primary);
+	outline-offset: 2px;
+	font-family: var(--font-sans);
+	font-size: 1rem;
+	text-decoration: none;
+	border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+	}
+}

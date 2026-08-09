@@ -1,0 +1,428 @@
+/**
+ * Kurtosys / WordPress / Elementor host overrides.
+ * Compound `#your-app-container#your-app-container` raises specificity so these win over theme globals.
+ * PostCSS scope-embed (single-bundle build) leaves selectors that already start with #your-app-container unchanged.
+ */
+
+#your-app-container#your-app-container img.fund-center-document-icon {
+	object-fit: contain !important;
+	vertical-align: middle !important;
+	visibility: visible !important;
+	opacity: 1 !important;
+	flex-shrink: 0 !important;
+	width: 24px !important;
+	min-width: 24px !important;
+	max-width: none !important;
+	height: auto !important;
+	display: block !important;
+}
+
+#your-app-container#your-app-container .fund-center-table-scroll {
+	width: 100% !important;
+	max-width: 100% !important;
+	min-width: 0 !important;
+	overflow-x: auto !important;
+	-webkit-overflow-scrolling: touch !important;
+	background:
+		linear-gradient(to right, var(--background, #fff), var(--background, #fff)),
+		linear-gradient(to right, var(--background, #fff), var(--background, #fff)),
+		linear-gradient(to right, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0)),
+		linear-gradient(to left, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0)) !important;
+	background-position: left center, right center, left center, right center !important;
+	background-repeat: no-repeat !important;
+	background-color: var(--background, #fff) !important;
+	background-size: 16px 100%, 16px 100%, 10px 100%, 10px 100% !important;
+	background-attachment: local, local, scroll, scroll !important;
+}
+
+#your-app-container#your-app-container #fund-center-module-panel {
+	min-width: 0 !important;
+}
+
+#your-app-container#your-app-container .fund-center-overview-disclaimer {
+	color: var(--text-body) !important;
+	font-family: var(--font-condensed) !important;
+	font-size: 14px !important;
+	line-height: 1.5 !important;
+}
+
+#your-app-container#your-app-container .fund-center-overview-disclaimer p {
+	margin: 0 !important;
+	font-size: 14px !important;
+}
+
+#your-app-container#your-app-container .fund-center-overview-disclaimer i,
+#your-app-container#your-app-container .fund-center-overview-disclaimer em {
+	font-style: italic !important;
+}
+
+#your-app-container#your-app-container .fund-center-overview-disclaimer strong,
+#your-app-container#your-app-container .fund-center-overview-disclaimer b {
+	font-weight: 700 !important;
+}
+
+#your-app-container#your-app-container .fund-center-overview-disclaimer a {
+	color: inherit !important;
+	text-decoration: underline !important;
+}
+
+#your-app-container#your-app-container .fund-center-overview-disclaimer a:hover {
+	text-decoration: underline !important;
+}
+
+/*
+ * Forms tab: table layout (same as Materials) — avoids WordPress / Elementor `<li>` spacing.
+ */
+#your-app-container#your-app-container .fund-center-forms-table-wrap {
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+#your-app-container#your-app-container table.fund-center-forms-table {
+	margin: 0 !important;
+	padding: 0 !important;
+	border-collapse: collapse !important;
+	border-spacing: 0 !important;
+}
+
+#your-app-container#your-app-container table.fund-center-forms-table tbody td {
+	box-sizing: border-box !important;
+	margin: 0 !important;
+	padding: 0.75rem 0.75rem !important;
+	vertical-align: middle !important;
+	line-height: 18px !important;
+}
+
+/* Fund Center tables: vertically center header and body cells. */
+#your-app-container#your-app-container table thead th {
+	vertical-align: middle !important;
+	text-align: left !important;
+	font-size: var(--table-header-font-size, 14px) !important;
+	line-height: var(--table-header-line-height, 1.25) !important;
+}
+
+#your-app-container#your-app-container table thead th.fund-center-document-header {
+	text-align: center !important;
+}
+
+#your-app-container#your-app-container table thead th.fund-center-performance-group-header {
+	text-align: center !important;
+}
+
+#your-app-container#your-app-container table thead th.text-center {
+	min-width: 2.5rem !important;
+}
+
+#your-app-container#your-app-container table tbody td:has(img.fund-center-document-icon) {
+	min-width: 2.25rem !important;
+}
+
+/*
+ * Themes (e.g. Elementor / WordPress) often set `td { text-align: center }`.
+ * Left-align text columns; center PDF document icon columns only.
+ */
+#your-app-container#your-app-container table tbody td:not(.fund-center-document-cell) {
+	text-align: left !important;
+	vertical-align: middle !important;
+}
+
+#your-app-container#your-app-container table tbody td.fund-center-document-cell {
+	text-align: center !important;
+	vertical-align: middle !important;
+}
+
+#your-app-container#your-app-container table tbody td.fund-center-document-cell .fund-center-document-cell-inner {
+	display: grid !important;
+	place-items: center !important;
+	width: 100% !important;
+}
+
+#your-app-container#your-app-container table tbody td.fund-center-document-cell .fund-center-document-action-btn,
+#your-app-container#your-app-container table tbody td.fund-center-document-cell .fund-center-document-cell-content {
+	margin-inline: auto !important;
+}
+
+#your-app-container#your-app-container button.fund-center-document-action-btn {
+	-webkit-appearance: none !important;
+	-moz-appearance: none !important;
+	appearance: none !important;
+	box-shadow: none !important;
+	min-width: 0 !important;
+	min-height: 0 !important;
+	color: inherit !important;
+	font-family: inherit !important;
+	font-size: inherit !important;
+	font-weight: inherit !important;
+	cursor: pointer !important;
+	vertical-align: middle !important;
+	background: transparent !important;
+	border: none !important;
+	border-radius: 0 !important;
+	justify-content: center !important;
+	align-items: center !important;
+	line-height: 1 !important;
+	display: inline-flex !important;
+}
+
+#your-app-container#your-app-container table tbody td button.fund-center-document-action-btn {
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+#your-app-container#your-app-container button.fund-center-document-action-btn:hover {
+	background: transparent !important;
+}
+
+#your-app-container#your-app-container button.fund-center-document-action-btn:focus:not(:focus-visible) {
+	outline: none !important;
+}
+
+#your-app-container#your-app-container .fund-center-module-tablist {
+	background-color: #fff !important;
+}
+
+#your-app-container#your-app-container button.fund-center-module-tab {
+	color: #333 !important;
+	box-shadow: none !important;
+	background-color: transparent !important;
+	background-image: none !important;
+}
+
+#your-app-container#your-app-container button.fund-center-module-tab[aria-selected='true'] {
+	color: #1a6dbc !important;
+}
+
+#your-app-container#your-app-container .fund-center-fund-type-tablist {
+	background-color: transparent !important;
+}
+
+#your-app-container#your-app-container button.fund-center-fund-type-tab[aria-selected='true'] {
+	color: #fff !important;
+	background-color: #1a6dbc !important;
+}
+
+#your-app-container#your-app-container button.fund-center-fund-type-tab[aria-selected='false'] {
+	color: #333 !important;
+	box-shadow: none !important;
+	background-color: transparent !important;
+	background-image: none !important;
+}
+
+/*
+ * Name column: inline expand chevron sits directly before fund name.
+ */
+#your-app-container#your-app-container td.fund-center-name-cell .fund-center-name-with-expand {
+	display: flex !important;
+	align-items: flex-start !important;
+	gap: 0.25rem !important;
+	min-width: 0 !important;
+}
+
+#your-app-container#your-app-container td.fund-center-name-cell button.fund-center-expand-toggle {
+	position: relative !important;
+	inset: auto !important;
+	left: auto !important;
+	top: auto !important;
+	right: auto !important;
+	bottom: auto !important;
+	transform: none !important;
+	box-shadow: none !important;
+	flex-shrink: 0 !important;
+	min-width: 20px !important;
+	min-height: 20px !important;
+	width: 20px !important;
+	max-width: none !important;
+	height: 20px !important;
+	color: var(--text-dark, #333333) !important;
+	background: transparent !important;
+	border: none !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	z-index: 5 !important;
+	align-items: center !important;
+	justify-content: center !important;
+	display: flex !important;
+}
+
+#your-app-container#your-app-container td.fund-center-name-cell button.fund-center-expand-toggle svg {
+	width: 10px !important;
+	min-width: 10px !important;
+	height: 10px !important;
+	min-height: 10px !important;
+	color: var(--text-dark, #333333) !important;
+	fill: var(--text-dark, #333333) !important;
+	opacity: 1 !important;
+	visibility: visible !important;
+	flex-shrink: 0 !important;
+	display: block !important;
+	overflow: visible !important;
+}
+
+#your-app-container#your-app-container td.fund-center-name-cell button.fund-center-expand-toggle svg path {
+	fill: var(--text-dark, #333333) !important;
+}
+
+#your-app-container#your-app-container button.fund-center-card-expand-toggle {
+	-webkit-appearance: none !important;
+	-moz-appearance: none !important;
+	appearance: none !important;
+	box-sizing: border-box !important;
+	box-shadow: none !important;
+	background-color: #fff !important;
+	background-image: none !important;
+	border: 1px solid #e5e7eb !important;
+	border-radius: 9999px !important;
+	width: 36px !important;
+	height: 36px !important;
+	min-width: 36px !important;
+	min-height: 36px !important;
+	max-width: 36px !important;
+	padding: 0 !important;
+	margin: 0 !important;
+	color: var(--text-dark, #333333) !important;
+	font-family: var(--font-sans, inherit) !important;
+	font-size: 1.125rem !important;
+	font-weight: 400 !important;
+	line-height: 1 !important;
+	cursor: pointer !important;
+	display: inline-flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	flex-shrink: 0 !important;
+}
+
+#your-app-container#your-app-container button.fund-center-card-expand-toggle:hover {
+	background-color: #f9fafb !important;
+	color: var(--text-dark, #333333) !important;
+}
+
+#your-app-container#your-app-container button.fund-center-card-expand-toggle:focus:not(:focus-visible) {
+	outline: none !important;
+}
+
+#your-app-container#your-app-container .fund-center-manager-photo {
+	box-sizing: border-box !important;
+	border-radius: 50% !important;
+	flex-shrink: 0 !important;
+	width: 80px !important;
+	min-width: 80px !important;
+	height: 80px !important;
+	min-height: 80px !important;
+	overflow: hidden !important;
+}
+
+#your-app-container#your-app-container .fund-center-manager-photo img {
+	object-fit: cover !important;
+	object-position: center center !important;
+	border-radius: 50% !important;
+	width: 100% !important;
+	max-width: none !important;
+	height: 100% !important;
+	display: block !important;
+}
+
+#your-app-container#your-app-container .fund-center-expanded-detail {
+	box-sizing: border-box !important;
+	text-align: left !important;
+	width: 100% !important;
+	max-width: 100% !important;
+	color: var(--text-dark) !important;
+}
+
+#your-app-container#your-app-container .fund-center-expanded-title-row {
+	box-sizing: border-box !important;
+	border-bottom: 1px solid #e5e7eb !important;
+	flex-wrap: wrap !important;
+	justify-content: space-between !important;
+	align-items: center !important;
+	gap: 1rem !important;
+	width: 100% !important;
+	padding-bottom: 1rem !important;
+	display: flex !important;
+}
+
+#your-app-container#your-app-container .fund-center-expanded-fund-name {
+	color: #1a1a1a !important;
+	text-align: left !important;
+	margin: 0 !important;
+	font-size: 32px !important;
+	font-weight: 700 !important;
+	line-height: 1.2 !important;
+}
+
+#your-app-container#your-app-container a.fund-center-expanded-product-btn {
+	background-color: var(--primary) !important;
+	color: #fff !important;
+	min-height: 2.5rem !important;
+	font-size: 0.875rem !important;
+	font-weight: 500 !important;
+	font-family: var(--font-sans) !important;
+	box-shadow: none !important;
+	white-space: nowrap !important;
+	border: none !important;
+	border-radius: 0.375rem !important;
+	justify-content: center !important;
+	align-items: center !important;
+	padding: 0.5rem 1rem !important;
+	text-decoration: none !important;
+	display: inline-flex !important;
+}
+
+#your-app-container#your-app-container a.fund-center-expanded-product-btn:hover {
+	opacity: 0.92;
+	background-color: var(--primary) !important;
+	color: #fff !important;
+}
+
+#your-app-container#your-app-container .fund-center-expanded-columns {
+	box-sizing: border-box !important;
+	flex-direction: column !important;
+	align-items: stretch !important;
+	width: 100% !important;
+	display: flex !important;
+}
+
+@media (min-width: 64rem) {
+	#your-app-container#your-app-container .fund-center-expanded-columns {
+		flex-direction: row !important;
+		justify-content: space-between !important;
+		align-items: flex-start !important;
+	}
+}
+
+#your-app-container#your-app-container .fund-center-expanded-narrative,
+#your-app-container#your-app-container .fund-center-expanded-aside {
+	box-sizing: border-box !important;
+	min-width: 0 !important;
+}
+
+#your-app-container#your-app-container .fund-center-fund-managers-title,
+#your-app-container#your-app-container .fund-center-expanded-section-title,
+#your-app-container#your-app-container .fund-center-key-stats-title {
+	text-align: left !important;
+	color: var(--section-header) !important;
+}
+
+#your-app-container#your-app-container .fund-center-expanded-section p,
+#your-app-container#your-app-container .fund-center-expanded-narrative p {
+	text-align: left !important;
+}
+
+#your-app-container#your-app-container .fund-center-key-stats {
+	box-sizing: border-box !important;
+	width: 100% !important;
+}
+
+#your-app-container#your-app-container .fund-center-key-stat-row {
+	box-sizing: border-box !important;
+	flex-direction: row !important;
+	justify-content: space-between !important;
+	align-items: flex-start !important;
+	gap: 0.75rem !important;
+	width: 100% !important;
+	display: flex !important;
+}
+
+#your-app-container#your-app-container .fund-center-key-stat-row > div:last-child {
+	text-align: right !important;
+}

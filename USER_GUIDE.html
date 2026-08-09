@@ -119,14 +119,15 @@
 </head>
 <body>
 
-<h1>Kurtosys Studio Product-Page Monorepo — User Guide</h1>
-<p class="meta">Repository: <code>ksys-studio-pp-template</code></p>
+<h1>Kurtosys Studio Monorepo — User Guide</h1>
+<p class="meta">Repository: <code>ksys-studio-template</code></p>
 <p class="lead">
-  One folder is enough. This monorepo includes the nested widget starter
-  (<code>ksys-studio-widget-template/</code>), so you duplicate a single root for each client —
-  no sibling template repo. The first decision is <strong>where widgets embed</strong>
+  One folder is enough. This monorepo covers <strong>Fund Centre</strong> and
+  <strong>product-page widgets</strong>, plus the nested widget starter
+  (<code>ksys-studio-widget-template/</code>). Duplicate a single root for each client —
+  no sibling template repo. The first decision is <strong>where embeds run</strong>
   (Kurtosys DXM vs external CMS). That choice factors builds, deploy paths, and docs
-  without forking the widget source.
+  without forking the app source.
 </p>
 
 <nav class="toc" aria-label="Table of contents">
@@ -206,7 +207,7 @@ npm run init -- --host both --client acme --cms-platform wordpress</pre>
 
 <h2 id="what">1. What this repo is</h2>
 <p class="ok">
-  <strong>Single-folder template.</strong> Copy <code>ksys-studio-pp-template</code> once per client.
+  <strong>Single-folder template.</strong> Copy <code>ksys-studio-template</code> once per client.
   The widget starter lives at <code>ksys-studio-widget-template/</code> inside that copy and is what
   <code>npm run apps:add</code> scaffolds from. You do not need a separate
   <code>ksys-studio-widget-template</code> checkout beside it.
@@ -227,6 +228,7 @@ npm run init -- --host both --client acme --cms-platform wordpress</pre>
     </tr>
   </thead>
   <tbody>
+    <tr><td><code>fundCentre</code></td><td><code>#fundCentre</code> (+ <code>#fundCenter</code> config)</td><td><code>window.fundCentre</code></td><td>5178</td></tr>
     <tr><td><code>pageHeader</code></td><td><code>#pageHeader</code></td><td><code>window.pageHeader</code></td><td>5173</td></tr>
     <tr><td><code>overview</code></td><td><code>#overview</code></td><td><code>window.overview</code></td><td>5174</td></tr>
     <tr><td><code>performance</code></td><td><code>#performance</code></td><td><code>window.performanceApp</code>*</td><td>5175</td></tr>
@@ -234,6 +236,11 @@ npm run init -- --host both --client acme --cms-platform wordpress</pre>
     <tr><td><code>literature</code></td><td><code>#literature</code></td><td><code>window.literature</code></td><td>5177</td></tr>
   </tbody>
 </table>
+<p class="note">
+  Fund Centre also needs <code>defaultFundlist</code> and optional
+  <code>subadvisedLandingUrl</code> in its <code>config/env.config.cjs</code>
+  (see <code>apps/ksys-&lt;client&gt;-fundCentre/MONOREPO.md</code>).
+</p>
 <p class="note">
   <strong>*</strong> <code>window.performance</code> is reserved by the browser; the loader uses
   <code>performanceApp</code> automatically.
@@ -252,7 +259,7 @@ npm run init -- --host both --client acme --cms-platform wordpress</pre>
 </p>
 
 <h2 id="layout">3. Repository layout</h2>
-<pre>ksys-studio-pp-template/
+<pre>ksys-studio-template/
 ├── USER_GUIDE.html / USER_GUIDE.pdf
 ├── studio.config.json          ← hostMode + apps registry + widgetTemplatePath
 ├── ksys-studio-widget-template/ ← in-repo widget starter (used by apps:add)
@@ -269,20 +276,23 @@ npm run init -- --host both --client acme --cms-platform wordpress</pre>
 │   ├── dxm/{dev,stg,prd}/
 │   └── cms/{dev,stg,prd}/
 └── apps/
+    ├── ksys-&lt;client&gt;-fundCentre/
     └── ksys-&lt;client&gt;-&lt;appId&gt;/
 </pre>
 
 <h2 id="init">4. Initialize a client project</h2>
 <p>
-  Duplicate <strong>only</strong> <code>ksys-studio-pp-template</code>. The nested widget starter
-  comes along automatically — do not copy a second template folder.
+  Duplicate <strong>only</strong> <code>ksys-studio-template</code>. Fund Centre, product-page
+  apps, and the nested widget starter come along automatically — do not copy a second
+  template folder.
 </p>
 <ol>
   <li>Copy the whole monorepo and rename it for the client:
-<pre>cp -R ~/Documents/GitHub/ksys-studio-pp-template ~/Documents/GitHub/acme-pp
-cd ~/Documents/GitHub/acme-pp
-# confirm the nested starter is present:
-ls ksys-studio-widget-template/scripts/scaffold-app.sh</pre>
+<pre>cp -R ~/Documents/GitHub/ksys-studio-template ~/Documents/GitHub/acme-studio
+cd ~/Documents/GitHub/acme-studio
+# confirm the nested starter + fund centre are present:
+ls ksys-studio-widget-template/scripts/scaffold-app.sh
+ls apps/ksys-client-fundCentre/config/env.config.cjs</pre>
   </li>
   <li><strong>Init host mode</strong> (Step 0).</li>
   <li>If the client slug is not still <code>client</code>, rename folders:
@@ -540,7 +550,7 @@ npm run audit:security</pre>
 
 <h2 id="checklist">14. End-to-end checklist</h2>
 <ol>
-  <li>Duplicate <code>ksys-studio-pp-template</code> → rename for the client (widget starter stays nested)</li>
+  <li>Duplicate <code>ksys-studio-template</code> → rename for the client (Fund Centre + widgets stay nested)</li>
   <li><code>npm run init -- --host dxm|cms|both --client &lt;slug&gt;</code></li>
   <li><code>npm run client:set -- &lt;slug&gt;</code> if folders still use the old slug</li>
   <li>Rename starter apps to match the page (<code>npm run apps:rename -- literature materials</code>) and/or add missing ones (<code>npm run apps:add -- holdingsExposure</code>)</li>

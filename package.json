@@ -1,8 +1,8 @@
 {
-	"name": "ksys-studio-pp-template",
+	"name": "ksys-studio-template",
 	"private": true,
 	"version": "0.1.0",
-	"description": "Generic Kurtosys Studio product-page monorepo template — reusable across clients",
+	"description": "Generic Kurtosys Studio monorepo template — Fund Centre + product-page embeds, reusable across clients",
 	"type": "module",
 	"scripts": {
 		"apps:list": "node scripts/list-apps.mjs",
