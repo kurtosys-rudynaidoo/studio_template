@@ -57,5 +57,6 @@ Same JS artifact; only the deploy path and cache headers change. Keep the integr
 2. Copy `_TEMPLATE.md` → `docs/integration-specs/<product-page>.md`
 3. Fill mount selector, script URL, required inputs, regions
 4. Build CMS bundle (`HOST_MODE=cms`)
-5. Deploy asset; paste snippet into CMS
+5. Deploy asset; paste snippet into CMS (keep required `appManager` on product pages)
 6. QA keyboard, contrast, and screen-reader labels on the live theme
+7. Confirm tag-manager tracking pixels use `alt=""` (BP-662); App Manager also applies a decorative-pixel guard — see `docs/ACCESSIBILITY.md`

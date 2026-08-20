@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 
 import { APP_SECTIONS, hasValidGuid } from '@/config/apps.config';
 import { loadScript, getLoadStatus } from '@/services/app-loader.service';
+import { installDecorativeTrackingImageGuard } from '@/utils/decorative-tracking-images';
 
 import type { AppInputs } from '@/types/app-manager.types';
 
@@ -17,6 +18,8 @@ function AppShell({ inputs }: AppShellProps) {
 	useEffect(() => {
 		void inputs;
 
+		const stopA11yGuard = installDecorativeTrackingImageGuard();
+
 		const allApps = APP_SECTIONS.flatMap((s) => s.apps).filter((app) =>
 			hasValidGuid(app.id),
 		);
@@ -27,6 +30,10 @@ function AppShell({ inputs }: AppShellProps) {
 				console.error(`[AppManager] ${err.message}`);
 			});
 		});
+
+		return () => {
+			stopA11yGuard();
+		};
 	}, [inputs]);
 
 	return null;

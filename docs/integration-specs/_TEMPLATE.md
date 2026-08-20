@@ -91,8 +91,10 @@ BuildResult/cms/{dev|stg|prd}/<appId>/<appId>.js
 - [ ] Keyboard only: all controls reachable; visible focus
 - [ ] Screen reader: landmarks / headings / button names make sense
 - [ ] Contrast holds against the CMS theme
-- [ ] Images have correct alt (or empty if decorative)
+- [ ] Images have correct alt (or empty if decorative) — use `accessibleImageProps` in widgets
+- [ ] Host tag-manager tracking pixels have `alt=""` (Level Access BP-662); App Manager also guards late-injected beacons
 - [ ] Reduced-motion respected
+- [ ] Level Access (or equivalent) scan on this page after go-live
 
 ## 8. Functional QA
 

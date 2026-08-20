@@ -565,8 +565,8 @@ BuildResult/cms/stg/overview/overview.js</pre>
 
 <h2 id="defaults">12. Built-in defaults</h2>
 <ul>
-  <li><strong>App Manager</strong> — required shell in every project (<code>apps/ksys-&lt;client&gt;-appManager/</code>); loads children by GUID and publishes shared CSS</li>
-  <li><strong>A11y</strong> — WCAG-oriented landmarks, contrast tokens, focus rings, jsx-a11y (see <code>docs/ACCESSIBILITY.md</code>)</li>
+  <li><strong>App Manager</strong> — required shell in every project (<code>apps/ksys-&lt;client&gt;-appManager/</code>); loads children by GUID, publishes shared CSS, and marks nameless host tracking pixels decorative (Level Access BP-662 safety net)</li>
+  <li><strong>A11y</strong> — WCAG-oriented landmarks, contrast tokens, focus rings, jsx-a11y, <code>accessibleImageProps</code> (see <code>docs/ACCESSIBILITY.md</code>)</li>
   <li><strong>Tailwind</strong> — <code>@import "tailwindcss" important;</code></li>
   <li><strong>Embed global</strong> — <code>window.&lt;appId&gt;</code> (not <code>YourAppEmbed</code>)</li>
   <li><strong>Security pins</strong> — vite, rollup, tar, picomatch, postcss</li>
@@ -585,9 +585,11 @@ npm run audit:security</pre>
   <li>Keep <code>appManager</code> (required). Rename/add other apps as needed — never rename <code>appManager</code></li>
   <li>Fill each <code>env.config.cjs</code>; for App Manager fill <code>childAppGuids</code> after child Studio uploads</li>
   <li>If CMS/both: create integration specs from <code>_TEMPLATE.md</code></li>
-  <li>Implement UI; keep a11y patterns</li>
+  <li>Implement UI; keep a11y patterns (<code>accessibleImageProps</code> — never omit <code>alt</code>)</li>
   <li><code>npm run build:stg</code> → verify <code>BuildResult/&lt;host&gt;/…</code></li>
-  <li>Deploy (Studio upload and/or CMS CDN)</li>
+  <li>Deploy (Studio upload and/or CMS CDN) — keep required <code>appManager</code> on the page</li>
+  <li>Confirm host tag managers mark tracking pixels with <code>alt=""</code> (App Manager also guards BP-662-style beacons)</li>
+  <li>Level Access (or equivalent) scan on a sample new product page</li>
   <li><code>npm run audit:security</code></li>
 </ol>
 

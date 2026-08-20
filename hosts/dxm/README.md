@@ -36,8 +36,13 @@ npm run build:stg
 4. Script tag / App Manager child load points at uploaded `overview.js`
 5. Tailwind `important` keeps styles above Elementor
 6. Keyboard focus + landmarks still work inside the DXM chrome
+7. **A11y / Level Access (BP-662):** nameless tracking `<img>` beacons on the host page.
+   - Prefer fixing the tag (add `alt=""`).
+   - Required `appManager` also applies a decorative-pixel safety net (see `docs/ACCESSIBILITY.md`).
+   - Widget bundles must never omit `alt` on their own images (`accessibleImageProps`).
 
 ## Related
 
 - Monorepo user guide: `USER_GUIDE.html`
+- Accessibility: `docs/ACCESSIBILITY.md`
 - Widget mount helpers: `src/utils/resolve-mount-inputs.ts`

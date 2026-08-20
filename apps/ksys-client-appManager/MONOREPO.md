@@ -6,6 +6,7 @@ It is the product-page shell that:
 
 1. Publishes **shared CSS** (`shared.css`, plus `bp-shared.css` alias)
 2. Loads child widget scripts by Studio GUID (`appManager.js`)
+3. Applies an **a11y safety net** for nameless host tracking `<img>` beacons (Level Access BP-662 pattern) — see `docs/ACCESSIBILITY.md` and `src/utils/decorative-tracking-images.ts`
 
 ## Outputs
 
