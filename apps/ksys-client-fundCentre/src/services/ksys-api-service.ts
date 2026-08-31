@@ -1,8 +1,6 @@
 /**
  * KSYS API Service
- * Reference: src/docs/categories/data/README.md
- * Endpoint: POST /fund/searchEntity
- * Uses x-ksys-token header for authentication
+ * See docs/DATA-RETRIEVAL.md — POST /fund/searchEntity with x-ksys-token
  */
 
 import { kurtosysRequest } from '@/lib/kurtosys-request';
@@ -99,8 +97,7 @@ export class KSYSApiService {
 
 	/**
 	 * Search entities (funds/shareclasses)
-	 * Reference: src/docs/categories/data/README.md - POST /fund/searchEntity
-	 * Uses x-ksys-token header
+	 * POST /fund/searchEntity — docs/DATA-RETRIEVAL.md
 	 */
 	async searchEntity(request: KSYSSearchEntityRequest): Promise<KSYSSearchEntityResponse> {
 		try {

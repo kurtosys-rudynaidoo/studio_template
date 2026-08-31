@@ -1,6 +1,6 @@
 /**
- * KSYS API Request and Response Types
- * Reference: src/docs/categories/data/README.md
+ * KSYS API request and response types for Studio widget reads.
+ * See docs/DATA-RETRIEVAL.md
  */
 
 /**

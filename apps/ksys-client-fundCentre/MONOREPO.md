@@ -18,6 +18,10 @@ lives under `apps/ksys-<client>-fundCentre/`.
 - Config node: `#fundCenter` or `#fundCentre` with `data-culture`, `data-fundlist`, `data-base-url`, `data-subadvised-landing-url`, …
 - Mount node (IIFE): `#fundCentre` (preferred) or `#fundCenter` / `#root` (dev) / `#your-app-container` (legacy loader)
 
+## Data retrieval
+
+Kurtosys reads (`x-ksys-token`, `/fund/searchEntity`, documents, filters): [`docs/DATA-RETRIEVAL.md`](../../docs/DATA-RETRIEVAL.md).
+
 ## Fill before deploy
 
 1. Studio GUIDs + API tokens in `config/env.config.cjs`

@@ -1,0 +1,20 @@
+---
+description: Only when fetching Kurtosys historicalDatasets and the user did not supply an as-at date — then pass asAtDate = today.
+alwaysApply: true
+---
+
+# Historical datasets — when to use today as asAtDate
+
+Follow `docs/DATA-RETRIEVAL.md` (**Historical datasets**). Apply this **only** when both are true:
+
+1. The component is requesting Kurtosys **Historical Dataset** data (`include.historicalDatasets` on `POST /fund/searchEntity`).
+2. The user (or host) did **not** provide a date — no date picker, no date prop, no query param, no `data-input-as-at-date`.
+
+Then: `asAtDate` = today (`YYYY-MM-DD`) at runtime (as-of ceiling). Show “as of” from the response date.
+
+**Do not** use today when:
+
+- The fetch is not historical datasets (statistics, documents, properties, etc.).
+- A user/host date exists — pass that as `asAtDate` unchanged.
+
+Do not bake the date into the build. Do not use DXM scripts to stamp App Manager dates.

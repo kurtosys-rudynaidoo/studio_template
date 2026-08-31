@@ -75,6 +75,7 @@ Scaffolding (`index.html`, `vite.svg`, manifests, embed-loader, etc.) is removed
 
 - [`hosts/dxm/README.md`](./hosts/dxm/README.md)
 - [`hosts/cms/README.md`](./hosts/cms/README.md)
+- [`docs/DATA-RETRIEVAL.md`](./docs/DATA-RETRIEVAL.md) — how widgets read Kurtosys data
 - [`docs/integration-specs/_TEMPLATE.md`](./docs/integration-specs/_TEMPLATE.md) — CMS product-page integration spec
 
 ## Layout
@@ -83,7 +84,7 @@ Scaffolding (`index.html`, `vite.svg`, manifests, embed-loader, etc.) is removed
 studio.config.json          # hostMode + app registry
 ksys-studio-widget-template/  # in-repo widget starter for apps:add
 hosts/{dxm,cms}/
-docs/integration-specs/
+docs/                       # DATA-RETRIEVAL, a11y, CMS integration specs
 BuildResult/{dxm,cms}/{dev,stg,prd}/<appId>/
 apps/ksys-<client>-appManager/   # required default
 apps/ksys-<client>-fundCentre/

@@ -96,6 +96,10 @@ This template includes patterns that BP product pages actually use in production
 - MutationObserver guard against DXM wiping the mount children
 - Placeholder Fundpress URL + saved-search token fields
 
+## Data retrieval
+
+How widgets call Kurtosys (`x-ksys-token`, prefixed POST paths): [`docs/DATA-RETRIEVAL.md`](../docs/DATA-RETRIEVAL.md).
+
 ## Next steps for a new client
 
 1. Copy this repo or scaffold apps into `apps/`
