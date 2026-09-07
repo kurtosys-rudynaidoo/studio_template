@@ -45,6 +45,19 @@ npm run docs:user-guide
 
 Fund Centre–specific env fields: `defaultFundlist`, `subadvisedLandingUrl` (see `apps/ksys-client-fundCentre/MONOREPO.md`).
 
+## Page types
+
+Two embed shapes — do not mix them on the same page.
+
+| Type | Apps | Host page |
+|------|------|-----------|
+| **Standalone** | **Fund Centre**, **document library** | Own page. One JS bundle (`fundCentre.js`, or a future `documentLibrary.js`). **No App Manager.** Own mount + data attributes (`data-fundlist`, etc.). |
+| **Product page** | `appManager` + `pageHeader`, `overview`, `performance`, `portfolioBreakdown`, `literature` | One page, many widgets. App Manager publishes `data-input-*` and loads children. |
+
+`literature` on a product page is **not** the document library. The library is a separate standalone embed (add with `npm run apps:add` when that build starts).
+
+Typical order: standalone Fund Centre first (including list → product URL), then product-page widgets, then standalone document library.
+
 ## Common commands
 
 ```bash

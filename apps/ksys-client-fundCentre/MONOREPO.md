@@ -3,6 +3,8 @@
 This app is the **Fund Centre** surface (list / filter / performance / materials),
 lives under `apps/ksys-<client>-fundCentre/`.
 
+It is always a **standalone** embed on its own page (`fundCentre.js` only). Do not load App Manager or product-page widgets on the Fund Centre page. The document library is the same shape (separate standalone app), not `literature` on a product page.
+
 ## Relevant config
 
 | File | Purpose |

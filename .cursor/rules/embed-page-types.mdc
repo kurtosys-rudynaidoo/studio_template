@@ -1,0 +1,22 @@
+---
+description: Fund Centre and document library are standalone embeds; product pages use App Manager + widgets.
+alwaysApply: true
+---
+
+# Embed page types
+
+Two host-page shapes. Do not mix them.
+
+**Standalone (own page, one bundle, no App Manager):**
+
+- **Fund Centre** — `#fundCentre` / `#fundCenter`, `fundCentre.js` only.
+- **Document library** — same pattern when that app exists. It is **not** the product-page `literature` widget.
+
+**Product page (many widgets):**
+
+- `appManager` plus `pageHeader`, `overview`, `performance`, `portfolioBreakdown`, `literature`.
+- App Manager publishes `data-input-*` and loads children. Required on product pages only.
+
+Build order unless the user says otherwise: Fund Centre first (including list → product URL), then product-page widgets, then document library.
+
+See root `README.md` (**Page types**).
