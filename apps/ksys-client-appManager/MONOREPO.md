@@ -4,7 +4,7 @@ Every client project **must** keep `ksys-<client>-appManager/`.
 
 It is the product-page shell that:
 
-1. Publishes **shared CSS** (`shared.css`, plus `bp-shared.css` alias)
+1. Publishes **shared CSS** (`shared.css` only — never `bp-shared.css`)
 2. Loads child widget scripts by Studio GUID (`appManager.js`)
 3. Applies an **a11y safety net** for nameless host tracking `<img>` beacons (Level Access BP-662 pattern) — see `docs/ACCESSIBILITY.md` and `src/utils/decorative-tracking-images.ts`
 
@@ -14,7 +14,6 @@ It is the product-page shell that:
 BuildResult/<host>/<env>/appManager/
   appManager.js
   shared.css
-  bp-shared.css          # same bytes as shared.css (legacy filename)
 ```
 
 ## Config

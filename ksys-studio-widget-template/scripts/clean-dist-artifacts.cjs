@@ -4,7 +4,7 @@
  *
  * Kept:
  *   - config.filename (e.g. overview.js) — required
- *   - shared.css / bp-shared.css — optional shared stylesheet if present
+ *   - shared.css — optional shared stylesheet if present. Never bp-shared.css.
  */
 var fs = require('fs');
 var path = require('path');
@@ -15,7 +15,7 @@ var config = envConfig.getConfig(env);
 var distDir = path.resolve(__dirname, '..', 'dist-build');
 
 var KEEP = new Set(
-	[config.filename, 'shared.css', 'bp-shared.css'].filter(Boolean),
+	[config.filename, 'shared.css'].filter(Boolean),
 );
 
 function clean() {
@@ -23,6 +23,9 @@ function clean() {
 		console.warn('⚠️  dist-build not found — nothing to clean');
 		return;
 	}
+
+	var legacy = path.join(distDir, 'bp-shared.css');
+	if (fs.existsSync(legacy)) fs.unlinkSync(legacy);
 
 	var kept = [];
 	var removed = [];

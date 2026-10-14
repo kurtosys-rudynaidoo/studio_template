@@ -80,7 +80,7 @@ npm run audit:security
 Each app build keeps **only** deployable files in `dist-build/` and `BuildResult/`:
 
 - `<appId>.js` (required)
-- `shared.css` / `bp-shared.css` — **required from `appManager`**; optional elsewhere
+- `shared.css` — **required from `appManager`**; do not emit `bp-shared.css`
 
 Scaffolding (`index.html`, `vite.svg`, manifests, embed-loader, etc.) is removed automatically.
 
@@ -89,6 +89,7 @@ Scaffolding (`index.html`, `vite.svg`, manifests, embed-loader, etc.) is removed
 - [`hosts/dxm/README.md`](./hosts/dxm/README.md)
 - [`hosts/cms/README.md`](./hosts/cms/README.md)
 - [`docs/DATA-RETRIEVAL.md`](./docs/DATA-RETRIEVAL.md) — how widgets read Kurtosys data
+- [`docs/CMS-EMBED-CSS.md`](./docs/CMS-EMBED-CSS.md) — unlayer and ID-scope CSS for WordPress / Elementor
 - [`docs/integration-specs/_TEMPLATE.md`](./docs/integration-specs/_TEMPLATE.md) — CMS product-page integration spec
 
 ## Layout

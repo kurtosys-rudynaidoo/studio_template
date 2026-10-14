@@ -1,0 +1,16 @@
+---
+description: CMS embeds must unlayer and ID-scope CSS, and must not emit bp-shared.css.
+alwaysApply: true
+---
+
+# CMS embed CSS
+
+WordPress / Elementor themes ship unlayered `button`, `input`, `table`, and heading rules. Those beat Tailwind's `@layer` output regardless of specificity.
+
+- Scope finished CSS with `scripts/postcss-scope-embed.cjs` in each widget `inline-css.cjs` and in App Manager `prepare-shared-css.cjs`.
+- Scope product-page `shared.css` to every non-standalone app id in `studio.config.json`, plus `${id}-portal`.
+- Import `src/styles/host-reset.css`. Portal with `portalRoot(containerId)`, not `document.body`.
+- Publish `shared.css` only. Never emit or copy `bp-shared.css`.
+- `@import "tailwindcss" important` does not replace the PostCSS unlayer step.
+
+See `docs/CMS-EMBED-CSS.md`.

@@ -247,7 +247,7 @@ npm run init -- --host both --client acme --cms-platform wordpress</pre>
 <p class="note">
   ★ Required for all projects. Build output:
   <code>BuildResult/&lt;host&gt;/&lt;env&gt;/appManager/appManager.js</code> +
-  <code>shared.css</code> (and <code>bp-shared.css</code> alias).
+  <code>shared.css</code> only. Do not ship <code>bp-shared.css</code>.
   Fill <code>childAppGuids</code> in its <code>config/env.config.cjs</code> after deploying each child widget.
   See <code>apps/ksys-&lt;client&gt;-appManager/MONOREPO.md</code>.
 </p>
@@ -550,12 +550,12 @@ BuildResult/cms/stg/overview/overview.js</pre>
   <code>clean-dist-artifacts</code>, which deletes scaffolding
   (<code>index.html</code>, <code>vite.svg</code>, manifests, embed-loader, etc.)
   and keeps only the deployable <code>&lt;appId&gt;.js</code>
-  (plus <code>shared.css</code> / <code>bp-shared.css</code> from <code>appManager</code>).
+  (plus <code>shared.css</code> from <code>appManager</code>).
   <code>BuildResult</code> folders stay equally lean.
 </p>
 <p class="ok">
   App Manager build example:
-  <code>BuildResult/dxm/stg/appManager/{appManager.js,shared.css,bp-shared.css}</code>.
+  <code>BuildResult/dxm/stg/appManager/{appManager.js,shared.css}</code>.
   Deploy the JS + CSS together; child widgets ship their own <code>&lt;appId&gt;.js</code> only.
 </p>
 <p class="note">

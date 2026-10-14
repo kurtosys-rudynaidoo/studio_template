@@ -58,5 +58,5 @@ Same JS artifact; only the deploy path and cache headers change. Keep the integr
 3. Fill mount selector, script URL, required inputs, regions
 4. Build CMS bundle (`HOST_MODE=cms`)
 5. Deploy asset; paste snippet into CMS (keep required `appManager` on product pages)
-6. QA keyboard, contrast, and screen-reader labels on the live theme
+6. QA keyboard, contrast, and screen-reader labels on the live theme. Confirm widget controls are not restyled by unlayered theme `button` / `table` / heading rules (`docs/CMS-EMBED-CSS.md`).
 7. Confirm tag-manager tracking pixels use `alt=""` (BP-662); App Manager also applies a decorative-pixel guard — see `docs/ACCESSIBILITY.md`

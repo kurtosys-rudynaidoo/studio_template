@@ -12,7 +12,7 @@ import { nodePolyfills } from 'vite-plugin-node-polyfills';
 
 const require = createRequire(import.meta.url);
 const envConfig = require('./config/env.config.cjs');
-const postcssScopeEmbed = require('./scripts/postcss-scope-embed.cjs');
+const postcssScopeEmbed = require('../../../scripts/postcss-scope-embed.cjs');
 const buildEnv = process.env.BUILD_ENV || process.env.NODE_ENV || 'dev';
 const config = envConfig.getConfig(buildEnv);
 
@@ -25,7 +25,18 @@ export default defineConfig(({ command }) => ({
 	},
 	css: {
 		postcss: {
-			plugins: [postcssScopeEmbed()],
+			plugins: [
+				postcssScopeEmbed({
+					scopeIds: [
+						...new Set([
+							config.containerId,
+							'fundCenter',
+							'your-app-container',
+							`${config.containerId}-portal`,
+						]),
+					],
+				}),
+			],
 		},
 	},
 	plugins: [

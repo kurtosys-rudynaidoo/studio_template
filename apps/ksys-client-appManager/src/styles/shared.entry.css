@@ -1,5 +1,6 @@
 @import 'tailwindcss' important;
 @import 'tw-animate-css';
+@import './host-reset.css';
 
 /* Scan App Manager + sibling product-page widgets for Tailwind utilities */
 @source '..';

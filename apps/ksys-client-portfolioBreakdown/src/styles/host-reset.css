@@ -1,0 +1,53 @@
+/**
+ * WordPress / Elementor host reset. Tailwind preflight does not clear every property a theme sets
+ * on bare elements: heading text-transform and colour, table zebra fills and cell padding, and
+ * button / input box-shadow, min-height, and width.
+ *
+ * Element selectors only, inside `@layer base`, so utilities and widget rules still win.
+ * The production build unlayers and ID-scopes this file. See docs/CMS-EMBED-CSS.md.
+ */
+@layer base {
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+	p {
+		color: inherit;
+		font-family: inherit;
+		line-height: inherit;
+		letter-spacing: inherit;
+		text-transform: none;
+	}
+
+	table {
+		margin: 0;
+		font-size: inherit;
+		background-color: transparent;
+	}
+
+	th,
+	td {
+		background-color: transparent;
+		font-weight: inherit;
+		line-height: inherit;
+		text-align: inherit;
+	}
+
+	button,
+	input,
+	select,
+	textarea {
+		box-shadow: none;
+		min-height: 0;
+		width: auto;
+		line-height: inherit;
+		letter-spacing: inherit;
+		text-transform: none;
+	}
+
+	li::before {
+		content: none;
+	}
+}

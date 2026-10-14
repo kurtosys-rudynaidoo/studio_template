@@ -1,5 +1,6 @@
 /* Tailwind utilities use !important so DXM/Elementor host CSS cannot override them. */
 @import "tailwindcss" important;
+@import "./styles/host-reset.css";
 
 :root {
 	/* WCAG-oriented defaults: strong contrast, predictable type, keyboard focus */

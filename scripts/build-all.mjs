@@ -7,8 +7,10 @@
  *   node scripts/build-all.mjs stg
  *   node scripts/build-all.mjs stg --host cms
  *
- * Outputs (clean — JS only):
+ * Outputs:
  *   BuildResult/<host>/<env>/<appId>/<appId>.js
+ *   BuildResult/<host>/<env>/appManager/shared.css
+ * Never bp-shared.css.
  *
  * Env abbreviations: dev (development), stg (staging), prd (production)
  */
@@ -119,14 +121,18 @@ for (const host of hosts) {
 		}
 		fs.copyFileSync(jsSrc, path.join(target, jsName));
 
-		for (const extra of ['shared.css', 'bp-shared.css']) {
-			const p = path.join(dist, extra);
-			if (fs.existsSync(p)) fs.copyFileSync(p, path.join(target, path.basename(p)));
+		if (fs.existsSync(path.join(dist, 'bp-shared.css'))) {
+			console.error(`${app.id} emitted bp-shared.css. App Manager publishes shared.css only.`);
+			failed += 1;
+			continue;
 		}
+
+		const sharedCss = path.join(dist, 'shared.css');
+		if (fs.existsSync(sharedCss)) fs.copyFileSync(sharedCss, path.join(target, 'shared.css'));
 
 		// Ensure BuildResult folder only has deployables
 		for (const entry of fs.readdirSync(target)) {
-			if (entry === jsName || entry === 'shared.css' || entry === 'bp-shared.css') continue;
+			if (entry === jsName || entry === 'shared.css') continue;
 			fs.rmSync(path.join(target, entry), { recursive: true, force: true });
 		}
 

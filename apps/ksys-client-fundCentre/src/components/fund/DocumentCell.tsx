@@ -11,6 +11,7 @@ import type { FundService } from '@/services/fund-service';
 import { absolutizeKurtosysDocumentUrl } from '@/utils/document-url';
 import { openDocumentInBrowser } from '@/utils/open-document';
 import { documentIconUrl, documentIconDisplaySize } from '@/constants/document-icon-url';
+import { portalRoot } from '@/utils/portal-root';
 
 const FALLBACK_API_BASE =
 	(typeof import.meta !== 'undefined' && import.meta.env?.VITE_KURTOSYS_API_URL) || 'https://api-us.fundpress.io';
@@ -257,7 +258,7 @@ function DocumentCell({ documents, fundService }: DocumentCellProps) {
 							);
 						})}
 					</div>,
-					document.getElementById('your-app-container') ?? document.body,
+					portalRoot('fundCentre'),
 				)}
 		</div>
 	);

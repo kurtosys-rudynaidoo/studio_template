@@ -101,7 +101,7 @@ BuildResult/cms/{dev|stg|prd}/<appId>/<appId>.js
 - [ ] Correct client / share class data for sample IDs
 - [ ] Culture switch (if applicable)
 - [ ] Mobile layout (documents / chrome per page requirements)
-- [ ] No CMS CSS regressions (Tailwind `important` enabled)
+- [ ] No CMS CSS regressions (utilities use `important`; the build also unlayers and ID-scopes CSS — see `docs/CMS-EMBED-CSS.md`)
 
 ## 9. Contacts & links
 

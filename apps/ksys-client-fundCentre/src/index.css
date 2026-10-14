@@ -1,5 +1,6 @@
-@import 'tailwindcss';
+@import 'tailwindcss' important;
 @import 'tw-animate-css';
+@import './styles/host-reset.css';
 
 @custom-variant dark (&:is(.dark *));
 

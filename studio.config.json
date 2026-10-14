@@ -21,7 +21,8 @@
 		{
 			"id": "fundCentre",
 			"label": "Fund Centre",
-			"port": 5178
+			"port": 5178,
+			"standalone": true
 		},
 		{
 			"id": "pageHeader",
