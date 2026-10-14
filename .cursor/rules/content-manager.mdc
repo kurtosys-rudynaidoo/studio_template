@@ -1,0 +1,15 @@
+---
+description: Kurtosys Content Manager is optional. The CMS holds the token; widgets call a same-origin proxy only when opted in.
+alwaysApply: true
+---
+
+# Content Manager
+
+Do not call Kurtosys Content Manager from a widget bundle, and do not put `KSYS_CONTENT_TOKEN` in `env.config.cjs`.
+
+- WordPress proxy: `hosts/cms/wordpress/ksys-content.php`, route `/wp-json/ksys/v1/content/{type}/{name}`.
+- Widgets read `data-content-base-url` and use `loadContentHtml` / `useContentHtml`.
+- `useContentHtml` stays off until the widget passes `enabled`.
+- Missing content returns `undefined`. Do not invent fallback copy.
+
+See `docs/CONTENT-MANAGER.md`.

@@ -86,6 +86,13 @@ BuildResult/cms/{dev|stg|prd}/<appId>/<appId>.js
 - Caching / CDN purge steps
 - Auth / geo gates if any
 
+### Content Manager (optional)
+
+- [ ] This page reads published content through the CMS proxy (`docs/CONTENT-MANAGER.md`)
+- Content type and instance names:
+- `data-content-base-url`:
+- Token stays in `wp-config.php` as `KSYS_CONTENT_TOKEN`, not in the widget bundle
+
 ## 7. Accessibility QA
 
 - [ ] Keyboard only: all controls reachable; visible focus

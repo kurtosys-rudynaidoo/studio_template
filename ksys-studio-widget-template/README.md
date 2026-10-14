@@ -100,6 +100,10 @@ This template includes patterns that BP product pages actually use in production
 
 How widgets call Kurtosys (`x-ksys-token`, prefixed POST paths): [`docs/DATA-RETRIEVAL.md`](../docs/DATA-RETRIEVAL.md).
 
+## Content Manager
+
+Optional. `src/services/content-client.ts` and `src/hooks/useContent.ts` read published HTML from the CMS. They stay idle until a widget passes `enabled` and the mount sets `data-content-base-url`. The API token stays on the server. See `docs/CONTENT-MANAGER.md` in the monorepo.
+
 ## Next steps for a new client
 
 1. Copy this repo or scaffold apps into `apps/`

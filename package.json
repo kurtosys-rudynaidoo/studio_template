@@ -13,6 +13,7 @@
 		"build:dev": "node scripts/build-all.mjs dev",
 		"test": "node scripts/run-all.mjs test",
 		"test:embed-css": "node --test scripts/embed-css.test.mjs",
+		"test:content": "node --test scripts/content-copies.test.mjs",
 		"lint": "node scripts/run-all.mjs lint",
 		"audit:security": "python3 tools/security_audit_report.py",
 		"audit:deps": "node scripts/run-all.mjs audit:deps",

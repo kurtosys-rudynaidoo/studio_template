@@ -51,6 +51,10 @@ wp_add_inline_script('ksys-overview', 'window.ksysOverviewBoot=' . wp_json_encod
 
 Same JS artifact; only the deploy path and cache headers change. Keep the integration spec as the source of truth for mount selectors, cultures, and QA.
 
+## Content Manager
+
+Published tooltips and commentaries can be read through `hosts/cms/wordpress/ksys-content.php`. The widget asks the CMS, and the CMS holds the Kurtosys token. See [`docs/CONTENT-MANAGER.md`](../../docs/CONTENT-MANAGER.md). Widgets leave this off until `useContentHtml` is enabled and the mount sets `data-content-base-url`.
+
 ## Checklist
 
 1. `npm run init -- --host cms` (or `both`)
