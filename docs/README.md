@@ -4,6 +4,8 @@ Lean references for this Studio embed monorepo.
 
 | Doc | Purpose |
 |-----|---------|
+| [../CLAUDE.md](../CLAUDE.md) | Standing rules for Claude Code |
+| [../HANDOVER.md](../HANDOVER.md) | Resume note for a fresh Claude session |
 | [DATA-RETRIEVAL.md](./DATA-RETRIEVAL.md) | How widgets read Kurtosys data; historical datasets use today only when the user did not pass a date |
 | [ACCESSIBILITY.md](./ACCESSIBILITY.md) | WCAG defaults shipped in every scaffolded app |
 | [CONTENT-MANAGER.md](./CONTENT-MANAGER.md) | Optional same-origin proxy for Kurtosys Content Manager |
