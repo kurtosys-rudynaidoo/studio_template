@@ -7,6 +7,7 @@
 import { useMemo } from 'react';
 import type { FundDisclaimer } from '@/types/fund.types';
 import type { ModuleId } from '@/types/fund-center.types';
+import { safeHtml } from '@/utils/safe-content';
 
 export interface FundDisclaimersProps {
 	disclaimers: FundDisclaimer[];
@@ -76,7 +77,7 @@ function FundDisclaimers({ disclaimers, moduleId }: FundDisclaimersProps) {
 						fontFamily: 'var(--font-condensed)',
 						fontSize: '11px',
 					}}>
-					<div dangerouslySetInnerHTML={{ __html: disclaimer.content }} />
+					<div dangerouslySetInnerHTML={{ __html: safeHtml(disclaimer.content) }} />
 				</li>
 			))}
 		</ol>

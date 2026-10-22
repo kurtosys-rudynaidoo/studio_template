@@ -229,7 +229,7 @@ function DocumentCell({ documents, fundService }: DocumentCellProps) {
 									type="button"
 									role="option"
 									aria-selected={selected}
-									className="block w-full cursor-pointer border-0 bg-transparent px-3 py-2 text-left text-sm text-gray-800 hover:bg-gray-100 focus:bg-gray-100 focus:outline-none"
+									className="block w-full cursor-pointer border-0 bg-transparent px-3 py-2 text-left text-sm text-gray-800 hover:bg-gray-100 focus:bg-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[var(--primary)]"
 									onClick={() => {
 										setSelectedId(doc.id);
 										closeMenu();

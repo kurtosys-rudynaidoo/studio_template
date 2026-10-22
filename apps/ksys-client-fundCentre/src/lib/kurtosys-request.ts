@@ -74,17 +74,6 @@ function withTimeout<T>(promise: Promise<T>, timeoutMs: number): Promise<T> {
 }
 
 /**
- * Safely get text from response
- */
-async function safeText(response: Response): Promise<string> {
-	try {
-		return await response.text();
-	} catch {
-		return '';
-	}
-}
-
-/**
  * Kurtosys API request function
  * Handles caching, request deduplication, and error handling
  */
@@ -131,8 +120,8 @@ export async function kurtosysRequest<T = unknown>({
 			);
 
 			if (!response.ok) {
-				const text = await safeText(response);
-				const error = new Error(`Kurtosys API Error (${response.status}): ${text || response.statusText}`);
+				// Status only: the response body can carry server detail that must not reach the client (3.4).
+				const error = new Error(`Kurtosys API Error (${response.status})`);
 				(error as Error & { status: number }).status = response.status;
 				throw error;
 			}

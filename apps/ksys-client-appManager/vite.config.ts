@@ -82,6 +82,8 @@ export default defineConfig(({ command }) => ({
 			define: { global: 'globalThis' },
 		},
 	},
+	// Strip debug logging from minified builds; warn/error stay for support (Secure Delivery 5.1).
+	esbuild: { pure: ['console.log', 'console.info', 'console.debug'] },
 	build: {
 		outDir: 'dist-build',
 		cssCodeSplit: false,

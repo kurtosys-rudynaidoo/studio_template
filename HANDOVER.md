@@ -13,8 +13,11 @@ Keep `ksys-studio-template` as the generic Studio monorepo. Next client work: cl
 | Template (apps, init, hosts, Fund Centre) | Done |
 | Lean `docs/DATA-RETRIEVAL.md` + historical-dataset rule | Done |
 | Standalone vs product-page docs + Cursor rules | Done |
-| CMS embed CSS unlayer / ID-scope (`docs/CMS-EMBED-CSS.md`) | Done (branch) |
-| Optional Content Manager proxy (`docs/CONTENT-MANAGER.md`) | Done (branch) |
+| CMS embed CSS unlayer / ID-scope (`docs/CMS-EMBED-CSS.md`) | Done |
+| Optional Content Manager proxy (`docs/CONTENT-MANAGER.md`) | Done |
+| Secure Delivery v4: code safety (DOMPurify `safeHtml`, `safeUrl`, no token in URLs/logs, token only to API origin, prod log stripping, a11y) | Done (`docs/update-handover`) |
+| Secure Delivery v4: production dependency CVEs (4.1) — vite 7.3.7, postcss 8.5.29, tar 7.5.22, nanoid 3.3.20, source-map-js 1.2.2 pinned in every app | Done (`docs/update-handover`); dev-tool CVEs (shadcn CLI, vitest, typescript-eslint) still open |
+| Secure Delivery v4: API token out of the bundle (3.1), CI/Dependabot/SBOM/threat model (4.3, 8, App. C), SRI + CSP (3.3) | **Not started** — token design deferred by user |
 | Client clone / rename / init | **Not started** |
 | Fund Centre client build | **Not started** |
 | Product pages / document library | **Not started** |
@@ -51,6 +54,6 @@ In the first client message, state: host, client slug, and “phase 1 = standalo
 ## Where
 
 - Repo: `/Users/rudy.naidoo/Documents/GitHub/ksys-studio-template`
-- Branch: `cms-embed-and-content-manager`
-- Latest commit: `4233204` — Add an optional Content Manager proxy for CMS embeds.
+- Branch: `main` (`cms-embed-and-content-manager` is merged)
+- Latest commit: `6d0ef8a` — Add CLAUDE.md and HANDOVER.md for Claude Code.
 - Working tree: clean (as of this note)

@@ -3,7 +3,7 @@
  * Displays fund managers with images and bio links
  */
 
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import type { FundManager } from '@/types/fund.types';
 
@@ -21,9 +21,9 @@ function slugifyNameForPictureFallback(name: string): string {
 		.replace(/^_+|_+$/g, '');
 }
 
-function pictureUrl(baseUrl: string, token: string, managerCode: string): string {
+function pictureUrl(baseUrl: string, managerCode: string): string {
 	const b = baseUrl.replace(/\/$/, '');
-	return `${b}/fund/fundmanagerpicture?code=${encodeURIComponent(managerCode)}&token=${encodeURIComponent(token)}`;
+	return `${b}/fund/fundmanagerpicture?code=${encodeURIComponent(managerCode)}`;
 }
 
 function bioUrlFromCode(managerCode: string): string {
@@ -48,11 +48,31 @@ function ManagerRow({
 	token: string;
 }) {
 	const managerCode = managerPictureCode(manager);
-	const imageHref = pictureUrl(baseUrl, token, managerCode);
 	const bioHref = bioUrlFromCode(managerCode);
 	const initial = (manager.name || '?').charAt(0).toUpperCase();
 
 	const [imageFailed, setImageFailed] = useState(false);
+	const [imageSrc, setImageSrc] = useState<string>();
+
+	// Token goes in the header, never the URL (Secure Delivery 3.1); the image is shown from a blob URL.
+	useEffect(() => {
+		let cancelled = false;
+		let objectUrl: string | undefined;
+		fetch(pictureUrl(baseUrl, managerCode), { headers: { 'x-ksys-token': token } })
+			.then((res) => (res.ok ? res.blob() : Promise.reject(new Error(String(res.status)))))
+			.then((blob) => {
+				if (cancelled) return;
+				objectUrl = URL.createObjectURL(blob);
+				setImageSrc(objectUrl);
+			})
+			.catch(() => {
+				if (!cancelled) setImageFailed(true);
+			});
+		return () => {
+			cancelled = true;
+			if (objectUrl) URL.revokeObjectURL(objectUrl);
+		};
+	}, [baseUrl, token, managerCode]);
 
 	const onImgError = useCallback(() => {
 		setImageFailed(true);
@@ -73,9 +93,9 @@ function ManagerRow({
 					height: '80px',
 					width: '80px',
 				}}>
-				{!imageFailed ? (
+				{imageSrc && !imageFailed ? (
 					<img
-						src={imageHref}
+						src={imageSrc}
 						alt={manager.name ? `Photo of ${manager.name}` : 'Portfolio manager'}
 						className="block h-full w-full rounded-full object-cover"
 						onError={onImgError}
