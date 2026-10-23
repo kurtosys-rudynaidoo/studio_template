@@ -581,7 +581,8 @@ npm run audit:security</pre>
   <li>HTML from the CMS or API goes through <code>safeHtml()</code>; links and redirects from config or data go through <code>safeUrl()</code> (<code>src/utils/safe-content.ts</code>).</li>
   <li>Never put the API token in a URL, a log line or browser storage. Send it only as the <code>x-ksys-token</code> header to the Kurtosys API host.</li>
   <li>Production builds strip <code>console.log</code>, <code>info</code> and <code>debug</code>. Use <code>console.warn</code>/<code>error</code> only for messages support needs, with no tokens or personal data.</li>
-  <li>Pin dependency versions exactly, use releases at least two weeks old, and run <code>npm audit --omit=dev</code> in each app: no high or critical issues may ship.</li>
+  <li>Pin dependency versions exactly, use releases at least two weeks old, and run <code>npm audit</code> in each app: no high or critical issues.</li>
+  <li>The shadcn CLI is not a dependency (no upstream fix for its <code>braces</code> CVE). To add a component, run <code>npx shadcn@4.21.4 add &lt;name&gt;</code> in the app folder.</li>
 </ul>
 
 <h2 id="checklist">14. End-to-end checklist</h2>

@@ -16,7 +16,8 @@ Keep `ksys-studio-template` as the generic Studio monorepo. Next client work: cl
 | CMS embed CSS unlayer / ID-scope (`docs/CMS-EMBED-CSS.md`) | Done |
 | Optional Content Manager proxy (`docs/CONTENT-MANAGER.md`) | Done |
 | Secure Delivery v4: code safety (DOMPurify `safeHtml`, `safeUrl`, no token in URLs/logs, token only to API origin, prod log stripping, a11y) | Done (`docs/update-handover`) |
-| Secure Delivery v4: production dependency CVEs (4.1) — vite 7.3.7, postcss 8.5.29, tar 7.5.22, nanoid 3.3.20, source-map-js 1.2.2 pinned in every app | Done (`docs/update-handover`); dev-tool CVEs (shadcn CLI, vitest, typescript-eslint) still open |
+| Secure Delivery v4: production dependency CVEs (4.1) — vite 7.3.7, postcss 8.5.29, tar 7.5.22, nanoid 3.3.20, source-map-js 1.2.2 pinned in every app | Done (`docs/update-handover`) |
+| Secure Delivery v4: dev-tool CVEs — shadcn devDependency removed (braces has no fix; use `npx shadcn@4.21.4`), vitest 5.0.3, typescript-eslint 8.71.1; full `npm audit` clean in all 8 projects | Done (`docs/update-handover`) |
 | Secure Delivery v4: API token out of the bundle (3.1), CI/Dependabot/SBOM/threat model (4.3, 8, App. C), SRI + CSP (3.3) | **Not started** — token design deferred by user |
 | Client clone / rename / init | **Not started** |
 | Fund Centre client build | **Not started** |
