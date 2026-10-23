@@ -3,6 +3,7 @@
  * Main container for the Fund Center application
  */
 
+import { safeUrl } from '@/utils/safe-content';
 import { useState, useCallback, useMemo, useEffect, useLayoutEffect, type RefCallback } from 'react';
 
 import { FundCenterLayoutProvider } from '@/contexts/FundCenterLayoutContext';
@@ -431,11 +432,12 @@ function FundCenter({ config = defaultConfig }: FundCenterProps) {
 	const filters = useFilters(urlState.filters);
 
 	const resolvedSubadvisedLandingUrl = useMemo(() => {
+		// safeUrl: this value drives location.replace and an href, so `javascript:` etc. must never pass.
 		const fromEmbed = (embedConfig?.subadvisedLandingUrl ?? '').trim();
-		if (fromEmbed) return fromEmbed;
+		if (fromEmbed) return safeUrl(fromEmbed);
 		const fromGlobal = (config.globalConfig?.subadvisedLandingUrl ?? '').trim();
-		if (fromGlobal) return fromGlobal;
-		return (import.meta.env.VITE_SUBADVISED_LANDING_URL ?? '').trim();
+		if (fromGlobal) return safeUrl(fromGlobal);
+		return safeUrl(import.meta.env.VITE_SUBADVISED_LANDING_URL);
 	}, [embedConfig?.subadvisedLandingUrl, config.globalConfig?.subadvisedLandingUrl]);
 
 	const shouldRedirectToSubadvisedLanding =
@@ -466,9 +468,6 @@ function FundCenter({ config = defaultConfig }: FundCenterProps) {
 
 		if (!token) {
 			console.warn('VITE_KURTOSYS_API_TOKEN is not set. API requests may fail.');
-		} else {
-			// Log token (first 10 chars only for security)
-			console.log('API Token loaded:', token.substring(0, 10) + '...');
 		}
 
 		// Log embed config for debugging

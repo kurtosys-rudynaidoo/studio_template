@@ -1,3 +1,5 @@
+import { safeUrl } from '@/utils/safe-content';
+
 /**
  * Open or save a resolved document URL.
  * `blob:` URLs (from authenticated binary fetch) use `<a download>` so the file actually saves;
@@ -9,8 +11,9 @@ function safeFilename(name: string | undefined, fallback: string): string {
 	return n.replace(/[/\\?%*:|"<>]/g, '_');
 }
 
-export function openDocumentInBrowser(url: string, filename?: string): void {
-	if (!url?.trim()) return;
+export function openDocumentInBrowser(rawUrl: string, filename?: string): void {
+	const url = safeUrl(rawUrl);
+	if (!url) return;
 
 	if (url.startsWith('blob:')) {
 		const a = document.createElement('a');

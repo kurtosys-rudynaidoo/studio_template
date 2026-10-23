@@ -254,7 +254,7 @@ npm run init -- --host both --client acme --cms-platform wordpress</pre>
 <p class="note">
   Fund Centre also needs <code>defaultFundlist</code> and optional
   <code>subadvisedLandingUrl</code> in its <code>config/env.config.cjs</code>
-  (see <code>apps/ksys-&lt;client&gt;-fundCentre/MONOREPO.md</code>).
+  (must be <code>https://</code> or a same-site path; anything else is ignored) (see <code>apps/ksys-&lt;client&gt;-fundCentre/MONOREPO.md</code>).
 </p>
 <p class="note">
   <strong>*</strong> <code>window.performance</code> is reserved by the browser; the loader uses
@@ -576,6 +576,14 @@ BuildResult/cms/stg/overview/overview.js</pre>
 <pre>pip install -r tools/requirements-audit-report.txt
 npm run audit:security</pre>
 <p>HTML/PDF under <code>reports/</code>, scoped to app packages and <code>BuildResult</code> bundles.</p>
+<p>The template follows the Kurtosys Secure Delivery &amp; Engineering Standards Guide v4. Rules for code you add:</p>
+<ul>
+  <li>HTML from the CMS or API goes through <code>safeHtml()</code>; links and redirects from config or data go through <code>safeUrl()</code> (<code>src/utils/safe-content.ts</code>).</li>
+  <li>Never put the API token in a URL, a log line or browser storage. Send it only as the <code>x-ksys-token</code> header to the Kurtosys API host.</li>
+  <li>Production builds strip <code>console.log</code>, <code>info</code> and <code>debug</code>. Use <code>console.warn</code>/<code>error</code> only for messages support needs, with no tokens or personal data.</li>
+  <li>Pin dependency versions exactly, use releases at least two weeks old, and run <code>npm audit</code> in each app: no high or critical issues.</li>
+  <li>The shadcn CLI is not a dependency (no upstream fix for its <code>braces</code> CVE). To add a component, run <code>npx shadcn@4.21.4 add &lt;name&gt;</code> in the app folder.</li>
+</ul>
 
 <h2 id="checklist">14. End-to-end checklist</h2>
 <ol>
@@ -612,6 +620,18 @@ npm run audit:security</pre>
     <tr>
       <td>Styles overridden by theme / Elementor</td>
       <td>Confirm Tailwind <code>important</code> import in <code>src/index.css</code></td>
+    </tr>
+    <tr>
+      <td>Subadvised link or redirect does nothing</td>
+      <td><code>subadvisedLandingUrl</code> must be <code>https://</code> or a same-site path; other values are blocked</td>
+    </tr>
+    <tr>
+      <td>Disclaimer HTML loses a tag or attribute</td>
+      <td>It was removed by <code>safeHtml()</code> as unsafe (scripts, event handlers, forms, <code>javascript:</code> links)</td>
+    </tr>
+    <tr>
+      <td>No <code>console.log</code> output on stg/prd</td>
+      <td>Expected: production builds strip it. Debug with <code>npm run dev</code></td>
     </tr>
     <tr>
       <td><code>apps:add</code> cannot find template</td>

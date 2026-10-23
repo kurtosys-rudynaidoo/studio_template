@@ -5,6 +5,7 @@
 
 import { useState, useCallback, useRef, useEffect, useMemo } from 'react';
 import type { FilterState } from '@/types/filter.types';
+import { safeHtml } from '@/utils/safe-content';
 
 export interface FilterDropdownProps {
 	property: string;
@@ -162,7 +163,7 @@ export interface FilterDropdownProps {
 								}}
 								onMouseEnter={() => setShowTooltip(true)}
 								onMouseLeave={() => setShowTooltip(false)}
-								dangerouslySetInnerHTML={{ __html: tooltip }}
+								dangerouslySetInnerHTML={{ __html: safeHtml(tooltip) }}
 							/>
 						)}
 					</div>
@@ -222,6 +223,7 @@ export interface FilterDropdownProps {
 						<input
 							type="text"
 							placeholder={`Search ${label}`}
+							aria-label={`Search ${label}`}
 							value={searchText}
 							onChange={(e) => setSearchText(e.target.value)}
 							className="w-full px-3 py-2 border border-[#E0E3ED] focus:outline-none focus:ring-1 focus:ring-[#004E96]"

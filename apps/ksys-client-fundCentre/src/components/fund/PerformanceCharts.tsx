@@ -7,6 +7,7 @@ import { useState, useMemo } from 'react';
 import type { Fund, Shareclass } from '@/types/fund.types';
 import PerformanceBarChart from '@/components/charts/PerformanceBarChart';
 import { formatDate } from '@/utils/formatters';
+import { safeHtml } from '@/utils/safe-content';
 
 export interface PerformanceChartsProps {
 	fund: Fund;
@@ -212,7 +213,7 @@ function PerformanceCharts({ fund, shareclass }: PerformanceChartsProps) {
 									fontFamily: 'var(--font-condensed)',
 									fontSize: '11px',
 								}}>
-								<div dangerouslySetInnerHTML={{ __html: disclaimer.content }} />
+								<div dangerouslySetInnerHTML={{ __html: safeHtml(disclaimer.content) }} />
 							</li>
 						))}
 				</ol>

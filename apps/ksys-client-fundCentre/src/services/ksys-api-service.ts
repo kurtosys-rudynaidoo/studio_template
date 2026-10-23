@@ -238,6 +238,16 @@ export class KSYSApiService {
 		if (!token) {
 			return abs;
 		}
+		// Only send the token over https to the API's own origin, never to a host named in API data (3.1 / 3.6).
+		let target: URL;
+		try {
+			target = new URL(abs);
+		} catch {
+			return abs;
+		}
+		if (target.protocol !== 'https:' || target.origin !== new URL(this.getBaseUrl()).origin) {
+			return abs;
+		}
 
 		try {
 			const res = await fetch(abs, {
